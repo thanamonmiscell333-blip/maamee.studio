@@ -14,11 +14,7 @@
 }
 html{scroll-behavior:smooth}
 body{background:var(--cream);font-family:'Jost',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-
-/* ANNOUNCE */
 .announce{background:var(--ink);color:var(--cream);text-align:center;padding:10px 24px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;font-weight:300;}
-
-/* NAV */
 nav{display:flex;align-items:center;justify-content:space-between;padding:20px 48px;border-bottom:0.5px solid var(--ink-20);background:var(--cream);position:sticky;top:0;z-index:100;}
 .nav-links{display:flex;gap:36px;}
 .nav-links a{font-size:12px;letter-spacing:0.12em;text-transform:uppercase;font-weight:400;color:var(--ink);text-decoration:none;transition:opacity 0.15s;}
@@ -27,33 +23,29 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .nav-right a{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;font-weight:400;color:var(--ink);text-decoration:none;border-bottom:0.5px solid var(--ink);padding-bottom:1px;transition:opacity 0.15s;}
 .nav-right a:hover{opacity:0.5;}
 
-/* HERO SLIDESHOW */
-.hero{position:relative;height:92vh;min-height:600px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--warm);}
+/* HERO */
+.hero{position:relative;height:92vh;min-height:600px;overflow:hidden;}
 .hero-slides{position:absolute;inset:0;}
-.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;background-size:cover;background-position:center;}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;background-size:cover;background-position:center top;}
 .hero-slide.active{opacity:1;}
-.hero-slide-overlay{position:absolute;inset:0;background:rgba(26,20,16,0.32);}
+.hero-slide-overlay{position:absolute;inset:0;background:rgba(26,20,16,0.3);}
 .hero-fallback{position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(107,140,110,0.1) 0,rgba(107,140,110,0.1) 1px,transparent 1px,transparent 28px),repeating-linear-gradient(-45deg,rgba(196,145,154,0.07) 0,rgba(196,145,154,0.07) 1px,transparent 1px,transparent 28px),var(--warm);}
-.hero-content{position:relative;z-index:2;text-align:center;padding:0 24px;max-width:760px;animation:fadeUp 1s ease both;}
-.hero-eyebrow{font-size:11px;letter-spacing:0.22em;text-transform:uppercase;font-weight:300;color:rgba(250,247,242,0.8);margin-bottom:28px;display:block;}
-.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,8vw,96px);font-weight:300;line-height:1;margin-bottom:28px;letter-spacing:-0.01em;color:var(--cream);}
-.hero-title em{font-style:italic;color:rgba(229,210,190,0.9);}
-.hero-body{font-size:14px;font-weight:300;color:rgba(250,247,242,0.7);line-height:1.9;max-width:420px;margin:0 auto 36px;}
-.hero-cta{display:inline-block;border:0.5px solid rgba(250,247,242,0.7);padding:14px 40px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;font-weight:400;color:var(--cream);text-decoration:none;transition:all 0.2s;font-family:'Jost',sans-serif;}
-.hero-cta:hover{background:var(--cream);color:var(--ink);border-color:var(--cream);}
-/* slide dots */
+.hero-content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px;z-index:2;}
+.has-image .hero-eyebrow{color:rgba(250,247,242,0.8);}
+.has-image .hero-title{color:var(--cream);}
+.has-image .hero-title em{color:rgba(229,210,190,0.9);}
+.has-image .hero-body{color:rgba(250,247,242,0.7);}
+.has-image .hero-cta{border-color:rgba(250,247,242,0.7);color:var(--cream);}
+.has-image .hero-cta:hover{background:var(--cream);color:var(--ink);}
+.hero-eyebrow{font-size:11px;letter-spacing:0.22em;text-transform:uppercase;font-weight:300;color:var(--ink-50);margin-bottom:28px;display:block;transition:color 0.3s;}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,8vw,96px);font-weight:300;line-height:1;margin-bottom:28px;letter-spacing:-0.01em;color:var(--ink);transition:color 0.3s;}
+.hero-title em{font-style:italic;color:var(--sage);transition:color 0.3s;}
+.hero-body{font-size:14px;font-weight:300;color:var(--ink-50);line-height:1.9;max-width:420px;margin:0 auto 36px;transition:color 0.3s;}
+.hero-cta{display:inline-block;border:0.5px solid var(--ink);padding:14px 40px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;font-weight:400;color:var(--ink);text-decoration:none;transition:all 0.2s;font-family:'Jost',sans-serif;}
+.hero-cta:hover{background:var(--ink);color:var(--cream);}
 .hero-dots{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:10px;}
-.hero-dot{width:6px;height:6px;border-radius:50%;border:0.5px solid rgba(250,247,242,0.6);background:transparent;cursor:pointer;transition:background 0.3s;padding:0;}
+.hero-dot{width:6px;height:6px;border-radius:50%;border:0.5px solid rgba(250,247,242,0.6);background:transparent;cursor:pointer;padding:0;transition:background 0.3s;}
 .hero-dot.active{background:rgba(250,247,242,0.85);}
-/* no-image fallback — show original pattern bg with dark text */
-.hero.no-img .hero-eyebrow{color:var(--ink-50);}
-.hero.no-img .hero-title{color:var(--ink);}
-.hero.no-img .hero-title em{color:var(--sage);}
-.hero.no-img .hero-body{color:var(--ink-50);}
-.hero.no-img .hero-cta{border-color:var(--ink);color:var(--ink);}
-.hero.no-img .hero-cta:hover{background:var(--ink);color:var(--cream);}
-.hero.no-img .hero-dot{border-color:var(--ink-20);}
-.hero.no-img .hero-dot.active{background:var(--ink-50);}
 
 /* FABRIC STRIP */
 .fabric-strip{border-top:0.5px solid var(--ink-20);border-bottom:0.5px solid var(--ink-20);padding:24px 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;background:var(--cream);}
@@ -66,7 +58,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .sold-tag{font-size:9px;letter-spacing:0.16em;text-transform:uppercase;border:0.5px solid var(--ink);padding:5px 12px;display:none;}
 .sold-tag.show{display:block;}
 
-/* SECTION HEADER */
+/* SECTION */
 .section-header{padding:80px 48px 48px;display:flex;align-items:flex-end;justify-content:space-between;}
 .section-header h2{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,52px);font-weight:300;line-height:1.1;}
 .section-header h2 em{font-style:italic;color:var(--sage);}
@@ -74,80 +66,55 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 
 /* PRODUCTS */
 .products{padding:0 48px 80px;display:grid;grid-template-columns:1fr 1fr;gap:48px;}
-.product-card{}
-.product-photo{
-  width:100%;aspect-ratio:4/5;
-  background:var(--warm);
-  overflow:hidden;position:relative;
-  margin-bottom:24px;
-}
+.product-photo{width:100%;aspect-ratio:4/5;background:var(--warm);overflow:hidden;position:relative;margin-bottom:24px;}
 .product-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease;}
 .product-photo:hover img{transform:scale(1.03);}
-.product-photo .placeholder{
-  width:100%;height:100%;display:flex;align-items:center;justify-content:center;
-  background:repeating-linear-gradient(45deg,rgba(107,140,110,0.12) 0,rgba(107,140,110,0.12) 1px,transparent 1px,transparent 20px),
-  repeating-linear-gradient(-45deg,rgba(196,145,154,0.09) 0,rgba(196,145,154,0.09) 1px,transparent 1px,transparent 20px),var(--warm);
-}
-.placeholder-text{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--ink-50);letter-spacing:0.06em;}
-.sold-overlay{position:absolute;inset:0;background:rgba(26,20,16,0.42);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s;pointer-events:none;}
-.sold-overlay.show{opacity:1;}
+.product-photo .placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(45deg,rgba(107,140,110,0.12) 0,rgba(107,140,110,0.12) 1px,transparent 1px,transparent 20px),repeating-linear-gradient(-45deg,rgba(196,145,154,0.09) 0,rgba(196,145,154,0.09) 1px,transparent 1px,transparent 20px),var(--warm);}
+.placeholder-text{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--ink-50);}
+.sold-overlay{position:absolute;inset:0;background:rgba(26,20,16,0.42);display:none;align-items:center;justify-content:center;}
+.sold-overlay.show{display:flex;}
 .sold-overlay span{background:var(--cream);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;padding:10px 24px;}
-
-.product-type{font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-50);margin-bottom:6px;}
-.product-name{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;margin-bottom:4px;}
-.product-line{font-size:13px;color:var(--ink-50);font-style:italic;font-family:'Cormorant Garamond',serif;margin-bottom:24px;line-height:1.5;}
-
-/* Options */
+.product-name{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;margin-bottom:6px;}
+.product-price{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;margin-bottom:12px;color:var(--ink);}
+.product-desc{font-size:13px;color:var(--ink-50);font-weight:300;line-height:1.8;margin-bottom:24px;}
 .opt-label{font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-50);margin-bottom:8px;}
 .hw-row{display:flex;gap:8px;margin-bottom:20px;}
 .hw-btn{display:flex;align-items:center;gap:7px;padding:7px 14px;border:0.5px solid var(--ink-20);background:transparent;cursor:pointer;font-size:11px;font-weight:400;color:var(--ink);font-family:'Jost',sans-serif;letter-spacing:0.06em;transition:border-color 0.15s;}
-.hw-btn:hover{border-color:var(--ink);}
-.hw-btn.active{border-color:var(--ink);background:var(--ink-08);}
+.hw-btn:hover,.hw-btn.active{border-color:var(--ink);background:var(--ink-08);}
 .hw-dot{width:10px;height:10px;border-radius:50%;border:0.5px solid var(--ink-20);}
 .hw-dot.gold{background:var(--gold);}
 .hw-dot.silver{background:#9AABB5;}
-
 .sz-row{display:flex;gap:6px;margin-bottom:20px;}
-.sz{width:42px;height:42px;display:flex;align-items:center;justify-content:center;border:0.5px solid var(--ink-20);font-size:11px;font-weight:400;letter-spacing:0.06em;cursor:pointer;background:transparent;font-family:'Jost',sans-serif;color:var(--ink);transition:all 0.15s;}
+.sz{width:42px;height:42px;display:flex;align-items:center;justify-content:center;border:0.5px solid var(--ink-20);font-size:11px;cursor:pointer;background:transparent;font-family:'Jost',sans-serif;color:var(--ink);transition:all 0.15s;}
 .sz:hover{border-color:var(--ink);}
 .sz.active{background:var(--ink);color:var(--cream);border-color:var(--ink);}
 
-/* FABRIC SELECTOR */
-.fabric-selector-wrap{margin-bottom:24px;}
-.fabric-swatches{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
-.f-swatch-btn{
-  width:40px;height:40px;border:1.5px solid transparent;cursor:pointer;
-  overflow:hidden;position:relative;transition:border-color 0.15s;
-  flex-shrink:0;
-}
+/* FABRIC SWATCHES */
+.fabric-swatches{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;margin-bottom:6px;}
+.f-swatch-btn{width:40px;height:40px;border:1.5px solid transparent;cursor:pointer;overflow:hidden;transition:border-color 0.15s;flex-shrink:0;background:var(--warm);}
 .f-swatch-btn img{width:100%;height:100%;object-fit:cover;}
-.f-swatch-btn .swatch-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:16px;}
 .f-swatch-btn.active{border-color:var(--ink);}
-.f-swatch-btn.sold-f{opacity:0.35;cursor:not-allowed;}
-.f-swatch-btn .sold-x{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--ink-50);background:rgba(250,247,242,0.6);}
-.f-swatch-name{font-size:11px;color:var(--ink-50);margin-top:6px;font-style:italic;min-height:16px;}
+.f-swatch-btn.soldout{opacity:0.35;cursor:not-allowed;}
+.swatch-name{font-size:11px;color:var(--ink-50);margin-bottom:16px;font-style:italic;min-height:16px;}
+
+/* SIZE GUIDE */
+.sg-toggle{display:flex;align-items:center;justify-content:space-between;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-50);cursor:pointer;padding:10px 0;border-top:0.5px solid var(--ink-20);border-bottom:0.5px solid var(--ink-20);background:none;border-left:none;border-right:none;width:100%;font-family:'Jost',sans-serif;}
+.sg-toggle:hover{color:var(--ink);}
+.sg-arrow{transition:transform 0.2s;font-size:10px;}
+.sg-toggle.open .sg-arrow{transform:rotate(180deg);}
+.sg-body{display:none;padding:16px 0;border-bottom:0.5px solid var(--ink-20);}
+.sg-body.open{display:block;}
+.sg-table{width:100%;border-collapse:collapse;font-size:11px;}
+.sg-table th{text-align:left;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-50);font-weight:400;padding:0 6px 8px 0;border-bottom:0.5px solid var(--ink-20);}
+.sg-table td{padding:7px 6px 7px 0;border-bottom:0.5px solid var(--ink-08);color:var(--ink);font-weight:300;vertical-align:top;}
+.sg-table td:first-child{font-weight:500;width:28px;}
+.sg-note{font-size:11px;color:var(--ink-50);margin-top:10px;line-height:1.6;font-style:italic;}
 
 /* CTA */
-.product-cta{width:100%;background:var(--ink);color:var(--cream);border:none;padding:15px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-family:'Jost',sans-serif;font-weight:400;cursor:pointer;transition:opacity 0.15s;display:flex;align-items:center;justify-content:center;gap:10px;}
+.product-cta{width:100%;background:var(--ink);color:var(--cream);border:none;padding:15px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-family:'Jost',sans-serif;cursor:pointer;transition:opacity 0.15s;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:16px;text-decoration:none;}
 .product-cta:hover{opacity:0.75;}
-.product-cta.unavail{background:transparent;color:var(--ink-50);border:0.5px solid var(--ink-20);cursor:default;}
-.product-cta.unavail:hover{opacity:1;}
-.product-price{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;margin-bottom:16px;letter-spacing:0.02em;}
-.product-desc{font-size:13px;color:var(--ink-50);font-weight:300;line-height:1.8;margin-bottom:20px;}
-/* Size guide accordion */
-.size-guide-toggle{display:flex;align-items:center;justify-content:space-between;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-50);cursor:pointer;padding:10px 0;border-top:0.5px solid var(--ink-20);border-bottom:0.5px solid var(--ink-20);margin-bottom:0;background:none;border-left:none;border-right:none;width:100%;font-family:'Jost',sans-serif;font-weight:400;}
-.size-guide-toggle:hover{color:var(--ink);}
-.size-guide-arrow{transition:transform 0.2s;font-size:10px;}
-.size-guide-toggle.open .size-guide-arrow{transform:rotate(180deg);}
-.size-guide-body{display:none;padding:16px 0;border-bottom:0.5px solid var(--ink-20);}
-.size-guide-body.open{display:block;}
-.sg-table{width:100%;border-collapse:collapse;font-size:12px;}
-.sg-table th{text-align:left;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-50);font-weight:400;padding:0 0 8px;border-bottom:0.5px solid var(--ink-20);}
-.sg-table td{padding:8px 0;border-bottom:0.5px solid var(--ink-08);color:var(--ink);font-weight:300;vertical-align:top;}
-.sg-table td:first-child{font-weight:500;width:28px;}
-.sg-table td{padding:7px 6px 7px 0;border-bottom:0.5px solid var(--ink-08);color:var(--ink);font-weight:300;vertical-align:top;font-size:11px;}
-.sg-table th{padding:0 6px 8px 0;}
-.sg-note{font-size:11px;color:var(--ink-50);margin-top:10px;line-height:1.6;font-style:italic;}
+.product-cta.soldout{background:transparent;color:var(--ink-50);border:0.5px solid var(--ink-20);}
+.product-cta.soldout:hover{opacity:1;}
 
 /* STORY */
 .story{padding:100px 48px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;border-top:0.5px solid var(--ink-20);}
@@ -155,9 +122,9 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .story h3 em{font-style:italic;color:var(--mauve);}
 .story p{font-size:14px;font-weight:300;color:var(--ink-50);line-height:2;margin-bottom:16px;}
 .story-pull{border-left:1.5px solid var(--mauve);padding-left:20px;font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--ink);line-height:1.7;margin-top:28px;}
-.story-img{width:100%;aspect-ratio:3/4;background:var(--warm);overflow:hidden;position:relative;}
-.story-img-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(30deg,rgba(107,140,110,0.15) 0,rgba(107,140,110,0.15) 2px,transparent 2px,transparent 24px),repeating-linear-gradient(-30deg,rgba(196,145,154,0.12) 0,rgba(196,145,154,0.12) 2px,transparent 2px,transparent 24px),#E8DDD0;}
-.story-center{text-align:center;}
+.story-img{width:100%;aspect-ratio:3/4;overflow:hidden;position:relative;background:var(--warm);}
+.story-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.story-img-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(30deg,rgba(107,140,110,0.15) 0,rgba(107,140,110,0.15) 2px,transparent 2px,transparent 24px),repeating-linear-gradient(-30deg,rgba(196,145,154,0.12) 0,rgba(196,145,154,0.12) 2px,transparent 2px,transparent 24px),#E8DDD0;text-align:center;}
 .story-center strong{display:block;font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;margin-bottom:8px;}
 .story-center p{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:rgba(26,20,16,0.4);letter-spacing:0.06em;line-height:1.9;}
 
@@ -189,9 +156,9 @@ footer{border-top:0.5px solid var(--ink-20);padding:48px;display:grid;grid-templ
   nav{padding:16px 20px;}
   .nav-brand{font-size:18px;}
   .nav-links{display:none;}
-  .hero{height:85vh;}
-  .fabric-strip,.section-header{padding-left:20px;padding-right:20px;}
-  .section-header{padding-top:56px;padding-bottom:28px;flex-direction:column;gap:10px;align-items:flex-start;}
+  .hero{height:88vh;}
+  .fabric-strip{padding:20px;flex-direction:column;align-items:flex-start;gap:12px;}
+  .section-header{padding:56px 20px 28px;flex-direction:column;gap:10px;align-items:flex-start;}
   .section-note{text-align:left;max-width:none;}
   .products{padding:0 20px 56px;grid-template-columns:1fr;gap:48px;}
   .story{padding:56px 20px;grid-template-columns:1fr;gap:32px;}
@@ -205,6 +172,59 @@ footer{border-top:0.5px solid var(--ink-20);padding:48px;display:grid;grid-templ
 </head>
 <body>
 
+<!-- ============================================================
+     ✏️  MINNIE'S EDIT ZONE — แก้ข้อมูลตรงนี้เลย
+     ============================================================ -->
+<script>
+const SITE = {
+
+  /* 🔗 Line OA URL */
+  lineUrl: 'https://line.me/R/ti/p/@594ynmkg',
+
+  /* 🖼️ Hero slideshow — ใส่ URL รูปได้สูงสุด 4 รูป
+     วิธีเพิ่มรูป: อัพรูปบน GitHub แล้วใส่ URL ที่นี่
+     ถ้าไม่มีรูป ปล่อย array ว่าง: [] */
+  heroImages: [
+    'https://raw.githubusercontent.com/thanamonmiscell333-blip/maamee.studio/main/hero-dog.png.png',
+  ],
+
+  /* 🧵 Fabric of the week */
+  weekFabric: {
+    name: 'Sage Bloom',
+    desc: 'Sage green with mauve floral ikat',
+    img: '',          /* ใส่ URL รูปผ้า หรือปล่อยว่าง */
+    soldOut: false,
+  },
+
+  /* 🧵 All fabrics in stock (เพิ่ม/ลบได้) */
+  fabrics: [
+    { name: 'Sage Bloom', desc: 'Sage green with mauve ikat', img: '', soldOut: false },
+  ],
+
+  /* 💰 Prices */
+  collarPrices:  { S: '฿790', M: '฿890', L: '฿990' },
+  bandanaPrices: { S: '฿590', M: '฿690', L: '฿790' },
+
+  /* 📝 Product descriptions */
+  collarDesc:  'Adjustable Thai silk collar with gold or silver hardware. Made to order for your dog\'s measurements.',
+  bandanaDesc: 'Pure Thai silk bandana, tied around the neck. No hardware — just the fabric draped on your dog.',
+
+  /* 📷 Product photos — ใส่ URL รูปสินค้าจริง */
+  collarPhoto:  '',   /* URL รูปปลอกคอ */
+  bandanaPhoto: '',   /* URL รูปบันดาน่า */
+  storyPhoto:   '',   /* URL รูป brand story */
+
+  /* 🚫 Global sold out (true = ปิดรับออเดอร์ทุกชิ้น) */
+  globalSoldOut: false,
+
+  /* 🔧 Hardware available */
+  hardware: { gold: true, silver: true },
+};
+</script>
+<!-- ============================================================
+     จบ EDIT ZONE — ไม่ต้องแก้อะไรใต้นี้
+     ============================================================ -->
+
 <div class="announce">Made to order · Thai silk · Handcrafted in Bangkok</div>
 
 <nav>
@@ -214,18 +234,18 @@ footer{border-top:0.5px solid var(--ink-20);padding:48px;display:grid;grid-templ
   </div>
   <a class="nav-brand" href="#">Maa-Mee.studio</a>
   <div class="nav-right">
-    <a id="nav-line" href="https://line.me/R/ti/p/@594ynmkg" target="_blank">Order via Line</a>
+    <a id="nav-line" href="#">Order via Line</a>
   </div>
 </nav>
 
-<!-- HERO SLIDESHOW -->
-<div class="hero no-img" id="hero">
+<!-- HERO -->
+<div class="hero" id="hero">
   <div class="hero-fallback" id="hero-fallback"></div>
   <div class="hero-slides" id="hero-slides"></div>
-  <div class="hero-content">
+  <div class="hero-content" id="hero-content">
     <span class="hero-eyebrow">Elevated Thai-Baan pet accessories</span>
     <h1 class="hero-title">Silk<br/>for your<br/><em>dog's life.</em></h1>
-    <p class="hero-body">Thai silk collars and bandanas — cut and sewn by Thai artisans in Bangkok, made to order for your dog. We choose each fabric because the pattern is worth wearing.</p>
+    <p class="hero-body">Thai silk collars and bandanas — cut and sewn by Thai artisans in Bangkok, made to order for your dog.</p>
     <a href="#collection" class="hero-cta">Fabrics of the week</a>
   </div>
   <div class="hero-dots" id="hero-dots"></div>
@@ -250,7 +270,7 @@ footer{border-top:0.5px solid var(--ink-20);padding:48px;display:grid;grid-templ
 <div id="collection">
   <div class="section-header reveal">
     <h2>Fabrics of the week.<br/><em>Try on.</em></h2>
-    <p class="section-note">Select a fabric below, choose your hardware and size — then message us on Line to order. You can also send us a photo of a collar you like to check stock.</p>
+    <p class="section-note">Select a fabric, choose your hardware and size — then message us on Line to order. You can also send us a photo of a collar you like to check stock.</p>
   </div>
 
   <div class="products">
@@ -258,39 +278,30 @@ footer{border-top:0.5px solid var(--ink-20);padding:48px;display:grid;grid-templ
     <!-- COLLAR -->
     <div class="product-card reveal">
       <div class="product-photo" id="collar-photo">
-        <div class="placeholder" id="collar-placeholder">
-          <span class="placeholder-text">Collar photo coming soon</span>
-        </div>
+        <div class="placeholder" id="collar-ph"><span class="placeholder-text">Collar photo coming soon</span></div>
         <img id="collar-img" src="" alt="Silk Collar" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
         <div class="sold-overlay" id="collar-sold-overlay"><span>Sold out</span></div>
       </div>
-
       <p class="product-name">The Silk Collar</p>
-      <p class="product-price" id="collar-price">฿790 – 990</p>
-      <p class="product-desc" id="collar-desc">Adjustable Thai silk collar with gold or silver hardware. Made to order for your dog's measurements.</p>
+      <p class="product-price" id="collar-price">฿990</p>
+      <p class="product-desc" id="collar-desc-el"></p>
 
-      <p class="opt-label">Fabric</p>
+      <p class="opt-label" style="margin-top:4px;">Fabric</p>
       <div class="fabric-swatches" id="collar-swatches"></div>
-      <p class="f-swatch-name" id="collar-swatch-name"></p>
+      <p class="swatch-name" id="collar-swatch-name"></p>
 
-      <div style="margin-top:16px;">
-        <p class="opt-label">Hardware</p>
-        <div class="hw-row" id="collar-hw-row">
-          <button class="hw-btn active" onclick="setHw('collar','gold',this)"><span class="hw-dot gold"></span> Gold</button>
-          <button class="hw-btn" onclick="setHw('collar','silver',this)"><span class="hw-dot silver"></span> Silver</button>
-        </div>
-      </div>
+      <p class="opt-label">Hardware</p>
+      <div class="hw-row" id="collar-hw-row"></div>
 
       <p class="opt-label">Size</p>
       <div class="sz-row">
-        <button class="sz" onclick="setSz(this);setPrice('collar',this.textContent)">S</button>
-        <button class="sz" onclick="setSz(this);setPrice('collar',this.textContent)">M</button>
-        <button class="sz active" onclick="setSz(this);setPrice('collar',this.textContent)">L</button>
+        <button class="sz" onclick="setSz(this);setPrice('collar',this.textContent.trim())">S</button>
+        <button class="sz" onclick="setSz(this);setPrice('collar',this.textContent.trim())">M</button>
+        <button class="sz active" onclick="setSz(this);setPrice('collar',this.textContent.trim())">L</button>
       </div>
-      <button class="size-guide-toggle" onclick="toggleSizeGuide('collar-guide',this)">
-        Size guide <span class="size-guide-arrow">▾</span>
-      </button>
-      <div class="size-guide-body" id="collar-guide">
+
+      <button class="sg-toggle" onclick="toggleSG('collar-sg',this)">Size guide <span class="sg-arrow">▾</span></button>
+      <div class="sg-body" id="collar-sg">
         <table class="sg-table">
           <thead><tr><th>Size</th><th>Neck</th><th>Length</th><th>Width</th><th>Price</th><th>Breed guide</th></tr></thead>
           <tbody>
@@ -299,66 +310,56 @@ footer{border-top:0.5px solid var(--ink-20);padding:48px;display:grid;grid-templ
             <tr><td>L</td><td>48–65 cm</td><td>68 cm</td><td>2.5 cm</td><td>฿990</td><td>Labrador, Golden Retriever, Husky</td></tr>
           </tbody>
         </table>
-        <p class="sg-note">Not sure? Message us on Line with your dog's neck measurement — we'll help you find the right size.</p>
+        <p class="sg-note">Not sure? Message us on Line with your dog's neck measurement.</p>
       </div>
 
-      <div style="margin-top:16px;">
-      <button class="product-cta" id="collar-cta" onclick="goLine()">
+      <a class="product-cta" id="collar-cta" href="#">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.88 2 10.6c0 3.28 2.12 6.16 5.32 7.8-.22.8-.8 2.92-.92 3.38-.14.54.2.54.42.4.18-.12 2.3-1.56 3.24-2.2.6.08 1.26.12 1.94.12 5.52 0 10-3.88 10-8.6C22 5.88 17.52 2 12 2z"/></svg>
         Order via Line
-      </button>
-      </div>
+      </a>
     </div>
 
     <!-- BANDANA -->
     <div class="product-card reveal" style="transition-delay:0.12s">
       <div class="product-photo" id="bandana-photo">
-        <div class="placeholder" id="bandana-placeholder">
-          <span class="placeholder-text">Bandana photo coming soon</span>
-        </div>
+        <div class="placeholder" id="bandana-ph"><span class="placeholder-text">Bandana photo coming soon</span></div>
         <img id="bandana-img" src="" alt="Silk Bandana" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
         <div class="sold-overlay" id="bandana-sold-overlay"><span>Sold out</span></div>
       </div>
-
       <p class="product-name">The Silk Bandana</p>
-      <p class="product-price" id="bandana-price">฿590 – 790</p>
-      <p class="product-desc" id="bandana-desc">Pure Thai silk bandana, tied around the neck. No hardware — just the fabric draped on your dog.</p>
+      <p class="product-price" id="bandana-price">฿790</p>
+      <p class="product-desc" id="bandana-desc-el"></p>
 
-      <p class="opt-label">Fabric</p>
+      <p class="opt-label" style="margin-top:4px;">Fabric</p>
       <div class="fabric-swatches" id="bandana-swatches"></div>
-      <p class="f-swatch-name" id="bandana-swatch-name"></p>
+      <p class="swatch-name" id="bandana-swatch-name"></p>
 
-      <div style="margin-top:16px;">
-        <p style="font-size:11px;color:var(--ink-50);font-weight:300;font-style:italic;margin-bottom:16px;line-height:1.7;">No metal hardware — pure silk, tied around the neck.</p>
-      </div>
+      <p style="font-size:11px;color:var(--ink-50);font-style:italic;margin-bottom:16px;line-height:1.7;margin-top:4px;">No metal hardware — pure silk, tied around the neck.</p>
 
       <p class="opt-label">Size</p>
       <div class="sz-row">
-        <button class="sz" onclick="setSz(this);setPrice('bandana',this.textContent)">S</button>
-        <button class="sz" onclick="setSz(this);setPrice('bandana',this.textContent)">M</button>
-        <button class="sz active" onclick="setSz(this);setPrice('bandana',this.textContent)">L</button>
+        <button class="sz" onclick="setSz(this);setPrice('bandana',this.textContent.trim())">S</button>
+        <button class="sz" onclick="setSz(this);setPrice('bandana',this.textContent.trim())">M</button>
+        <button class="sz active" onclick="setSz(this);setPrice('bandana',this.textContent.trim())">L</button>
       </div>
-      <button class="size-guide-toggle" onclick="toggleSizeGuide('bandana-guide',this)">
-        Size guide <span class="size-guide-arrow">▾</span>
-      </button>
-      <div class="size-guide-body" id="bandana-guide">
+
+      <button class="sg-toggle" onclick="toggleSG('bandana-sg',this)">Size guide <span class="sg-arrow">▾</span></button>
+      <div class="sg-body" id="bandana-sg">
         <table class="sg-table">
-          <thead><tr><th>Size</th><th>Length</th><th>Width (collar fit)</th><th>Price</th></tr></thead>
+          <thead><tr><th>Size</th><th>Length</th><th>Fits collar</th><th>Price</th></tr></thead>
           <tbody>
             <tr><td>S</td><td>28 cm</td><td>S collar / neck 25–35 cm</td><td>฿590</td></tr>
             <tr><td>M</td><td>40 cm</td><td>M collar / neck 35–48 cm</td><td>฿690</td></tr>
             <tr><td>L</td><td>52 cm</td><td>L collar / neck 48–65 cm</td><td>฿790</td></tr>
           </tbody>
         </table>
-        <p class="sg-note">Not sure? Message us on Line — we'll help you choose the right size.</p>
+        <p class="sg-note">Not sure? Message us on Line — we'll help you choose.</p>
       </div>
 
-      <div style="margin-top:16px;">
-      <button class="product-cta" id="bandana-cta" onclick="goLine()">
+      <a class="product-cta" id="bandana-cta" href="#">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.88 2 10.6c0 3.28 2.12 6.16 5.32 7.8-.22.8-.8 2.92-.92 3.38-.14.54.2.54.42.4.18-.12 2.3-1.56 3.24-2.2.6.08 1.26.12 1.94.12 5.52 0 10-3.88 10-8.6C22 5.88 17.52 2 12 2z"/></svg>
         Order via Line
-      </button>
-      </div>
+      </a>
     </div>
 
   </div>
@@ -372,14 +373,14 @@ footer{border-top:0.5px solid var(--ink-20);padding:48px;display:grid;grid-templ
     <p>Cut and sewn by Thai artisans in Bangkok. Made when you order it.</p>
     <div class="story-pull">"No two dogs wear the same pattern. That's not a flaw — that's the point."</div>
   </div>
-  <div class="story-img">
-    <div class="story-img-inner" id="story-img-inner">
+  <div class="story-img" id="story-img">
+    <div class="story-img-fallback" id="story-fallback">
       <div class="story-center">
         <strong>Maa-Mee.studio</strong>
         <p>Handcrafted in Bangkok<br/>Made to order<br/>Thai silk pet accessories</p>
       </div>
     </div>
-    <img id="story-img-real" src="" alt="" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
+    <img id="story-img-el" src="" alt="" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
   </div>
 </div>
 
@@ -387,26 +388,10 @@ footer{border-top:0.5px solid var(--ink-20);padding:48px;display:grid;grid-templ
 <div class="process reveal">
   <h2>How it works.</h2>
   <div class="process-grid">
-    <div>
-      <div class="step-num">01</div>
-      <p class="step-title">Choose</p>
-      <p class="step-body">Browse this week's fabrics. Select a pattern, hardware, and size above.</p>
-    </div>
-    <div>
-      <div class="step-num">02</div>
-      <p class="step-title">Message</p>
-      <p class="step-body">Send us a message on Line OA with your selection and your dog's neck measurement. You can also send a photo of a collar you like.</p>
-    </div>
-    <div>
-      <div class="step-num">03</div>
-      <p class="step-title">Made for your dog</p>
-      <p class="step-body">Your piece is cut and sewn when you order it. We don't hold stock.</p>
-    </div>
-    <div>
-      <div class="step-num">04</div>
-      <p class="step-title">Yours alone</p>
-      <p class="step-body">Each fabric is chosen for its pattern. Your dog's piece is cut from that roll — and no two cuts are exactly the same.</p>
-    </div>
+    <div><div class="step-num">01</div><p class="step-title">Choose</p><p class="step-body">Browse this week's fabrics. Select a pattern, hardware, and size above.</p></div>
+    <div><div class="step-num">02</div><p class="step-title">Message</p><p class="step-body">Send us a message on Line OA. Tell us your selection and your dog's neck measurement. You can also send a photo of a collar you like.</p></div>
+    <div><div class="step-num">03</div><p class="step-title">Made for your dog</p><p class="step-body">Your piece is cut and sewn when you order it. We don't hold stock.</p></div>
+    <div><div class="step-num">04</div><p class="step-title">Yours alone</p><p class="step-body">Each fabric is chosen for its pattern. Your dog's piece is cut from that roll — no two cuts are exactly the same.</p></div>
   </div>
 </div>
 
@@ -419,7 +404,7 @@ footer{border-top:0.5px solid var(--ink-20);padding:48px;display:grid;grid-templ
   <div class="fcol">
     <p class="fcol-label">Order</p>
     <p>No forms. No account. Choose your fabric, then message us on Line to order.</p>
-    <a class="footer-line-btn" id="footer-line" href="https://line.me/R/ti/p/@594ynmkg" target="_blank">
+    <a class="footer-line-btn" id="footer-line" href="#">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.88 2 10.6c0 3.28 2.12 6.16 5.32 7.8-.22.8-.8 2.92-.92 3.38-.14.54.2.54.42.4.18-.12 2.3-1.56 3.24-2.2.6.08 1.26.12 1.94.12 5.52 0 10-3.88 10-8.6C22 5.88 17.52 2 12 2z"/></svg>
       Open Line OA
     </a>
@@ -435,216 +420,166 @@ footer{border-top:0.5px solid var(--ink-20);padding:48px;display:grid;grid-templ
 </div>
 
 <script>
-let _lineUrl='https://line.me/R/ti/p/@594ynmkg';
-let _fabrics=[];
-let _selectedFabric={collar:null,bandana:null};
-let _slideTimer=null;
-
-function initHeroSlides(slides){
-  const hero=document.getElementById('hero');
-  const wrap=document.getElementById('hero-slides');
-  const dots=document.getElementById('hero-dots');
-  const fallback=document.getElementById('hero-fallback');
-  wrap.innerHTML='';dots.innerHTML='';
-  if(!slides||!slides.length){hero.classList.add('no-img');fallback.style.display='block';return;}
-  hero.classList.remove('no-img');fallback.style.display='none';
-  slides.forEach((src,i)=>{
-    const div=document.createElement('div');
-    div.className='hero-slide'+(i===0?' active':'');
-    div.style.backgroundImage=`url(${src})`;
-    div.innerHTML='<div class="hero-slide-overlay"></div>';
-    wrap.appendChild(div);
-    const dot=document.createElement('button');
-    dot.className='hero-dot'+(i===0?' active':'');
-    dot.onclick=()=>goSlide(i);
-    dots.appendChild(dot);
+// ── Apply SITE config ──────────────────────────────────────────
+function init(){
+  // Line links
+  ['nav-line','footer-line','collar-cta','bandana-cta'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.href=SITE.lineUrl;
   });
-  if(slides.length>1){
-    if(_slideTimer)clearInterval(_slideTimer);
-    _slideTimer=setInterval(()=>{
-      const all=wrap.querySelectorAll('.hero-slide');
-      const cur=wrap.querySelector('.hero-slide.active');
-      let idx=Array.from(all).indexOf(cur);
-      goSlide((idx+1)%all.length);
-    },5000);
+
+  // Hero slideshow
+  const slides=SITE.heroImages.filter(u=>u&&u.trim());
+  const hero=document.getElementById('hero');
+  const slideWrap=document.getElementById('hero-slides');
+  const dotsWrap=document.getElementById('hero-dots');
+  const content=document.getElementById('hero-content');
+  const fallback=document.getElementById('hero-fallback');
+
+  if(slides.length){
+    fallback.style.display='none';
+    content.classList.add('has-image');
+    slides.forEach((src,i)=>{
+      const div=document.createElement('div');
+      div.className='hero-slide'+(i===0?' active':'');
+      div.style.backgroundImage=`url(${src})`;
+      div.innerHTML='<div class="hero-slide-overlay"></div>';
+      slideWrap.appendChild(div);
+      if(slides.length>1){
+        const dot=document.createElement('button');
+        dot.className='hero-dot'+(i===0?' active':'');
+        dot.onclick=()=>goSlide(i);
+        dotsWrap.appendChild(dot);
+      }
+    });
+    if(slides.length>1){
+      let cur=0;
+      setInterval(()=>{cur=(cur+1)%slides.length;goSlide(cur);},5000);
+    }
   }
+
+  // Fabric strip
+  const wf=SITE.weekFabric;
+  document.getElementById('strip-name').textContent=wf.name||'—';
+  document.getElementById('strip-desc').textContent=wf.desc||'';
+  if(wf.img){const si=document.getElementById('strip-img');si.src=wf.img;si.style.display='block';}
+  if(wf.soldOut) document.getElementById('strip-sold').classList.add('show');
+
+  // Product desc
+  document.getElementById('collar-desc-el').textContent=SITE.collarDesc;
+  document.getElementById('bandana-desc-el').textContent=SITE.bandanaDesc;
+
+  // Product photos
+  function setPhoto(imgId,phId,src){
+    if(src){
+      const el=document.getElementById(imgId);
+      el.src=src;el.style.display='block';
+      document.getElementById(phId).style.display='none';
+    }
+  }
+  setPhoto('collar-img','collar-ph',SITE.collarPhoto);
+  setPhoto('bandana-img','bandana-ph',SITE.bandanaPhoto);
+  if(SITE.storyPhoto){
+    const si=document.getElementById('story-img-el');
+    si.src=SITE.storyPhoto;si.style.display='block';
+    document.getElementById('story-fallback').style.display='none';
+  }
+
+  // Sold out
+  const so=SITE.globalSoldOut;
+  if(so){
+    document.getElementById('collar-sold-overlay').classList.add('show');
+    document.getElementById('bandana-sold-overlay').classList.add('show');
+    ['collar-cta','bandana-cta'].forEach(id=>{
+      const el=document.getElementById(id);
+      el.className='product-cta soldout';
+      el.textContent='Sold out — message us on Line';
+      el.href=SITE.lineUrl;
+    });
+  }
+
+  // Hardware
+  const hwRow=document.getElementById('collar-hw-row');
+  if(SITE.hardware.gold){
+    const b=document.createElement('button');
+    b.className='hw-btn active';
+    b.innerHTML='<span class="hw-dot gold"></span> Gold';
+    b.onclick=function(){setHw(this);};
+    hwRow.appendChild(b);
+  }
+  if(SITE.hardware.silver){
+    const b=document.createElement('button');
+    b.className='hw-btn'+(SITE.hardware.gold?'':' active');
+    b.innerHTML='<span class="hw-dot silver"></span> Silver';
+    b.onclick=function(){setHw(this);};
+    hwRow.appendChild(b);
+  }
+
+  // Fabrics
+  renderSwatches();
 }
 
 function goSlide(idx){
-  const wrap=document.getElementById('hero-slides');
-  const dots=document.getElementById('hero-dots');
-  wrap.querySelectorAll('.hero-slide').forEach((s,i)=>s.classList.toggle('active',i===idx));
-  dots.querySelectorAll('.hero-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
+  const slides=document.querySelectorAll('.hero-slide');
+  const dots=document.querySelectorAll('.hero-dot');
+  slides.forEach((s,i)=>s.classList.toggle('active',i===idx));
+  dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
 }
 
-function getData(){
-  try{const d=localStorage.getItem('maameeCatalog');return d?JSON.parse(d):null;}catch(e){return null;}
-}
-
-function init(){
-  const d=getData();
-  if(!d){
-    initHeroSlides([]);renderSwatches([]);
-    document.getElementById('collar-price').textContent='฿990';
-    document.getElementById('bandana-price').textContent='฿790';
-    return;
-  }
-  _lineUrl=d.lineUrl||'https://line.me/R/ti/p/@594ynmkg';
-  document.getElementById('nav-line').href=_lineUrl;
-  document.getElementById('footer-line').href=_lineUrl;
-  const githubBase='https://raw.githubusercontent.com/thanamonmiscell333-blip/maamee.studio/main/';
-  const savedSlides=d.heroSlides||[];
-  initHeroSlides(savedSlides.length?savedSlides:[githubBase+'hero-dog.png.png']);
-
-  _fabrics=d.fabrics||[];
-  const week=_fabrics.find(f=>f.status==='week');
-
-  // Strip
-  if(week){
-    document.getElementById('strip-name').textContent=week.name;
-    document.getElementById('strip-desc').textContent=week.desc||'';
-    if(week.img){
-      const si=document.getElementById('strip-img');
-      si.src=week.img;si.style.display='block';
-    }
-    document.getElementById('strip-sold').classList.toggle('show',week.status==='soldout');
-  }
-
-  // Price & description - default to L
-  document.getElementById('collar-price').textContent = d.collarPrice ? '฿'+d.collarPrice : '฿990';
-  document.getElementById('bandana-price').textContent = d.bandanaPrice ? '฿'+d.bandanaPrice : '฿790';
-  if(d.collarDesc) document.getElementById('collar-desc').textContent=d.collarDesc;
-  if(d.bandanaDesc) document.getElementById('bandana-desc').textContent=d.bandanaDesc;
-
-  // Story image
-  if(d.storyImg){
-    const si=document.getElementById('story-img-real');
-    si.src=d.storyImg;si.style.display='block';
-    document.getElementById('story-img-inner').style.display='none';
-  }
-
-  // Product photos
-  if(d.collarImg){
-    document.getElementById('collar-img').src=d.collarImg;
-    document.getElementById('collar-img').style.display='block';
-    document.getElementById('collar-placeholder').style.display='none';
-  }
-  if(d.bandanaImg){
-    document.getElementById('bandana-img').src=d.bandanaImg;
-    document.getElementById('bandana-img').style.display='block';
-    document.getElementById('bandana-placeholder').style.display='none';
-  }
-
-  // Global sold out
-  const so=d.isSoldOut;
-  document.getElementById('collar-sold-overlay').classList.toggle('show',so);
-  document.getElementById('bandana-sold-overlay').classList.toggle('show',so);
-  setCta('collar-cta',so);
-  setCta('bandana-cta',so);
-
-  // Hardware availability
-  const hw=d.collarHardware||{gold:true,silver:true};
-  const hwRow=document.getElementById('collar-hw-row');
-  hwRow.innerHTML='';
-  if(hw.gold){const b=document.createElement('button');b.className='hw-btn active';b.innerHTML='<span class="hw-dot gold"></span> Gold';b.onclick=function(){setHw('collar','gold',this);};hwRow.appendChild(b);}
-  if(hw.silver){const b=document.createElement('button');b.className='hw-btn'+(hw.gold?'':' active');b.innerHTML='<span class="hw-dot silver"></span> Silver';b.onclick=function(){setHw('collar','silver',this);};hwRow.appendChild(b);}
-
-  renderSwatches(_fabrics);
-}
-
-function renderSwatches(fabrics){
+function renderSwatches(){
   ['collar','bandana'].forEach(type=>{
     const wrap=document.getElementById(`${type}-swatches`);
     wrap.innerHTML='';
-    if(!fabrics.length){wrap.innerHTML='<span style="font-size:12px;color:var(--ink-50);font-weight:300;font-style:italic;">No fabrics available yet.</span>';return;}
-    fabrics.forEach(f=>{
+    if(!SITE.fabrics.length){
+      wrap.innerHTML='<span style="font-size:12px;color:var(--ink-50);font-style:italic;">No fabrics available yet.</span>';
+      return;
+    }
+    SITE.fabrics.forEach((f,i)=>{
       const btn=document.createElement('button');
-      const isSold=f.status==='soldout';
-      btn.className='f-swatch-btn'+(isSold?' sold-f':'');
-      btn.title=f.name+(isSold?' (sold out)':'');
-      btn.disabled=isSold;
-      if(f.img){
-        btn.innerHTML=`<img src="${f.img}" alt="${f.name}"/>`;
-      }else{
-        btn.innerHTML=`<span class="swatch-placeholder">🧵</span>`;
-        btn.style.background='var(--warm)';btn.style.border='0.5px solid var(--ink-20)';
-      }
-      if(isSold)btn.innerHTML+=`<span class="sold-x">✕</span>`;
-      if(!isSold){
-        btn.onclick=()=>selectFabric(type,f,btn);
-      }
-      // Auto-select week fabric
-      if(f.status==='week'&&!_selectedFabric[type]){
-        setTimeout(()=>{if(!isSold)selectFabric(type,f,btn);},50);
-      }
+      btn.className='f-swatch-btn'+(f.soldOut?' soldout':'')+(i===0?' active':'');
+      btn.title=f.name;
+      btn.disabled=f.soldOut;
+      if(f.img) btn.innerHTML=`<img src="${f.img}" alt="${f.name}"/>`;
+      else btn.style.background=`hsl(${i*47+80},25%,75%)`;
+      if(!f.soldOut) btn.onclick=()=>{
+        wrap.querySelectorAll('.f-swatch-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(`${type}-swatch-name`).textContent=f.name;
+      };
       wrap.appendChild(btn);
     });
+    // Set initial name
+    const first=SITE.fabrics.find(f=>!f.soldOut);
+    if(first) document.getElementById(`${type}-swatch-name`).textContent=first.name;
   });
 }
 
-function selectFabric(type,fabric,btn){
-  _selectedFabric[type]=fabric;
-  // Update swatch active state
-  document.querySelectorAll(`#${type}-swatches .f-swatch-btn`).forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById(`${type}-swatch-name`).textContent=fabric.name;
-
-  // Update product photo if fabric has its own photo
-  // (fabric-specific photo = fabric.img used as product photo overlay)
-  if(fabric.img){
-    const imgEl=document.getElementById(`${type}-img`);
-    // Only swap if no real product photo set, otherwise just indicate selection
-    if(imgEl.style.display==='none'){
-      // No product photo — show fabric as background
-      document.getElementById(`${type}-placeholder`).style.background=`url(${fabric.img}) center/cover`;
-    }
-  }
-}
-
-function setCta(id,soldOut){
-  const el=document.getElementById(id);
-  if(soldOut){
-    el.className='product-cta unavail';
-    el.textContent='Sold out — message us on Line';
-    el.onclick=()=>window.open(_lineUrl,'_blank');
-  }else{
-    el.className='product-cta';
-    el.innerHTML=`<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.88 2 10.6c0 3.28 2.12 6.16 5.32 7.8-.22.8-.8 2.92-.92 3.38-.14.54.2.54.42.4.18-.12 2.3-1.56 3.24-2.2.6.08 1.26.12 1.94.12 5.52 0 10-3.88 10-8.6C22 5.88 17.52 2 12 2z"/></svg> Order via Line`;
-    el.onclick=goLine;
-  }
-}
-
-function setHw(product,type,btn){
-  btn.closest('.hw-row').querySelectorAll('.hw-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
+const COLLAR_P={S:'฿790',M:'฿890',L:'฿990'};
+const BANDANA_P={S:'฿590',M:'฿690',L:'฿790'};
+function setPrice(type,sz){
+  const p=type==='collar'?COLLAR_P:BANDANA_P;
+  const el=document.getElementById(type+'-price');
+  if(el&&p[sz]) el.textContent=p[sz];
 }
 function setSz(btn){
   btn.closest('.sz-row').querySelectorAll('.sz').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
 }
-const COLLAR_PRICES={S:'฿790',M:'฿890',L:'฿990'};
-const BANDANA_PRICES={S:'฿590',M:'฿690',L:'฿790'};
-
-function setPrice(product,size){
-  const prices=product==='collar'?COLLAR_PRICES:BANDANA_PRICES;
-  const el=document.getElementById(product+'-price');
-  if(el&&prices[size.trim()])el.textContent=prices[size.trim()];
+function setHw(btn){
+  btn.closest('.hw-row').querySelectorAll('.hw-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
 }
-
-function toggleSizeGuide(id,btn){
-  const body=document.getElementById(id);
-  body.classList.toggle('open');
+function toggleSG(id,btn){
+  document.getElementById(id).classList.toggle('open');
   btn.classList.toggle('open');
 }
 
-function goLine(){window.open(_lineUrl,'_blank');}
-
+// Scroll reveal
 const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
 },{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-window.addEventListener('storage',init);
 init();
 </script>
 </body>
