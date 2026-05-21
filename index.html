@@ -492,7 +492,9 @@ function init(){
   _lineUrl=d.lineUrl||'https://line.me/R/ti/p/@594ynmkg';
   document.getElementById('nav-line').href=_lineUrl;
   document.getElementById('footer-line').href=_lineUrl;
-  initHeroSlides(d.heroSlides||[]);
+  const githubBase='https://raw.githubusercontent.com/thanamonmiscell333-blip/maamee.studio/main/images/';
+  const savedSlides=d.heroSlides||[];
+  initHeroSlides(savedSlides.length?savedSlides:[githubBase+'hero-dog.png']);
 
   _fabrics=d.fabrics||[];
   const week=_fabrics.find(f=>f.status==='week');
