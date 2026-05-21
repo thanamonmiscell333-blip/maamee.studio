@@ -1,577 +1,587 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin · Maa-mee.studio</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Admin · Maa-Mee.studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --cream:#F2EBE0;
-  --sage:#6B8C6E;
-  --sage-pale:#E4EDE5;
-  --mauve:#C4919A;
-  --gold:#C9973A;
-  --espresso:#2C1F14;
-  --espresso-60:rgba(44,31,20,0.6);
-  --espresso-15:rgba(44,31,20,0.15);
-  --espresso-08:rgba(44,31,20,0.08);
-  --white:#FFFDF9;
-  --danger:#C0392B;
-  --danger-pale:#FDE8E6;
-  --success:#27AE60;
-  --success-pale:#E8F5EE;
+  --ink:#1A1410;--ink-50:rgba(26,20,16,0.5);--ink-20:rgba(26,20,16,0.2);--ink-08:rgba(26,20,16,0.08);
+  --cream:#FAF7F2;--warm:#F2EBE0;--sage:#6B8C6E;--mauve:#C4919A;--gold:#C9973A;
+  --danger:#C0392B;--danger-pale:#FDE8E6;--success:#27AE60;--success-pale:#E8F5EE;
 }
-html{scroll-behavior:smooth}
-body{
-  background:var(--cream);
-  font-family:'DM Sans',sans-serif;
-  color:var(--espresso);
-  min-height:100vh;
-  -webkit-font-smoothing:antialiased;
-}
+body{background:var(--cream);font-family:'Jost',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;}
 
-/* ── LOGIN SCREEN ── */
-#login-screen{
-  min-height:100vh;
-  display:flex;align-items:center;justify-content:center;
-  padding:24px;
+/* LOGIN */
+#login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;}
+.login-box{background:white;border:0.5px solid var(--ink-20);padding:48px 40px;width:100%;max-width:380px;}
+.login-brand{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;margin-bottom:4px;}
+.login-sub{font-size:11px;color:var(--ink-50);letter-spacing:0.1em;margin-bottom:32px;}
+input[type=password],input[type=text],input[type=url],textarea,select{
+  width:100%;padding:11px 14px;border:0.5px solid var(--ink-20);
+  font-size:14px;font-family:'Jost',sans-serif;background:white;color:var(--ink);
+  outline:none;transition:border 0.15s;margin-bottom:12px;
 }
-.login-card{
-  background:var(--white);
-  border:0.5px solid var(--espresso-15);
-  border-radius:20px;
-  padding:40px 32px;
-  width:100%;max-width:380px;
-  text-align:center;
+input:focus,textarea:focus,select:focus{border-color:var(--ink);}
+textarea{resize:vertical;}
+.btn-primary{
+  width:100%;background:var(--ink);color:var(--cream);border:none;
+  padding:13px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+  font-family:'Jost',sans-serif;cursor:pointer;transition:opacity 0.15s;
 }
-.login-brand{
-  font-family:'Cormorant Garamond',serif;
-  font-size:28px;font-weight:600;
-  margin-bottom:4px;
-}
-.login-brand span{color:var(--sage);}
-.login-sub{font-size:12px;color:var(--espresso-60);margin-bottom:32px;}
-.login-label{font-size:12px;color:var(--espresso-60);text-align:left;margin-bottom:6px;display:block;}
-.login-input{
-  width:100%;
-  padding:12px 16px;
-  border:0.5px solid var(--espresso-15);
-  border-radius:10px;
-  font-size:15px;
-  font-family:'DM Sans',sans-serif;
-  background:var(--white);
-  color:var(--espresso);
-  margin-bottom:16px;
-  outline:none;
-  transition:border 0.15s;
-}
-.login-input:focus{border-color:var(--sage);}
-.login-btn{
-  width:100%;
-  background:var(--espresso);
-  color:var(--cream);
-  border:none;border-radius:10px;
-  padding:14px;
-  font-size:14px;font-weight:500;
-  font-family:'DM Sans',sans-serif;
-  cursor:pointer;
-  transition:opacity 0.15s;
-}
-.login-btn:hover{opacity:0.85;}
-.login-error{
-  font-size:12px;color:var(--danger);
-  margin-top:10px;display:none;
-}
+.btn-primary:hover{opacity:0.75;}
+.btn-primary:disabled{opacity:0.4;cursor:default;}
+.err{font-size:12px;color:var(--danger);margin-top:8px;display:none;}
 
-/* ── ADMIN MAIN ── */
-#admin-screen{display:none;}
-nav{
-  background:var(--white);
-  border-bottom:0.5px solid var(--espresso-15);
-  padding:0 24px;
-  height:56px;
-  display:flex;align-items:center;justify-content:space-between;
-}
-.nav-brand{
-  font-family:'Cormorant Garamond',serif;
-  font-size:20px;font-weight:600;
-}
-.nav-brand span{color:var(--sage);}
-.nav-right{display:flex;gap:12px;align-items:center;}
-.nav-tag{
-  font-size:10px;letter-spacing:0.14em;
-  text-transform:uppercase;
-  background:var(--sage-pale);
-  color:var(--sage);
-  padding:4px 10px;border-radius:20px;
-}
-.logout-btn{
-  font-size:12px;color:var(--espresso-60);
-  background:none;border:none;cursor:pointer;
-  padding:4px;
-  text-decoration:underline;
-  font-family:'DM Sans',sans-serif;
-}
+/* NAV */
+#admin{display:none;}
+nav{background:white;border-bottom:0.5px solid var(--ink-20);padding:0 40px;height:52px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.nav-brand{font-family:'Cormorant Garamond',serif;font-size:18px;}
+.nav-r{display:flex;gap:20px;align-items:center;}
+.nav-link{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:0.5px solid var(--ink);padding-bottom:1px;transition:opacity 0.15s;}
+.nav-link:hover{opacity:0.5;}
+.btn-logout{font-size:11px;color:var(--ink-50);background:none;border:none;cursor:pointer;font-family:'Jost',sans-serif;text-decoration:underline;}
 
-.admin-wrap{padding:32px 24px;max-width:560px;}
+/* LAYOUT */
+.wrap{max-width:900px;padding:40px;}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;margin-bottom:6px;}
+.page-sub{font-size:13px;color:var(--ink-50);font-weight:300;margin-bottom:36px;line-height:1.6;}
+.status-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;margin-bottom:28px;font-size:12px;}
+.status-bar.ok{background:var(--success-pale);color:var(--success);}
+.status-bar.sold{background:var(--danger-pale);color:var(--danger);}
+.s-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.ok .s-dot{background:var(--success);}
+.sold .s-dot{background:var(--danger);}
 
-.section-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:28px;font-weight:600;
-  margin-bottom:4px;
-}
-.section-sub{font-size:13px;color:var(--espresso-60);margin-bottom:28px;line-height:1.5;}
+/* CARDS */
+.card{background:white;border:0.5px solid var(--ink-20);padding:28px;margin-bottom:16px;}
+.card-title{font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-50);font-weight:500;margin-bottom:20px;}
+label{font-size:12px;font-weight:500;display:block;margin-bottom:6px;color:var(--ink);}
+label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
 
-/* Card */
-.card{
-  background:var(--white);
-  border:0.5px solid var(--espresso-15);
-  border-radius:16px;
-  padding:24px;
-  margin-bottom:16px;
-}
-.card-title{
-  font-size:10px;letter-spacing:0.16em;
-  text-transform:uppercase;
-  color:var(--espresso-60);
-  font-weight:500;
-  margin-bottom:16px;
-}
+/* IMAGE UPLOAD */
+.upload-zone{border:1px dashed var(--ink-20);padding:28px;text-align:center;cursor:pointer;transition:all 0.15s;position:relative;margin-bottom:12px;}
+.upload-zone:hover,.upload-zone.drag{border-color:var(--ink);background:var(--ink-08);}
+.upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;margin:0;}
+.upload-icon{font-size:24px;margin-bottom:6px;}
+.upload-text{font-size:12px;color:var(--ink-50);font-weight:300;}
+.upload-text strong{color:var(--ink);font-weight:400;}
+.preview{position:relative;margin-bottom:12px;display:none;}
+.preview img{width:100%;max-height:220px;object-fit:cover;display:block;}
+.preview-rm{position:absolute;top:8px;right:8px;background:rgba(26,20,16,0.7);color:white;border:none;font-size:11px;padding:4px 10px;cursor:pointer;font-family:'Jost',sans-serif;}
 
-/* Form elements */
-label{
-  font-size:13px;color:var(--espresso);
-  display:block;margin-bottom:6px;font-weight:500;
-}
-label small{font-size:11px;color:var(--espresso-60);font-weight:400;margin-left:4px;}
-input[type=text],input[type=url],input[type=password],textarea{
-  width:100%;
-  padding:12px 14px;
-  border:0.5px solid var(--espresso-15);
-  border-radius:10px;
-  font-size:14px;
-  font-family:'DM Sans',sans-serif;
-  background:var(--white);
-  color:var(--espresso);
-  margin-bottom:16px;
-  outline:none;
-  transition:border 0.15s;
-  resize:vertical;
-}
-input:focus,textarea:focus{border-color:var(--sage);}
+/* TOGGLE */
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;}
+.toggle-info strong{font-size:13px;font-weight:500;display:block;}
+.toggle-info span{font-size:12px;color:var(--ink-50);font-weight:300;}
+.tog{position:relative;width:40px;height:22px;flex-shrink:0;}
+.tog input{opacity:0;width:0;height:0;position:absolute;}
+.tog-sl{position:absolute;inset:0;background:var(--ink-20);cursor:pointer;transition:background 0.2s;}
+.tog-sl::before{content:'';position:absolute;width:16px;height:16px;left:3px;top:3px;background:white;transition:transform 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.15);}
+.tog input:checked+.tog-sl{background:var(--danger);}
+.tog input:checked+.tog-sl::before{transform:translateX(18px);}
+.tog.green input:checked+.tog-sl{background:var(--sage);}
 
-/* Image upload */
-.upload-zone{
-  border:1.5px dashed var(--espresso-15);
-  border-radius:12px;
-  padding:32px 20px;
-  text-align:center;
-  cursor:pointer;
-  transition:all 0.15s;
-  margin-bottom:16px;
-  position:relative;
+/* FABRIC LIST */
+.fabric-list{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+.fabric-item{
+  display:grid;grid-template-columns:56px 1fr auto auto;
+  gap:14px;align-items:center;
+  border:0.5px solid var(--ink-20);padding:12px;background:white;
 }
-.upload-zone:hover{border-color:var(--sage);background:var(--sage-pale);}
-.upload-zone.dragover{border-color:var(--sage);background:var(--sage-pale);}
-.upload-icon{font-size:28px;margin-bottom:8px;}
-.upload-text{font-size:13px;color:var(--espresso-60);}
-.upload-text strong{color:var(--espresso);font-weight:500;}
-input[type=file]{
-  position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;
-}
-.preview-wrap{
-  position:relative;
-  border-radius:10px;
-  overflow:hidden;
-  margin-bottom:16px;
-  display:none;
-}
-.preview-wrap img{width:100%;height:160px;object-fit:cover;display:block;}
-.preview-remove{
-  position:absolute;top:8px;right:8px;
-  background:rgba(44,31,20,0.7);
-  color:white;border:none;border-radius:20px;
-  font-size:11px;padding:4px 10px;cursor:pointer;
-  font-family:'DM Sans',sans-serif;
-}
-
-/* Sold out toggle */
-.toggle-row{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:12px 0;
-}
-.toggle-info strong{font-size:14px;font-weight:500;display:block;}
-.toggle-info span{font-size:12px;color:var(--espresso-60);}
-.toggle{
-  position:relative;width:44px;height:24px;flex-shrink:0;
-}
-.toggle input{opacity:0;width:0;height:0;position:absolute;}
-.toggle-slider{
-  position:absolute;inset:0;
-  background:var(--espresso-15);
-  border-radius:24px;cursor:pointer;
-  transition:background 0.2s;
-}
-.toggle-slider::before{
-  content:'';
-  position:absolute;
-  width:18px;height:18px;
-  left:3px;top:3px;
-  border-radius:50%;
-  background:white;
-  transition:transform 0.2s;
-  box-shadow:0 1px 3px rgba(0,0,0,0.15);
-}
-.toggle input:checked + .toggle-slider{background:var(--danger);}
-.toggle input:checked + .toggle-slider::before{transform:translateX(20px);}
-
-/* Hardware toggles */
-.hw-toggles{display:flex;flex-direction:column;gap:0;}
-.hw-toggle-row{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:10px 0;
-  border-bottom:0.5px solid var(--espresso-08);
-}
-.hw-toggle-row:last-child{border-bottom:none;}
-.hw-dot-label{display:flex;align-items:center;gap:10px;}
-.hw-dot{width:14px;height:14px;border-radius:50%;border:0.5px solid var(--espresso-15);}
-.hw-dot.gold{background:var(--gold);}
-.hw-dot.silver{background:#9AABB5;}
-
-/* Save button */
-.save-btn{
-  width:100%;
-  background:var(--sage);
-  color:white;
-  border:none;border-radius:12px;
-  padding:16px;
-  font-size:15px;font-weight:500;
-  font-family:'DM Sans',sans-serif;
-  cursor:pointer;
-  transition:opacity 0.15s;
-  margin-top:8px;
-}
-.save-btn:hover{opacity:0.85;}
-.save-btn:disabled{opacity:0.5;cursor:default;}
-
-/* Toast */
-.toast{
-  position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
-  background:var(--espresso);
-  color:var(--cream);
-  font-size:13px;
-  padding:12px 24px;border-radius:24px;
-  opacity:0;transition:opacity 0.3s;
-  pointer-events:none;
+.fabric-thumb{width:56px;height:56px;object-fit:cover;border:0.5px solid var(--ink-20);background:var(--warm);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.fabric-thumb img{width:100%;height:100%;object-fit:cover;}
+.fabric-thumb-placeholder{font-size:20px;}
+.fabric-details{}
+.fabric-name-display{font-size:14px;font-weight:400;font-family:'Cormorant Garamond',serif;}
+.fabric-badge{display:inline-block;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;padding:2px 8px;margin-top:3px;}
+.fabric-badge.week{background:var(--ink);color:var(--cream);}
+.fabric-badge.stock{background:var(--sage);color:white;}
+.fabric-badge.soldout{background:var(--ink-20);color:var(--ink-50);}
+.fabric-actions{display:flex;gap:6px;}
+.btn-sm{
+  font-size:10px;letter-spacing:0.1em;text-transform:uppercase;
+  padding:6px 12px;border:0.5px solid var(--ink-20);
+  background:transparent;color:var(--ink);cursor:pointer;
+  font-family:'Jost',sans-serif;transition:all 0.15s;
   white-space:nowrap;
-  z-index:999;
 }
+.btn-sm:hover{border-color:var(--ink);background:var(--ink-08);}
+.btn-sm.danger:hover{border-color:var(--danger);color:var(--danger);background:var(--danger-pale);}
+.btn-sm.active-week{background:var(--ink);color:var(--cream);border-color:var(--ink);}
+
+/* ADD FABRIC FORM */
+.add-fabric-form{border:0.5px solid var(--ink-20);padding:20px;background:var(--warm);display:none;margin-bottom:16px;}
+.add-fabric-form.show{display:block;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.btn-add{
+  display:flex;align-items:center;gap:8px;
+  font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+  padding:10px 18px;border:0.5px solid var(--ink-20);
+  background:transparent;color:var(--ink);cursor:pointer;
+  font-family:'Jost',sans-serif;transition:all 0.15s;margin-bottom:16px;
+}
+.btn-add:hover{border-color:var(--ink);background:var(--ink-08);}
+
+/* HW TOGGLES */
+.hw-row-admin{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid var(--ink-08);}
+.hw-row-admin:last-child{border-bottom:none;}
+.hw-dot-wrap{display:flex;align-items:center;gap:10px;}
+.hw-dot{width:12px;height:12px;border-radius:50%;}
+
+/* SAVE */
+.save-wrap{margin-top:8px;}
+.save-note{font-size:11px;color:var(--ink-50);text-align:center;margin-top:10px;line-height:1.6;font-weight:300;}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--cream);font-size:12px;padding:11px 22px;opacity:0;transition:opacity 0.3s;pointer-events:none;white-space:nowrap;z-index:999;letter-spacing:0.06em;}
 .toast.show{opacity:1;}
 
-/* Preview link */
-.preview-link{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:13px;color:var(--sage);
-  text-decoration:none;
-  margin-top:8px;
-}
-.preview-link:hover{text-decoration:underline;}
-.preview-link svg{width:14px;height:14px;}
-
-/* Status indicator */
-.status-strip{
-  display:flex;align-items:center;gap:8px;
-  background:var(--success-pale);
-  border-radius:10px;
-  padding:10px 14px;
-  margin-bottom:20px;
-  font-size:12px;color:var(--success);
-}
-.status-dot{width:8px;height:8px;border-radius:50%;background:var(--success);flex-shrink:0;}
-.status-strip.sold-out-status{
-  background:var(--danger-pale);
-  color:var(--danger);
-}
-.status-strip.sold-out-status .status-dot{background:var(--danger);}
-
-@media(min-width:600px){
-  nav{padding:0 40px;}
-  .admin-wrap{padding:40px;}
+@media(max-width:600px){
+  nav{padding:0 20px;}
+  .wrap{padding:24px 20px;}
+  .form-row{grid-template-columns:1fr;}
+  .fabric-item{grid-template-columns:48px 1fr;grid-template-rows:auto auto;}
+  .fabric-actions{grid-column:1/-1;}
 }
 </style>
 </head>
 <body>
 
 <!-- LOGIN -->
-<div id="login-screen">
-  <div class="login-card">
-    <p class="login-brand">Maa-mee<span>.studio</span></p>
-    <p class="login-sub">Admin Panel · หน้าจัดการแบรนด์</p>
-    <label class="login-label">Password · รหัสผ่าน</label>
-    <input type="password" class="login-input" id="pw-input" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()"/>
-    <button class="login-btn" onclick="doLogin()">เข้าสู่ระบบ</button>
-    <p class="login-error" id="login-error">รหัสผ่านไม่ถูกต้อง · Incorrect password</p>
+<div id="login">
+  <div class="login-box">
+    <p class="login-brand">Maa-Mee.studio</p>
+    <p class="login-sub">Admin · Weekly Update Panel</p>
+    <label>Password</label>
+    <input type="password" id="pw" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()"/>
+    <button class="btn-primary" onclick="doLogin()">Sign in</button>
+    <p class="err" id="pw-err">Incorrect password — try again.</p>
   </div>
 </div>
 
 <!-- ADMIN -->
-<div id="admin-screen">
+<div id="admin">
   <nav>
-    <p class="nav-brand">Maa-mee<span>.studio</span> <span class="nav-tag">Admin</span></p>
-    <div class="nav-right">
-      <a class="preview-link" href="index.html" target="_blank">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        ดู catalog
-      </a>
-      <button class="logout-btn" onclick="doLogout()">ออกจากระบบ</button>
+    <p class="nav-brand">Maa-Mee.studio <span style="font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-50);margin-left:8px;">Admin</span></p>
+    <div class="nav-r">
+      <a class="nav-link" href="index.html" target="_blank">View catalog</a>
+      <button class="btn-logout" onclick="doLogout()">Sign out</button>
     </div>
   </nav>
 
-  <div class="admin-wrap">
-    <h1 class="section-title">อัพเดทประจำสัปดาห์</h1>
-    <p class="section-sub">เปลี่ยนลายผ้า ตั้งค่า sold out และอัพเดท Line OA — กด Save เพื่อให้ catalog อัพเดททันที</p>
+  <div class="wrap">
+    <h1 class="page-title">Weekly update</h1>
+    <p class="page-sub">Update this week's fabric, product photos, and availability. Changes appear on the catalog immediately after saving.</p>
 
-    <!-- Status -->
-    <div class="status-strip" id="status-strip">
-      <div class="status-dot"></div>
-      <span id="status-text">Catalog กำลังแสดงผล · ลูกค้าสามารถสั่งได้</span>
+    <div class="status-bar ok" id="status-bar">
+      <div class="s-dot"></div>
+      <span id="status-txt">Catalog live · Accepting orders</span>
     </div>
 
-    <!-- FABRIC INFO CARD -->
+    <!-- 01 FABRIC LIBRARY -->
     <div class="card">
-      <p class="card-title">01 · ลายผ้าของสัปดาห์นี้</p>
+      <p class="card-title">01 · Fabric library</p>
+      <p style="font-size:12px;color:var(--ink-50);font-weight:300;margin-bottom:16px;line-height:1.7;">Add all your fabric patterns here. Mark one as "This week" — it shows in the hero strip. Others appear as selectable options in the catalog.</p>
 
-      <label>ชื่อลาย · Pattern name <small>(แสดงบน catalog)</small></label>
-      <input type="text" id="pattern-name" placeholder="เช่น Sage Bloom · สีเขียวดอกไม้" />
+      <div class="fabric-list" id="fabric-list"></div>
 
-      <label>คำอธิบาย · Description <small>(ไม่เกิน 2 บรรทัด)</small></label>
-      <textarea id="pattern-desc" rows="2" placeholder="เช่น Sage green with mauve floral ikat · ผ้ามัดหมี่สีเขียวบรีดลาย"></textarea>
+      <button class="btn-add" onclick="toggleAddForm()">
+        <span>+</span> Add new fabric
+      </button>
 
-      <label>รูปผ้า · Fabric photo</label>
-      <div class="preview-wrap" id="preview-wrap">
-        <img id="preview-img" src="" alt="preview"/>
-        <button class="preview-remove" onclick="removeImage()">✕ ลบรูป</button>
-      </div>
-      <div class="upload-zone" id="upload-zone">
-        <input type="file" accept="image/*" id="file-input" onchange="handleFile(this.files[0])" />
-        <div class="upload-icon">🧵</div>
-        <p class="upload-text"><strong>เลือกรูปหรือลากมาวางที่นี่</strong><br/>JPG, PNG ขนาดไม่เกิน 5MB</p>
+      <div class="add-fabric-form" id="add-form">
+        <p style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-50);margin-bottom:16px;">New fabric</p>
+        <div class="form-row">
+          <div>
+            <label>Pattern name <small>(English)</small></label>
+            <input type="text" id="new-name" placeholder="e.g. Sage Bloom"/>
+          </div>
+          <div>
+            <label>Status</label>
+            <select id="new-status">
+              <option value="stock">In stock</option>
+              <option value="week">This week (featured)</option>
+              <option value="soldout">Sold out</option>
+            </select>
+          </div>
+        </div>
+        <label>Description <small>(short, 1 line)</small></label>
+        <input type="text" id="new-desc" placeholder="e.g. Sage green with mauve floral ikat"/>
+        <label>Fabric photo <small>(square or portrait works best)</small></label>
+        <div class="upload-zone" id="new-fabric-zone">
+          <input type="file" accept="image/*" onchange="handleNewFabricImg(this.files[0])"/>
+          <div class="upload-icon">🧵</div>
+          <p class="upload-text"><strong>Choose photo or drag here</strong><br/>JPG, PNG — max 4MB</p>
+        </div>
+        <div class="preview" id="new-fabric-preview">
+          <img id="new-fabric-preview-img" src="" alt=""/>
+          <button class="preview-rm" onclick="clearNewFabricImg()">✕ Remove</button>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:4px;">
+          <button class="btn-primary" style="flex:1;" onclick="addFabric()">Add to library</button>
+          <button class="btn-sm" style="flex:0 0 auto;" onclick="toggleAddForm()">Cancel</button>
+        </div>
       </div>
     </div>
 
-    <!-- SOLD OUT CARD -->
+    <!-- 02 HERO SLIDES -->
     <div class="card">
-      <p class="card-title">02 · สถานะ Availability</p>
+      <p class="card-title">02 · Hero slideshow</p>
+      <p style="font-size:12px;color:var(--ink-50);font-weight:300;margin-bottom:20px;line-height:1.7;">Add up to 4 photos for the hero slideshow. They rotate automatically every 5 seconds. Square or portrait photos work best.</p>
 
+      <div id="hero-slides-list" style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px;"></div>
+
+      <div class="upload-zone" id="hero-upload-zone" style="margin-bottom:0;">
+        <input type="file" accept="image/*" multiple onchange="handleHeroFiles(this.files)"/>
+        <div class="upload-icon">🖼</div>
+        <p class="upload-text"><strong>Add hero photos (up to 4)</strong><br/>JPG, PNG — drag here or click</p>
+      </div>
+    </div>
+
+    <!-- 03 PRODUCT DETAILS -->
+    <div class="card">
+      <p class="card-title">03 · Product details — price & description</p>
+
+      <div class="form-row">
+        <div>
+          <label>Collar price <small>(฿, numbers only)</small></label>
+          <input type="text" id="collar-price" placeholder="e.g. 590"/>
+          <label>Collar description</label>
+          <textarea id="collar-desc" rows="3" placeholder="e.g. Adjustable Thai silk collar with gold or silver hardware. Made to order."></textarea>
+        </div>
+        <div>
+          <label>Bandana price <small>(฿, numbers only)</small></label>
+          <input type="text" id="bandana-price" placeholder="e.g. 390"/>
+          <label>Bandana description</label>
+          <textarea id="bandana-desc" rows="3" placeholder="e.g. Pure Thai silk bandana, tied around the neck. No hardware."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 PRODUCT PHOTOS -->
+    <div class="card">
+      <p class="card-title">04 · Product photos</p>
+      <p style="font-size:12px;color:var(--ink-50);font-weight:300;margin-bottom:20px;line-height:1.7;">Upload your flat lay / lifestyle photos. The catalog shows the collar photo by default. When a customer selects a fabric, the matching photo appears.</p>
+
+      <label>Default collar photo <small>(shown before any fabric is selected)</small></label>
+      <div class="preview" id="collar-preview">
+        <img id="collar-preview-img" src="" alt=""/>
+        <button class="preview-rm" onclick="clearImg('collar')">✕ Remove</button>
+      </div>
+      <div class="upload-zone" id="collar-zone">
+        <input type="file" accept="image/*" onchange="handleImg('collar',this.files[0])"/>
+        <div class="upload-icon">📷</div>
+        <p class="upload-text"><strong>Choose collar photo or drag here</strong></p>
+      </div>
+
+      <div style="margin-top:20px;">
+        <label>Default bandana photo <small>(shown before any fabric is selected)</small></label>
+        <div class="preview" id="bandana-preview">
+          <img id="bandana-preview-img" src="" alt=""/>
+          <button class="preview-rm" onclick="clearImg('bandana')">✕ Remove</button>
+        </div>
+        <div class="upload-zone" id="bandana-zone">
+          <input type="file" accept="image/*" onchange="handleImg('bandana',this.files[0])"/>
+          <div class="upload-icon">📷</div>
+          <p class="upload-text"><strong>Choose bandana photo or drag here</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 BRAND PHOTOS -->
+    <div class="card">
+      <p class="card-title">04 · Brand photos</p>
+      <p style="font-size:12px;color:var(--ink-50);font-weight:300;margin-bottom:20px;line-height:1.7;">Photo for the brand story section on the catalog. Portrait or square works best.</p>
+      <label>Story / About image <small>(right side of the brand story section)</small></label>
+      <div class="preview" id="story-preview">
+        <img id="story-preview-img" src="" alt=""/>
+        <button class="preview-rm" onclick="clearImg('story')">✕ Remove</button>
+      </div>
+      <div class="upload-zone" id="story-zone">
+        <input type="file" accept="image/*" onchange="handleImg('story',this.files[0])"/>
+        <div class="upload-icon">📷</div>
+        <p class="upload-text"><strong>Choose brand photo or drag here</strong></p>
+      </div>
+    </div>
+
+    <!-- 05 AVAILABILITY -->
+    <div class="card">
+      <p class="card-title">05 · Availability</p>
       <div class="toggle-row">
         <div class="toggle-info">
-          <strong>Sold Out</strong>
-          <span>เปิด = ลูกค้าเห็น "sold out" และปุ่มจะเปลี่ยนเป็น "ทักหาเรา"</span>
+          <strong>Mark everything as Sold Out</strong>
+          <span>All order buttons change to "Message us on Line"</span>
         </div>
-        <label class="toggle">
-          <input type="checkbox" id="sold-out-toggle" onchange="updateStatus()"/>
-          <span class="toggle-slider"></span>
+        <label class="tog">
+          <input type="checkbox" id="global-sold" onchange="updateStatus()"/>
+          <span class="tog-sl"></span>
         </label>
       </div>
     </div>
 
-    <!-- HARDWARE CARD -->
+    <!-- 06 HARDWARE -->
     <div class="card">
-      <p class="card-title">03 · อะไหล่ที่มี (ปลอกคอ)</p>
-      <p style="font-size:12px;color:var(--espresso-60);margin-bottom:14px;">เปิด = ลูกค้าสามารถเลือกอะไหล่สีนั้นได้</p>
-      <div class="hw-toggles">
-        <div class="hw-toggle-row">
-          <div class="hw-dot-label">
-            <span class="hw-dot gold"></span>
-            <div>
-              <strong style="font-size:13px;">Gold · ทอง</strong>
-            </div>
-          </div>
-          <label class="toggle">
-            <input type="checkbox" id="hw-gold" checked/>
-            <span class="toggle-slider" style=""></span>
-          </label>
+      <p class="card-title">06 · Hardware options (collar)</p>
+      <div class="hw-row-admin">
+        <div class="hw-dot-wrap">
+          <span class="hw-dot" style="background:var(--gold);border:0.5px solid var(--ink-20);"></span>
+          <div><strong style="font-size:13px;">Gold</strong></div>
         </div>
-        <div class="hw-toggle-row">
-          <div class="hw-dot-label">
-            <span class="hw-dot silver"></span>
-            <div>
-              <strong style="font-size:13px;">Silver · เงิน</strong>
-            </div>
-          </div>
-          <label class="toggle">
-            <input type="checkbox" id="hw-silver" checked/>
-            <span class="toggle-slider"></span>
-          </label>
+        <label class="tog green"><input type="checkbox" id="hw-gold" checked/><span class="tog-sl"></span></label>
+      </div>
+      <div class="hw-row-admin">
+        <div class="hw-dot-wrap">
+          <span class="hw-dot" style="background:#9AABB5;border:0.5px solid var(--ink-20);"></span>
+          <div><strong style="font-size:13px;">Silver</strong></div>
         </div>
+        <label class="tog green"><input type="checkbox" id="hw-silver" checked/><span class="tog-sl"></span></label>
       </div>
     </div>
 
-    <!-- LINE OA CARD -->
+    <!-- 07 LINE OA -->
     <div class="card">
-      <p class="card-title">04 · Line OA Link</p>
-      <label>Line OA URL <small>(lin.ee/...)</small></label>
-      <input type="url" id="line-url" placeholder="https://lin.ee/YOUR_LINE_OA_ID" />
+      <p class="card-title">07 · Line OA</p>
+      <label>Line OA URL</label>
+      <input type="url" id="line-url" placeholder="https://lin.ee/YOUR_LINE_OA_ID"/>
     </div>
 
     <!-- SAVE -->
-    <button class="save-btn" id="save-btn" onclick="saveData()">
-      💾 บันทึกและอัพเดท Catalog
-    </button>
-
-    <p style="font-size:11px;color:var(--espresso-60);text-align:center;margin-top:12px;line-height:1.6;">
-      การเปลี่ยนแปลงจะแสดงบน catalog ทันที<br/>Changes appear on the catalog immediately after saving.
-    </p>
+    <div class="save-wrap">
+      <button class="btn-primary" id="save-btn" onclick="saveAll()">Save & update catalog</button>
+      <p class="save-note">Changes appear on the catalog immediately after saving.</p>
+    </div>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-const ADMIN_PW = 'maameestudio2026';
+const PW='maameestudio2026';
+let heroSlides=[];
 
-function doLogin(){
-  const pw = document.getElementById('pw-input').value;
-  if(pw === ADMIN_PW){
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('admin-screen').style.display = 'block';
-    loadForm();
-  } else {
-    document.getElementById('login-error').style.display = 'block';
-    setTimeout(()=>document.getElementById('login-error').style.display='none',2500);
-  }
+function handleHeroFiles(files){
+  const remaining=4-heroSlides.length;
+  if(remaining<=0){showToast('Maximum 4 hero photos');return;}
+  Array.from(files).slice(0,remaining).forEach(file=>{
+    if(file.size>4*1024*1024){showToast('Photo too large — max 4MB');return;}
+    const r=new FileReader();
+    r.onload=e=>{heroSlides.push(e.target.result);renderHeroSlides();};
+    r.readAsDataURL(file);
+  });
 }
 
+function renderHeroSlides(){
+  const el=document.getElementById('hero-slides-list');
+  if(!heroSlides.length){el.innerHTML='';return;}
+  el.innerHTML=heroSlides.map((src,i)=>`
+    <div style="display:grid;grid-template-columns:72px 1fr auto;gap:12px;align-items:center;border:0.5px solid var(--ink-20);padding:10px;">
+      <img src="${src}" style="width:72px;height:72px;object-fit:cover;"/>
+      <span style="font-size:12px;color:var(--ink-50);">Slide ${i+1}</span>
+      <button class="btn-sm danger" onclick="removeHeroSlide(${i})">Remove</button>
+    </div>
+  `).join('');
+}
+
+function removeHeroSlide(i){heroSlides.splice(i,1);renderHeroSlides();}
+
+const imgs={collar:'',bandana:'',story:''};
+
+function doLogin(){
+  if(document.getElementById('pw').value===PW){
+    document.getElementById('login').style.display='none';
+    document.getElementById('admin').style.display='block';
+    loadForm();
+  }else{
+    document.getElementById('pw-err').style.display='block';
+    setTimeout(()=>document.getElementById('pw-err').style.display='none',2500);
+  }
+}
 function doLogout(){
-  document.getElementById('admin-screen').style.display = 'none';
-  document.getElementById('login-screen').style.display = 'flex';
-  document.getElementById('pw-input').value = '';
+  document.getElementById('admin').style.display='none';
+  document.getElementById('login').style.display='flex';
+  document.getElementById('pw').value='';
+}
+
+function getData(){
+  try{const d=localStorage.getItem('maameeCatalog');return d?JSON.parse(d):getDefault();}
+  catch(e){return getDefault();}
+}
+function getDefault(){
+  return{fabrics:[{id:1,name:'Sage Bloom',desc:'Sage green with mauve floral ikat',status:'week',img:''}],collarImg:'',bandanaImg:'',isSoldOut:false,collarHardware:{gold:true,silver:true},lineUrl:'',updatedAt:null};
 }
 
 function loadForm(){
-  try{
-    const raw = localStorage.getItem('maameeCatalog');
-    if(!raw) return;
-    const d = JSON.parse(raw);
-    document.getElementById('pattern-name').value = d.patternName || '';
-    document.getElementById('pattern-desc').value = d.patternDesc || '';
-    document.getElementById('sold-out-toggle').checked = d.isSoldOut || false;
-    document.getElementById('line-url').value = d.lineUrl || '';
-    if(d.collarHardware){
-      document.getElementById('hw-gold').checked = d.collarHardware.gold !== false;
-      document.getElementById('hw-silver').checked = d.collarHardware.silver !== false;
-    }
-    if(d.patternImage){
-      showPreview(d.patternImage);
-    }
-    updateStatus();
-  }catch(e){}
+  const d=getData();
+  document.getElementById('global-sold').checked=d.isSoldOut||false;
+  document.getElementById('hw-gold').checked=d.collarHardware?.gold!==false;
+  document.getElementById('hw-silver').checked=d.collarHardware?.silver!==false;
+  document.getElementById('line-url').value=d.lineUrl||'';
+  if(d.collarPrice) document.getElementById('collar-price').value=d.collarPrice;
+  if(d.collarDesc) document.getElementById('collar-desc').value=d.collarDesc;
+  if(d.bandanaPrice) document.getElementById('bandana-price').value=d.bandanaPrice;
+  if(d.bandanaDesc) document.getElementById('bandana-desc').value=d.bandanaDesc;
+  if(d.heroSlides&&d.heroSlides.length){heroSlides=d.heroSlides;renderHeroSlides();}
+  if(d.collarImg){imgs.collar=d.collarImg;showImgPreview('collar',d.collarImg);}
+  if(d.bandanaImg){imgs.bandana=d.bandanaImg;showImgPreview('bandana',d.bandanaImg);}
+  if(d.storyImg){imgs.story=d.storyImg;showImgPreview('story',d.storyImg);}
+  renderFabricList(d.fabrics||[]);
+  updateStatus();
 }
 
-let imageData = '';
+function renderFabricList(fabrics){
+  const el=document.getElementById('fabric-list');
+  if(!fabrics.length){el.innerHTML='<p style="font-size:12px;color:var(--ink-50);padding:12px 0;">No fabrics yet — add one below.</p>';return;}
+  el.innerHTML=fabrics.map((f,i)=>`
+    <div class="fabric-item" id="fi-${f.id}">
+      <div class="fabric-thumb">${f.img?`<img src="${f.img}" alt=""/>`:'<span class="fabric-thumb-placeholder">🧵</span>'}</div>
+      <div class="fabric-details">
+        <p class="fabric-name-display">${f.name}</p>
+        <p style="font-size:11px;color:var(--ink-50);margin-top:2px;">${f.desc||''}</p>
+        <span class="fabric-badge ${f.status}">${f.status==='week'?'This week':f.status==='soldout'?'Sold out':'In stock'}</span>
+      </div>
+      <div class="fabric-actions">
+        ${f.status!=='week'?`<button class="btn-sm" onclick="setWeek(${f.id})">Set as this week</button>`:`<button class="btn-sm active-week" disabled>This week ✓</button>`}
+        <button class="btn-sm" onclick="toggleFabricSold(${f.id})">${f.status==='soldout'?'Mark in stock':'Mark sold out'}</button>
+        <button class="btn-sm danger" onclick="removeFabric(${f.id})">Remove</button>
+      </div>
+    </div>
+  `).join('');
+}
 
-function handleFile(file){
-  if(!file) return;
-  if(file.size > 5*1024*1024){
-    showToast('รูปใหญ่เกินไป — โปรดเลือกรูปขนาดไม่เกิน 5MB');
-    return;
-  }
-  const reader = new FileReader();
-  reader.onload = e => {
-    imageData = e.target.result;
-    showPreview(imageData);
+function toggleAddForm(){
+  document.getElementById('add-form').classList.toggle('show');
+}
+
+function handleNewFabricImg(file){
+  if(!file)return;
+  if(file.size>4*1024*1024){showToast('Photo too large — please use under 4MB');return;}
+  const r=new FileReader();
+  r.onload=e=>{
+    newFabricImg=e.target.result;
+    const prev=document.getElementById('new-fabric-preview');
+    document.getElementById('new-fabric-preview-img').src=newFabricImg;
+    prev.style.display='block';
+    document.getElementById('new-fabric-zone').style.display='none';
   };
-  reader.readAsDataURL(file);
+  r.readAsDataURL(file);
+}
+function clearNewFabricImg(){
+  newFabricImg='';
+  document.getElementById('new-fabric-preview').style.display='none';
+  document.getElementById('new-fabric-zone').style.display='block';
+  document.getElementById('new-fabric-preview-img').src='';
 }
 
-function showPreview(src){
-  document.getElementById('preview-img').src = src;
-  document.getElementById('preview-wrap').style.display = 'block';
-  document.getElementById('upload-zone').style.display = 'none';
-  imageData = src;
+function addFabric(){
+  const name=document.getElementById('new-name').value.trim();
+  if(!name){showToast('Please enter a pattern name');return;}
+  const d=getData();
+  const newId=Date.now();
+  const status=document.getElementById('new-status').value;
+  if(status==='week'){d.fabrics.forEach(f=>{if(f.status==='week')f.status='stock';});}
+  d.fabrics.push({id:newId,name,desc:document.getElementById('new-desc').value.trim(),status,img:newFabricImg});
+  save(d);
+  renderFabricList(d.fabrics);
+  document.getElementById('new-name').value='';
+  document.getElementById('new-desc').value='';
+  document.getElementById('new-status').value='stock';
+  clearNewFabricImg();
+  document.getElementById('add-form').classList.remove('show');
+  showToast('Fabric added ✓');
 }
 
-function removeImage(){
-  document.getElementById('preview-img').src = '';
-  document.getElementById('preview-wrap').style.display = 'none';
-  document.getElementById('upload-zone').style.display = 'block';
-  document.getElementById('file-input').value = '';
-  imageData = '';
+function setWeek(id){
+  const d=getData();
+  d.fabrics.forEach(f=>{f.status=f.id===id?'week':(f.status==='week'?'stock':f.status);});
+  save(d);renderFabricList(d.fabrics);showToast('Set as this week ✓');
+}
+function toggleFabricSold(id){
+  const d=getData();
+  const f=d.fabrics.find(x=>x.id===id);
+  if(f)f.status=f.status==='soldout'?'stock':'soldout';
+  save(d);renderFabricList(d.fabrics);showToast('Updated ✓');
+}
+function removeFabric(id){
+  if(!confirm('Remove this fabric from the library?'))return;
+  const d=getData();
+  d.fabrics=d.fabrics.filter(f=>f.id!==id);
+  save(d);renderFabricList(d.fabrics);showToast('Removed');
+}
+
+function handleImg(type,file){
+  if(!file)return;
+  if(file.size>4*1024*1024){showToast('Photo too large — please use under 4MB');return;}
+  const r=new FileReader();
+  r.onload=e=>{imgs[type]=e.target.result;showImgPreview(type,e.target.result);};
+  r.readAsDataURL(file);
+}
+function showImgPreview(type,src){
+  document.getElementById(`${type}-preview-img`).src=src;
+  document.getElementById(`${type}-preview`).style.display='block';
+  document.getElementById(`${type}-zone`).style.display='none';
+}
+function clearImg(type){
+  imgs[type]='';
+  document.getElementById(`${type}-preview`).style.display='none';
+  document.getElementById(`${type}-zone`).style.display='block';
 }
 
 function updateStatus(){
-  const so = document.getElementById('sold-out-toggle').checked;
-  const strip = document.getElementById('status-strip');
-  const txt = document.getElementById('status-text');
-  if(so){
-    strip.className = 'status-strip sold-out-status';
-    txt.textContent = 'สถานะ: Sold Out · ลูกค้าจะเห็นว่าสินค้าหมด';
-  } else {
-    strip.className = 'status-strip';
-    txt.textContent = 'Catalog กำลังแสดงผล · ลูกค้าสามารถสั่งได้';
-  }
+  const so=document.getElementById('global-sold').checked;
+  const bar=document.getElementById('status-bar');
+  bar.className='status-bar '+(so?'sold':'ok');
+  document.getElementById('status-txt').textContent=so?'Status: Sold Out — orders paused':'Catalog live · Accepting orders';
 }
 
-function saveData(){
-  const btn = document.getElementById('save-btn');
-  btn.disabled = true;
-  btn.textContent = 'กำลังบันทึก…';
-
-  const data = {
-    patternName: document.getElementById('pattern-name').value.trim(),
-    patternDesc: document.getElementById('pattern-desc').value.trim(),
-    patternImage: imageData,
-    isSoldOut: document.getElementById('sold-out-toggle').checked,
-    collarHardware: {
-      gold: document.getElementById('hw-gold').checked,
-      silver: document.getElementById('hw-silver').checked
-    },
-    lineUrl: document.getElementById('line-url').value.trim(),
-    updatedAt: new Date().toISOString()
-  };
-
-  if(!data.patternName){
-    showToast('กรุณาใส่ชื่อลายผ้า');
-    btn.disabled = false;
-    btn.textContent = '💾 บันทึกและอัพเดท Catalog';
-    return;
+function saveAll(){
+  const btn=document.getElementById('save-btn');
+  btn.disabled=true;btn.textContent='Saving…';
+  const d=getData();
+  d.heroSlides=heroSlides;
+  d.collarPrice=document.getElementById('collar-price').value.trim();
+  d.collarDesc=document.getElementById('collar-desc').value.trim();
+  d.bandanaPrice=document.getElementById('bandana-price').value.trim();
+  d.bandanaDesc=document.getElementById('bandana-desc').value.trim();
+  d.collarImg=imgs.collar;
+  d.bandanaImg=imgs.bandana;
+  d.storyImg=imgs.story;
+  d.isSoldOut=document.getElementById('global-sold').checked;
+  d.collarHardware={gold:document.getElementById('hw-gold').checked,silver:document.getElementById('hw-silver').checked};
+  d.lineUrl=document.getElementById('line-url').value.trim();
+  d.updatedAt=new Date().toISOString();
+  try{save(d);showToast('Saved — catalog updated ✓');}
+  catch(e){
+    if(e.name==='QuotaExceededError'){
+      const slim={...d,collarImg:'',bandanaImg:'',fabrics:d.fabrics.map(f=>({...f,img:''}))};
+      save(slim);showToast('Saved (photos too large — compress and retry)');
+    }else{showToast('Error — please try again');}
   }
-
-  try{
-    localStorage.setItem('maameeCatalog', JSON.stringify(data));
-    showToast('✓ อัพเดทเรียบร้อย — catalog แสดงผลแล้ว');
-  } catch(e){
-    if(e.name === 'QuotaExceededError'){
-      const slim = {...data, patternImage:''};
-      localStorage.setItem('maameeCatalog', JSON.stringify(slim));
-      showToast('บันทึกแล้ว (รูปใหญ่เกิน — ลองบีบอัดรูปก่อนอัพเดทใหม่)');
-    } else {
-      showToast('เกิดข้อผิดพลาด — ลองอีกครั้ง');
-    }
-  }
-
-  btn.disabled = false;
-  btn.textContent = '💾 บันทึกและอัพเดท Catalog';
+  btn.disabled=false;btn.textContent='Save & update catalog';
 }
+
+function save(d){localStorage.setItem('maameeCatalog',JSON.stringify(d));}
 
 function showToast(msg){
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'), 3000);
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
 }
 
-// Drag & drop
-const zone = document.getElementById('upload-zone');
-zone.addEventListener('dragover', e=>{e.preventDefault();zone.classList.add('dragover');});
-zone.addEventListener('dragleave', ()=>zone.classList.remove('dragover'));
-zone.addEventListener('drop', e=>{
-  e.preventDefault();
-  zone.classList.remove('dragover');
-  const f = e.dataTransfer.files[0];
-  if(f && f.type.startsWith('image/')) handleFile(f);
+// Drag & drop for zones
+document.querySelectorAll('.upload-zone').forEach(z=>{
+  z.addEventListener('dragover',e=>{e.preventDefault();z.classList.add('drag');});
+  z.addEventListener('dragleave',()=>z.classList.remove('drag'));
+  z.addEventListener('drop',e=>{
+    e.preventDefault();z.classList.remove('drag');
+    const f=e.dataTransfer.files[0];
+    if(!f||!f.type.startsWith('image/'))return;
+    if(z.id==='new-fabric-zone')handleNewFabricImg(f);
+    else if(z.id==='collar-zone')handleImg('collar',f);
+    else if(z.id==='bandana-zone')handleImg('bandana',f);
+  });
 });
 </script>
 </body>
