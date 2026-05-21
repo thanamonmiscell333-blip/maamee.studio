@@ -66,7 +66,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 
 /* PRODUCTS */
 .products{padding:0 48px 80px;display:grid;grid-template-columns:1fr 1fr;gap:48px;}
-.product-photo{width:100%;aspect-ratio:4/5;background:var(--warm);overflow:hidden;position:relative;margin-bottom:24px;}
+.product-photo{width:100%;aspect-ratio:4/5;background:var(--warm);overflow:hidden;position:relative;margin-bottom:12px;}
 .product-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease;}
 .product-photo:hover img{transform:scale(1.03);}
 .product-photo .placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(45deg,rgba(107,140,110,0.12) 0,rgba(107,140,110,0.12) 1px,transparent 1px,transparent 20px),repeating-linear-gradient(-45deg,rgba(196,145,154,0.09) 0,rgba(196,145,154,0.09) 1px,transparent 1px,transparent 20px),var(--warm);}
@@ -78,12 +78,21 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:20px 4
 .product-price{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;margin-bottom:12px;color:var(--ink);}
 .product-desc{font-size:13px;color:var(--ink-50);font-weight:300;line-height:1.8;margin-bottom:24px;}
 .opt-label{font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-50);margin-bottom:8px;}
+
+/* GALLERY THUMBNAILS */
+.prod-gallery { display:flex; gap:8px; margin-bottom:24px; }
+.thumb-btn { width:56px; height:56px; border:1px solid transparent; cursor:pointer; background:var(--warm); opacity:0.6; transition:all 0.2s; padding:0; overflow:hidden;}
+.thumb-btn img { width:100%; height:100%; object-fit:cover; display:block; }
+.thumb-btn.active, .thumb-btn:hover { opacity:1; border-color:var(--ink); }
+
+/* HARDWARE */
 .hw-row{display:flex;gap:8px;margin-bottom:20px;}
-.hw-btn{display:flex;align-items:center;gap:7px;padding:7px 14px;border:0.5px solid var(--ink-20);background:transparent;cursor:pointer;font-size:11px;font-weight:400;color:var(--ink);font-family:'Jost',sans-serif;letter-spacing:0.06em;transition:border-color 0.15s;}
-.hw-btn:hover,.hw-btn.active{border-color:var(--ink);background:var(--ink-08);}
+.hw-display{display:inline-flex;align-items:center;gap:7px;padding:7px 14px;border:0.5px solid var(--ink);background:var(--ink-08);font-size:11px;font-weight:400;color:var(--ink);font-family:'Jost',sans-serif;letter-spacing:0.06em; cursor:default;}
 .hw-dot{width:10px;height:10px;border-radius:50%;border:0.5px solid var(--ink-20);}
 .hw-dot.gold{background:var(--gold);}
 .hw-dot.silver{background:#9AABB5;}
+
+/* SIZES */
 .sz-row{display:flex;gap:6px;margin-bottom:20px;}
 .sz{width:42px;height:42px;display:flex;align-items:center;justify-content:center;border:0.5px solid var(--ink-20);font-size:11px;cursor:pointer;background:transparent;font-family:'Jost',sans-serif;color:var(--ink);transition:all 0.15s;}
 .sz:hover{border-color:var(--ink);}
@@ -174,46 +183,36 @@ footer{border-top:0.5px solid var(--ink-20);padding:48px;display:grid;grid-templ
 
 <script>
 const CONFIG = {
-  "lineUrl": "https://line.me/R/ti/p/@594ynmkg",
-  "heroImages": [
-    "https://raw.githubusercontent.com/thanamonmiscell333-blip/maamee.studio/main/hero-dog.png.png"
+  lineUrl: 'https://line.me/R/ti/p/@594ynmkg',
+  heroImages: [
+    'https://raw.githubusercontent.com/thanamonmiscell333-blip/maamee.studio/main/hero-dog.png.png'
   ],
-  "storyImage": "",
-  "weekFabric": {
-    "name": "Sage Bloom",
-    "desc": "Sage green with mauve floral ikat",
-    "image": "",
-    "soldOut": true
+  storyImage: '',
+  weekFabric: {
+    name: 'Sage Bloom',
+    desc: 'Sage green with mauve floral ikat',
+    image: '',
+    soldOut: false
   },
-  "fabrics": [
-    {
-      "name": "Sage Bloom",
-      "desc": "Sage green with mauve floral ikat",
-      "image": "",
-      "soldOut": true,
-      "isWeek": true
-    },
-    {
-      "name": "ผ้าไหมมัดหมี่ ลายดอกแก้ว",
-      "desc": "ผ้าไหมมัดหมี่ ลายดอกแก้ว สี Matcha-Strawberry สุดละมุน",
-      "image": "https://raw.githubusercontent.com/thanamonmiscell333-blip/maamee.studio/main/images/fabric-1779374264021-1.jpg?t=1779374267895",
-      "soldOut": false,
-      "isWeek": false
+  fabrics: [
+    { 
+      name: 'Sage Bloom', 
+      desc: 'Sage green with mauve floral ikat', 
+      image: '', 
+      collarImage: '',
+      dogImage: '',
+      hardware: 'gold',
+      soldOut: false, 
+      isWeek: true 
     }
   ],
-  "collar": {
-    "image": "https://raw.githubusercontent.com/thanamonmiscell333-blip/maamee.studio/main/images/collar-1779374267895.jpg?t=1779374270489",
-    "desc": "Adjustable Thai silk collar with gold or silver hardware. Made to order for your dog's measurements.",
-    "soldOut": false,
-    "hardware": {
-      "gold": true,
-      "silver": true
-    }
+  collar: {
+    desc: "Adjustable Thai silk collar. Made to order for your dog's measurements.",
+    soldOut: false
   },
-  "bandana": {
-    "image": "",
-    "desc": "Pure Thai silk bandana, tied around the neck. No hardware — just the fabric draped on your dog.",
-    "soldOut": false
+  bandana: {
+    desc: "Pure Thai silk bandana, tied around the neck. No hardware — just the fabric draped on your dog.",
+    soldOut: false
   }
 };
 </script>
@@ -259,7 +258,7 @@ const CONFIG = {
 <div id="collection">
   <div class="section-header reveal">
     <h2>Fabrics of the week.<br/><em>Try on.</em></h2>
-    <p class="section-note">Select a fabric, choose your hardware and size — then message us on Line to order. You can also send us a photo of a collar you like to check stock.</p>
+    <p class="section-note">Select a fabric and size — then message us on Line to order. You can also send us a photo of a collar you like to check stock.</p>
   </div>
 
   <div class="products">
@@ -270,6 +269,9 @@ const CONFIG = {
         <img id="collar-img" src="" alt="Silk Collar" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
         <div class="sold-overlay" id="collar-sold-overlay"><span>Sold out</span></div>
       </div>
+      
+      <div class="prod-gallery" id="collar-gallery"></div>
+
       <p class="product-name">The Silk Collar</p>
       <p class="product-price" id="collar-price">฿990</p>
       <p class="product-desc" id="collar-desc-el"></p>
@@ -278,7 +280,7 @@ const CONFIG = {
       <div class="fabric-swatches" id="collar-swatches"></div>
       <p class="swatch-name" id="collar-swatch-name"></p>
 
-      <p class="opt-label">Hardware</p>
+      <p class="opt-label">Hardware (Pre-selected)</p>
       <div class="hw-row" id="collar-hw-row"></div>
 
       <p class="opt-label">Size</p>
@@ -313,6 +315,9 @@ const CONFIG = {
         <img id="bandana-img" src="" alt="Silk Bandana" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
         <div class="sold-overlay" id="bandana-sold-overlay"><span>Sold out</span></div>
       </div>
+      
+      <div class="prod-gallery" id="bandana-gallery"></div>
+
       <p class="product-name">The Silk Bandana</p>
       <p class="product-price" id="bandana-price">฿790</p>
       <p class="product-desc" id="bandana-desc-el"></p>
@@ -373,8 +378,8 @@ const CONFIG = {
 <div class="process reveal">
   <h2>How it works.</h2>
   <div class="process-grid">
-    <div><div class="step-num">01</div><p class="step-title">Choose</p><p class="step-body">Browse this week's fabrics. Select a pattern, hardware, and size above.</p></div>
-    <div><div class="step-num">02</div><p class="step-title">Message</p><p class="step-body">Send us a message on Line OA. Tell us your selection and your dog's neck measurement. You can also send a photo of a collar you like.</p></div>
+    <div><div class="step-num">01</div><p class="step-title">Choose</p><p class="step-body">Browse this week's fabrics. Select a pattern, size, and try on our gallery.</p></div>
+    <div><div class="step-num">02</div><p class="step-title">Message</p><p class="step-body">Send us a message on Line OA. Tell us your selection and your dog's neck measurement.</p></div>
     <div><div class="step-num">03</div><p class="step-title">Made for your dog</p><p class="step-body">Your piece is cut and sewn when you order it. We don't hold stock.</p></div>
     <div><div class="step-num">04</div><p class="step-title">Yours alone</p><p class="step-body">Each fabric is chosen for its pattern. Your dog's piece is cut from that roll — no two cuts are exactly the same.</p></div>
   </div>
@@ -453,23 +458,14 @@ function init(){
   document.getElementById('collar-desc-el').textContent=CONFIG.collar ? CONFIG.collar.desc : '';
   document.getElementById('bandana-desc-el').textContent=CONFIG.bandana ? CONFIG.bandana.desc : '';
 
-  // Product photos
-  function setPhoto(imgId,phId,src){
-    if(src){
-      const el=document.getElementById(imgId);
-      el.src=src;el.style.display='block';
-      document.getElementById(phId).style.display='none';
-    }
-  }
-  setPhoto('collar-img','collar-ph',CONFIG.collar ? CONFIG.collar.image : '');
-  setPhoto('bandana-img','bandana-ph',CONFIG.bandana ? CONFIG.bandana.image : '');
+  // Story photo
   if(CONFIG.storyImage){
     const si=document.getElementById('story-img-el');
     si.src=CONFIG.storyImage;si.style.display='block';
     document.getElementById('story-fallback').style.display='none';
   }
 
-  // Sold out
+  // Sold out entire store
   const so=CONFIG.collar ? CONFIG.collar.soldOut : false;
   if(so){
     document.getElementById('collar-sold-overlay').classList.add('show');
@@ -482,24 +478,7 @@ function init(){
     });
   }
 
-  // Hardware
-  const hwRow=document.getElementById('collar-hw-row');
-  if(CONFIG.collar && CONFIG.collar.hardware && CONFIG.collar.hardware.gold){
-    const b=document.createElement('button');
-    b.className='hw-btn active';
-    b.innerHTML='<span class="hw-dot gold"></span> Gold';
-    b.onclick=function(){setHw(this);};
-    hwRow.appendChild(b);
-  }
-  if(CONFIG.collar && CONFIG.collar.hardware && CONFIG.collar.hardware.silver){
-    const b=document.createElement('button');
-    b.className='hw-btn'+((CONFIG.collar.hardware.gold)?'':' active');
-    b.innerHTML='<span class="hw-dot silver"></span> Silver';
-    b.onclick=function(){setHw(this);};
-    hwRow.appendChild(b);
-  }
-
-  // Fabrics
+  // Init Swatches & Gallery
   renderSwatches();
 }
 
@@ -518,44 +497,76 @@ function renderSwatches(){
       wrap.innerHTML='<span style="font-size:12px;color:var(--ink-50);font-style:italic;">No fabrics available yet.</span>';
       return;
     }
+    
     CONFIG.fabrics.forEach((f,i)=>{
       const btn=document.createElement('button');
       btn.className='f-swatch-btn'+(f.soldOut?' soldout':'')+(i===0?' active':'');
       btn.title=f.name;
       btn.disabled=f.soldOut;
       
-      // ใส่รูปลงในปุ่มสี่เหลี่ยมเล็กๆ
       if(f.image) btn.innerHTML=`<img src="${f.image}" alt="${f.name}"/>`;
       else btn.style.background=`hsl(${i*47+80},25%,75%)`;
       
-      // เมื่อถูกคลิก ให้ทำงานตรงนี้
       if(!f.soldOut) btn.onclick=()=>{
-        // 1. เปลี่ยนกรอบไฮไลท์ว่ากำลังเลือกผ้าชิ้นไหนอยู่
+        // 1. ไฮไลท์ลายผ้าที่เลือก
         wrap.querySelectorAll('.f-swatch-btn').forEach(b=>b.classList.remove('active'));
         btn.classList.add('active');
         
-        // 2. เปลี่ยนชื่อลายผ้าใต้ปุ่ม
+        // 2. เปลี่ยนชื่อลายผ้า
         document.getElementById(`${type}-swatch-name`).textContent=f.name;
 
-        // 3. 🌟 (ส่วนที่เพิ่มใหม่) เปลี่ยนรูปภาพหลักด้านบน ให้เป็นรูปลายผ้า 🌟
+        // 3. ฟิกซ์อะไหล่ (เฉพาะ Collar)
+        const hwRow = document.getElementById(`${type}-hw-row`);
+        if(hwRow) {
+           const hwColor = f.hardware || 'gold';
+           const hwTitle = hwColor.charAt(0).toUpperCase() + hwColor.slice(1);
+           hwRow.innerHTML = `<div class="hw-display"><span class="hw-dot ${hwColor}"></span> ${hwTitle}</div>`;
+        }
+
+        // 4. สร้าง Gallery 3 รูป (ถ้ามีรูป)
         const mainImg = document.getElementById(`${type}-img`);
         const mainPh = document.getElementById(`${type}-ph`);
+        const gallery = document.getElementById(`${type}-gallery`);
+        gallery.innerHTML = '';
         
-        // เช็คว่าผ้านี้มีรูปไหม ถ้ามีให้ดึงมาโชว์ ถ้าไม่มีให้ใช้รูปปลอกคอ/บันดาน่าเดิม
-        const targetSrc = f.image || (CONFIG[type] ? CONFIG[type].image : '');
-        
-        if(targetSrc){
-          mainImg.src = targetSrc;
-          mainImg.style.display = 'block';
-          mainPh.style.display = 'none';
+        const imgList = [
+           { url: f.image, alt: 'Fabric' },
+           { url: f.collarImage, alt: 'Product' },
+           { url: f.dogImage, alt: 'Dog wearing product' }
+        ].filter(img => img.url && img.url.trim() !== '');
+
+        if(imgList.length > 0) {
+           mainImg.src = imgList[0].url;
+           mainImg.style.display = 'block';
+           mainPh.style.display = 'none';
+
+           if(imgList.length > 1) {
+              imgList.forEach((imgObj, idx) => {
+                 const thumb = document.createElement('button');
+                 thumb.className = 'thumb-btn' + (idx === 0 ? ' active' : '');
+                 thumb.innerHTML = `<img src="${imgObj.url}" alt="${imgObj.alt}"/>`;
+                 thumb.onclick = () => {
+                    mainImg.src = imgObj.url;
+                    gallery.querySelectorAll('.thumb-btn').forEach(b=>b.classList.remove('active'));
+                    thumb.classList.add('active');
+                 };
+                 gallery.appendChild(thumb);
+              });
+           }
+        } else {
+           mainImg.style.display = 'none';
+           mainPh.style.display = 'flex';
         }
       };
       wrap.appendChild(btn);
     });
     
-    // เซ็ตชื่อลายผ้าตอนโหลดหน้าเว็บครั้งแรก
+    // ตั้งค่าเริ่มต้นของลายผ้าใบแรกสุดที่ไม่ sold out
     const first=CONFIG.fabrics.find(f=>!f.soldOut);
-    if(first) document.getElementById(`${type}-swatch-name`).textContent=first.name;
+    if(first) {
+      const firstBtn = wrap.querySelector('.f-swatch-btn:not(.soldout)');
+      if(firstBtn) firstBtn.click();
+    }
   });
 }
 
@@ -568,10 +579,6 @@ function setPrice(type,sz){
 }
 function setSz(btn){
   btn.closest('.sz-row').querySelectorAll('.sz').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-}
-function setHw(btn){
-  btn.closest('.hw-row').querySelectorAll('.hw-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
 }
 function toggleSG(id,btn){
