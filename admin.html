@@ -10,7 +10,7 @@
 :root{
   --ink:#1A1410;--ink-50:rgba(26,20,16,0.5);--ink-20:rgba(26,20,16,0.2);--ink-08:rgba(26,20,16,0.08);
   --cream:#FAF7F2;--warm:#F2EBE0;--sage:#6B8C6E;--gold:#C9973A;--mauve:#C4919A;
-  --danger:#C0392B;--danger-pale:#FDE8E6;--success:#27AE60;--success-pale:#E8F5EE;
+  --danger:#C0392B;--danger-pale:#FDE8E6;
 }
 body{background:var(--cream);font-family:'Jost',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;}
 
@@ -42,7 +42,7 @@ nav{background:white;border-bottom:0.5px solid var(--ink-20);padding:0 40px;heig
 .nav-link{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:0.5px solid var(--ink);padding-bottom:1px;}
 .btn-logout{font-size:11px;color:var(--ink-50);background:none;border:none;cursor:pointer;font-family:'Jost',sans-serif;text-decoration:underline;}
 
-.wrap{max-width:860px;padding:40px;}
+.wrap{max-width:860px;padding:40px;margin:0 auto;}
 .page-title{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;margin-bottom:6px;}
 .page-sub{font-size:13px;color:var(--ink-50);font-weight:300;margin-bottom:32px;line-height:1.6;}
 
@@ -52,13 +52,13 @@ label{font-size:12px;font-weight:500;display:block;margin-bottom:6px;}
 label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
 
 /* IMAGE UPLOAD */
-.upload-zone{border:1px dashed var(--ink-20);padding:24px;text-align:center;cursor:pointer;transition:all 0.15s;position:relative;margin-bottom:12px;}
+.upload-zone{border:1px dashed var(--ink-20);padding:24px;text-align:center;cursor:pointer;transition:all 0.15s;position:relative;margin-bottom:12px;background:var(--cream);}
 .upload-zone:hover,.upload-zone.drag{border-color:var(--ink);background:var(--ink-08);}
 .upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;margin:0;}
 .upload-icon{font-size:22px;margin-bottom:6px;}
 .upload-text{font-size:12px;color:var(--ink-50);font-weight:300;}
 .upload-text strong{color:var(--ink);font-weight:400;}
-.preview{position:relative;margin-bottom:12px;display:none;}
+.preview{position:relative;margin-bottom:12px;display:none;background:var(--warm);}
 .preview img{width:100%;max-height:200px;object-fit:cover;display:block;}
 .preview-rm{position:absolute;top:8px;right:8px;background:rgba(26,20,16,0.7);color:white;border:none;font-size:11px;padding:4px 10px;cursor:pointer;font-family:'Jost',sans-serif;}
 
@@ -72,7 +72,6 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
 .tog-sl::before{content:'';position:absolute;width:16px;height:16px;left:3px;top:3px;background:white;transition:transform 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.15);}
 .tog input:checked+.tog-sl{background:var(--danger);}
 .tog input:checked+.tog-sl::before{transform:translateX(18px);}
-.tog.green input:checked+.tog-sl{background:var(--sage);}
 
 /* FABRIC LIST */
 .fabric-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
@@ -91,25 +90,16 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
 
 /* FORM ROW */
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.add-form{border:0.5px solid var(--ink-20);padding:20px;background:var(--warm);display:none;margin-bottom:12px;}
+.add-form{border:0.5px solid var(--ink-20);padding:24px;background:white;display:none;margin-bottom:12px;}
 .add-form.show{display:block;}
 .btn-add{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;padding:9px 16px;border:0.5px solid var(--ink-20);background:transparent;color:var(--ink);cursor:pointer;font-family:'Jost',sans-serif;margin-bottom:12px;}
 .btn-add:hover{border-color:var(--ink);}
 
-/* HW */
-.hw-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid var(--ink-08);}
-.hw-row:last-child{border-bottom:none;}
-.hw-dot{width:12px;height:12px;border-radius:50%;margin-right:8px;}
-
 /* SAVE */
 .save-area{margin-top:8px;}
 .save-note{font-size:11px;color:var(--ink-50);text-align:center;margin-top:10px;line-height:1.6;font-weight:300;}
-
-/* PROGRESS */
 .progress-bar{width:100%;height:3px;background:var(--ink-08);margin-top:10px;display:none;}
 .progress-fill{height:100%;background:var(--sage);width:0%;transition:width 0.3s;}
-
-/* TOAST */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--cream);font-size:12px;padding:11px 22px;opacity:0;transition:opacity 0.3s;pointer-events:none;white-space:nowrap;z-index:999;letter-spacing:0.06em;}
 .toast.show{opacity:1;}
 
@@ -153,18 +143,29 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
     <h1 class="page-title">Weekly update</h1>
     <p class="page-sub">Update fabrics, photos, prices, and availability. Changes save directly to GitHub and appear on the site within 30 seconds.</p>
 
-    <div class="card">
+    <div class="card" style="background:var(--warm);">
       <p class="card-title">01 · Fabric library</p>
-      <p style="font-size:12px;color:var(--ink-50);font-weight:300;margin-bottom:16px;line-height:1.7;">Add fabric patterns here. Mark one as "This week" — it shows in the hero strip. Others appear as selectable swatches.</p>
+      <p style="font-size:12px;color:var(--ink-50);font-weight:300;margin-bottom:16px;line-height:1.7;">Add fabric patterns, assign hardware, and upload product gallery images (Fabric, Collar, Dog).</p>
       <div class="fabric-list" id="fabric-list"></div>
-      <button class="btn-add" onclick="toggleAddForm()"><span>+</span> Add new fabric</button>
+      <button class="btn-add" style="background:white;" onclick="toggleAddForm()"><span>+</span> Add new fabric</button>
+      
       <div class="add-form" id="add-form">
-        <p style="font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-50);margin-bottom:16px;">New fabric</p>
+        <p style="font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-50);margin-bottom:16px;">New Fabric Details</p>
         <div class="form-row">
           <div>
             <label>Pattern name</label>
             <input type="text" id="new-name" placeholder="e.g. Sage Bloom"/>
           </div>
+          <div>
+            <label>Hardware Color (Fixed for this fabric)</label>
+            <select id="new-hw">
+              <option value="gold">Gold Hardware</option>
+              <option value="silver">Silver Hardware</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-row" style="margin-bottom:16px;">
           <div>
             <label>Status</label>
             <select id="new-status">
@@ -173,20 +174,41 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
               <option value="soldout">Sold out</option>
             </select>
           </div>
+          <div>
+            <label>Description <small>(1 line)</small></label>
+            <input type="text" id="new-desc" placeholder="e.g. Sage green with mauve floral ikat"/>
+          </div>
         </div>
-        <label>Description <small>(1 line)</small></label>
-        <input type="text" id="new-desc" placeholder="e.g. Sage green with mauve floral ikat"/>
-        <label>Fabric photo <small>(square works best, max 1MB)</small></label>
-        <div class="upload-zone" id="new-fabric-zone">
-          <input type="file" accept="image/*" onchange="handleNewFabric(this.files[0])"/>
-          <div class="upload-icon">🧵</div>
-          <p class="upload-text"><strong>Choose photo or drag here</strong></p>
+
+        <p style="font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-50);margin-bottom:12px;border-top:0.5px solid var(--ink-20);padding-top:16px;">Gallery Photos (Max 1MB each)</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:12px;">
+          <div>
+            <label>1. Fabric Pattern</label>
+            <div class="upload-zone" id="new-fabric-zone" style="padding:16px;">
+              <input type="file" accept="image/*" onchange="handleNewUpload('fabric', this.files[0])"/>
+              <div class="upload-icon" style="font-size:16px;">🧵</div><p class="upload-text" style="font-size:10px;">Upload Pattern</p>
+            </div>
+            <div class="preview" id="new-fabric-prev"><img id="new-fabric-img" src="" alt=""/><button class="preview-rm" onclick="clearNewUpload('fabric')">✕</button></div>
+          </div>
+          <div>
+            <label>2. Collar Photo</label>
+            <div class="upload-zone" id="new-collar-zone" style="padding:16px;">
+              <input type="file" accept="image/*" onchange="handleNewUpload('collar', this.files[0])"/>
+              <div class="upload-icon" style="font-size:16px;">📷</div><p class="upload-text" style="font-size:10px;">Upload Collar</p>
+            </div>
+            <div class="preview" id="new-collar-prev"><img id="new-collar-img" src="" alt=""/><button class="preview-rm" onclick="clearNewUpload('collar')">✕</button></div>
+          </div>
+          <div>
+            <label>3. Dog Photo</label>
+            <div class="upload-zone" id="new-dog-zone" style="padding:16px;">
+              <input type="file" accept="image/*" onchange="handleNewUpload('dog', this.files[0])"/>
+              <div class="upload-icon" style="font-size:16px;">🐕</div><p class="upload-text" style="font-size:10px;">Upload Dog</p>
+            </div>
+            <div class="preview" id="new-dog-prev"><img id="new-dog-img" src="" alt=""/><button class="preview-rm" onclick="clearNewUpload('dog')">✕</button></div>
+          </div>
         </div>
-        <div class="preview" id="new-fabric-prev">
-          <img id="new-fabric-img" src="" alt=""/>
-          <button class="preview-rm" onclick="clearNewFabric()">✕</button>
-        </div>
-        <div style="display:flex;gap:8px;margin-top:4px;">
+
+        <div style="display:flex;gap:8px;margin-top:16px;">
           <button class="btn" style="flex:1;" onclick="addFabric()">Add to library</button>
           <button class="btn btn-outline" style="flex:0 0 auto;width:auto;padding:13px 20px;" onclick="toggleAddForm()">Cancel</button>
         </div>
@@ -195,7 +217,6 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
 
     <div class="card">
       <p class="card-title">02 · Hero slideshow photos</p>
-      <p style="font-size:12px;color:var(--ink-50);font-weight:300;margin-bottom:16px;line-height:1.7;">Up to 4 photos for the hero slideshow. Portrait photos work best. Max 1MB each.</p>
       <div id="hero-list" style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;"></div>
       <div class="upload-zone" id="hero-zone">
         <input type="file" accept="image/*" multiple onchange="handleHeroFiles(this.files)"/>
@@ -205,31 +226,7 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
     </div>
 
     <div class="card">
-      <p class="card-title">03 · Product photos</p>
-      <div class="form-row">
-        <div>
-          <label>Collar photo <small>(flat lay or lifestyle)</small></label>
-          <div class="preview" id="collar-prev"><img id="collar-prev-img" src="" alt=""/><button class="preview-rm" onclick="clearImg('collar')">✕</button></div>
-          <div class="upload-zone" id="collar-zone">
-            <input type="file" accept="image/*" onchange="handleImg('collar',this.files[0])"/>
-            <div class="upload-icon">📷</div>
-            <p class="upload-text"><strong>Choose collar photo</strong></p>
-          </div>
-        </div>
-        <div>
-          <label>Bandana photo <small>(flat lay or lifestyle)</small></label>
-          <div class="preview" id="bandana-prev"><img id="bandana-prev-img" src="" alt=""/><button class="preview-rm" onclick="clearImg('bandana')">✕</button></div>
-          <div class="upload-zone" id="bandana-zone">
-            <input type="file" accept="image/*" onchange="handleImg('bandana',this.files[0])"/>
-            <div class="upload-icon">📷</div>
-            <p class="upload-text"><strong>Choose bandana photo</strong></p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <p class="card-title">04 · Brand story photo</p>
+      <p class="card-title">03 · Brand story photo</p>
       <label>Story image <small>(right side of about section)</small></label>
       <div class="preview" id="story-prev"><img id="story-prev-img" src="" alt=""/><button class="preview-rm" onclick="clearImg('story')">✕</button></div>
       <div class="upload-zone" id="story-zone">
@@ -240,7 +237,7 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
     </div>
 
     <div class="card">
-      <p class="card-title">05 · Product details</p>
+      <p class="card-title">04 · Product descriptions</p>
       <div class="form-row">
         <div>
           <label>Collar description</label>
@@ -254,18 +251,10 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
     </div>
 
     <div class="card">
-      <p class="card-title">06 · Availability</p>
+      <p class="card-title">05 · Store Availability</p>
       <div class="tog-row">
-        <div class="tog-info"><strong>Mark everything as Sold Out</strong><span>All order buttons change to "Message us on Line"</span></div>
+        <div class="tog-info"><strong>Mark entire store as Sold Out</strong><span>All order buttons change to "Message us on Line"</span></div>
         <label class="tog"><input type="checkbox" id="global-sold"/><span class="tog-sl"></span></label>
-      </div>
-      <div class="tog-row" style="border-top:0.5px solid var(--ink-08);margin-top:8px;padding-top:16px;">
-        <div class="tog-info"><strong>Gold hardware</strong><span>Available for collar</span></div>
-        <label class="tog green"><input type="checkbox" id="hw-gold" checked/><span class="tog-sl"></span></label>
-      </div>
-      <div class="tog-row">
-        <div class="tog-info"><strong>Silver hardware</strong><span>Available for collar</span></div>
-        <label class="tog green"><input type="checkbox" id="hw-silver" checked/><span class="tog-sl"></span></label>
       </div>
     </div>
 
@@ -281,8 +270,6 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
 
 <script>
 // ============================================================
-// CONFIG — never share this file publicly
-// ============================================================
 const ADMIN_PW = 'maameestudio2026';
 const GITHUB_OWNER = 'thanamonmiscell333-blip';
 const GITHUB_REPO = 'maamee.studio';
@@ -294,18 +281,17 @@ function setToken(t){ GITHUB_TOKEN=t; sessionStorage.setItem('maamee_token',t); 
 // ============================================================
 
 let state = {
-  fabrics: [{ name:'Sage Bloom', desc:'Sage green with mauve floral ikat', status:'week', imageUrl:'' }],
-  heroImages: ['https://raw.githubusercontent.com/thanamonmiscell333-blip/maamee.studio/main/hero-dog.png.png'],
-  collarImage: '', bandanaImage: '', storyImage: '',
-  collarDesc: 'Adjustable Thai silk collar with gold or silver hardware. Made to order for your dog\'s measurements.',
-  bandanaDesc: 'Pure Thai silk bandana, tied around the neck. No hardware — just the fabric draped on your dog.',
-  globalSoldOut: false,
-  hardware: { gold: true, silver: true }
+  fabrics: [],
+  heroImages: [],
+  storyImage: '',
+  collarDesc: 'Adjustable Thai silk collar with gold or silver hardware.',
+  bandanaDesc: 'Pure Thai silk bandana, tied around the neck. No hardware.',
+  globalSoldOut: false
 };
 
-let pendingUploads = {}; 
-let newFabricData = { imageFile: null, imageUrl: '' };
+let newFabricUploads = { fabric: null, collar: null, dog: null };
 let heroFiles = []; 
+const imgFiles = { story: null };
 
 function doLogin(){
   const pw = document.getElementById('pw').value;
@@ -334,28 +320,22 @@ async function loadFromGitHub(){
     if(!res.ok) throw new Error('Cannot load index.html');
     const data = await res.json();
     
-    // ✅ Fix UTF-8 Decoding Issue here
     const content = decodeURIComponent(escape(atob(data.content.replace(/\n/g,''))));
-    
-    // Extract CONFIG block
     const match = content.match(/const CONFIG = (\{[\s\S]*?\});[\s\S]*?<\/script>/);
     if(match){
       try {
         const cfg = eval('('+match[1]+')');
-        state.fabrics = cfg.fabrics || state.fabrics;
-        state.heroImages = cfg.heroImages || state.heroImages;
-        state.collarImage = cfg.collar?.image || '';
-        state.bandanaImage = cfg.bandana?.image || '';
+        state.fabrics = cfg.fabrics || [];
+        state.heroImages = cfg.heroImages || [];
         state.storyImage = cfg.storyImage || '';
-        state.collarDesc = cfg.collar?.desc || state.collarDesc;
-        state.bandanaDesc = cfg.bandana?.desc || state.bandanaDesc;
+        state.collarDesc = cfg.collar?.desc || '';
+        state.bandanaDesc = cfg.bandana?.desc || '';
         state.globalSoldOut = cfg.collar?.soldOut || false;
-        state.hardware = cfg.collar?.hardware || state.hardware;
       } catch(e){}
     }
     renderAll();
   } catch(e){
-    showToast('Could not load current config — showing defaults');
+    showToast('Loaded defaults');
     renderAll();
   }
 }
@@ -366,10 +346,6 @@ function renderAll(){
   document.getElementById('collar-desc').value = state.collarDesc;
   document.getElementById('bandana-desc').value = state.bandanaDesc;
   document.getElementById('global-sold').checked = state.globalSoldOut;
-  document.getElementById('hw-gold').checked = state.hardware.gold;
-  document.getElementById('hw-silver').checked = state.hardware.silver;
-  if(state.collarImage) showPreview('collar', state.collarImage);
-  if(state.bandanaImage) showPreview('bandana', state.bandanaImage);
   if(state.storyImage) showPreview('story', state.storyImage);
 }
 
@@ -377,16 +353,16 @@ function renderFabrics(){
   const el = document.getElementById('fabric-list');
   if(!state.fabrics.length){ el.innerHTML = '<p style="font-size:12px;color:var(--ink-50);">No fabrics yet.</p>'; return; }
   el.innerHTML = state.fabrics.map((f,i) => `
-    <div class="fabric-item">
-      <div class="f-thumb">${f.imageUrl||f.image ? `<img src="${f.imageUrl||f.image}"/>` : '🧵'}</div>
+    <div class="fabric-item" style="background:white;">
+      <div class="f-thumb">${f.image ? `<img src="${f.image}"/>` : '🧵'}</div>
       <div>
-        <p style="font-size:14px;font-family:\'Cormorant Garamond\',serif;">${f.name}</p>
+        <p style="font-size:14px;font-family:\'Cormorant Garamond\',serif;">${f.name} <span style="font-size:10px; color:var(--ink-50); font-family:'Jost';">(${f.hardware||'gold'})</span></p>
         <p style="font-size:11px;color:var(--ink-50);margin-top:2px;">${f.desc||''}</p>
-        <span class="f-badge ${f.status||(f.isWeek?'week':f.soldOut?'soldout':'stock')}">${(f.status==='week'||f.isWeek)?'This week':(f.status==='soldout'||f.soldOut)?'Sold out':'In stock'}</span>
+        <span class="f-badge ${f.isWeek?'week':f.soldOut?'soldout':'stock'}">${f.isWeek?'This week':f.soldOut?'Sold out':'In stock'}</span>
       </div>
       <div class="f-actions">
-        ${(f.status!=='week' && !f.isWeek)?`<button class="btn-sm" onclick="setWeek(${i})">Set as this week</button>`:`<button class="btn-sm active-wk" disabled>This week ✓</button>`}
-        <button class="btn-sm" onclick="toggleSold(${i})">${(f.status==='soldout'||f.soldOut)?'Mark in stock':'Mark sold out'}</button>
+        ${(!f.isWeek)?`<button class="btn-sm" onclick="setWeek(${i})">Set as this week</button>`:`<button class="btn-sm active-wk" disabled>This week ✓</button>`}
+        <button class="btn-sm" onclick="toggleSold(${i})">${f.soldOut?'Mark in stock':'Mark sold out'}</button>
         <button class="btn-sm danger" onclick="removeFabric(${i})">Remove</button>
       </div>
     </div>
@@ -411,48 +387,56 @@ function renderHeroList(){
   el.innerHTML = allItems.join('');
 }
 
-function setWeek(i){ state.fabrics.forEach((f,j)=>{ if(j===i){f.status='week'; f.isWeek=true;} else {if(f.status==='week'||f.isWeek){f.status='stock';f.isWeek=false;}} }); renderFabrics(); }
-function toggleSold(i){ 
-  const isSold = state.fabrics[i].status==='soldout' || state.fabrics[i].soldOut;
-  state.fabrics[i].status = isSold ? 'stock' : 'soldout'; 
-  state.fabrics[i].soldOut = !isSold;
-  renderFabrics(); 
-}
+function setWeek(i){ state.fabrics.forEach((f,j)=>{ f.isWeek = (j===i); }); renderFabrics(); }
+function toggleSold(i){ state.fabrics[i].soldOut = !state.fabrics[i].soldOut; renderFabrics(); }
 function removeFabric(i){ if(confirm('Remove this fabric?')){ state.fabrics.splice(i,1); renderFabrics(); } }
 function removeHero(i){ state.heroImages.splice(i,1); renderHeroList(); }
 function removeNewHero(i){ heroFiles.splice(i,1); renderHeroList(); }
-
 function toggleAddForm(){ document.getElementById('add-form').classList.toggle('show'); }
 
-function handleNewFabric(file){
+function handleNewUpload(type, file){
   if(!file) return;
   if(file.size > 1.5*1024*1024){ showToast('Photo too large — please use under 1.5MB'); return; }
   const r = new FileReader();
   r.onload = e => {
-    newFabricData = { file, dataUrl: e.target.result };
-    document.getElementById('new-fabric-img').src = e.target.result;
-    document.getElementById('new-fabric-prev').style.display='block';
-    document.getElementById('new-fabric-zone').style.display='none';
+    newFabricUploads[type] = { file, dataUrl: e.target.result };
+    document.getElementById(`new-${type}-img`).src = e.target.result;
+    document.getElementById(`new-${type}-prev`).style.display='block';
+    document.getElementById(`new-${type}-zone`).style.display='none';
   };
   r.readAsDataURL(file);
 }
-function clearNewFabric(){
-  newFabricData = {};
-  document.getElementById('new-fabric-prev').style.display='none';
-  document.getElementById('new-fabric-zone').style.display='block';
+function clearNewUpload(type){
+  newFabricUploads[type] = null;
+  document.getElementById(`new-${type}-prev`).style.display='none';
+  document.getElementById(`new-${type}-zone`).style.display='block';
 }
 
 function addFabric(){
   const name = document.getElementById('new-name').value.trim();
   if(!name){ showToast('Please enter a pattern name'); return; }
   const status = document.getElementById('new-status').value;
-  if(status==='week') state.fabrics.forEach(f=>{ if(f.status==='week'||f.isWeek){f.status='stock';f.isWeek=false;} });
-  state.fabrics.push({ name, desc: document.getElementById('new-desc').value.trim(), status, isWeek:(status==='week'), soldOut:(status==='soldout'), image: newFabricData.dataUrl||'', _newFile: newFabricData.file||null });
+  if(status==='week') state.fabrics.forEach(f=>{ f.isWeek=false; });
+  
+  state.fabrics.push({ 
+    name, 
+    desc: document.getElementById('new-desc').value.trim(), 
+    hardware: document.getElementById('new-hw').value,
+    isWeek: (status==='week'), 
+    soldOut: (status==='soldout'), 
+    image: newFabricUploads.fabric?.dataUrl||'', 
+    collarImage: newFabricUploads.collar?.dataUrl||'', 
+    dogImage: newFabricUploads.dog?.dataUrl||'', 
+    _newFabric: newFabricUploads.fabric?.file||null,
+    _newCollar: newFabricUploads.collar?.file||null,
+    _newDog: newFabricUploads.dog?.file||null
+  });
+  
   renderFabrics();
   document.getElementById('new-name').value='';
   document.getElementById('new-desc').value='';
   document.getElementById('new-status').value='stock';
-  clearNewFabric();
+  clearNewUpload('fabric'); clearNewUpload('collar'); clearNewUpload('dog');
   document.getElementById('add-form').classList.remove('show');
   showToast('Fabric added — save to publish');
 }
@@ -460,19 +444,16 @@ function addFabric(){
 function handleHeroFiles(files){
   const remaining = 4 - state.heroImages.length - heroFiles.length;
   Array.from(files).slice(0, remaining).forEach(file=>{
-    if(file.size > 1.5*1024*1024){ showToast('Photo too large — max 1.5MB'); return; }
+    if(file.size > 1.5*1024*1024){ showToast('Photo too large'); return; }
     const r = new FileReader();
     r.onload = e => { heroFiles.push({ file, name: file.name, dataUrl: e.target.result }); renderHeroList(); };
     r.readAsDataURL(file);
   });
 }
 
-const imgState = { collar: '', bandana: '', story: '' };
-const imgFiles = { collar: null, bandana: null, story: null };
-
 function handleImg(type, file){
   if(!file) return;
-  if(file.size > 1.5*1024*1024){ showToast('Photo too large — max 1.5MB'); return; }
+  if(file.size > 1.5*1024*1024){ showToast('Photo too large'); return; }
   const r = new FileReader();
   r.onload = e => { imgFiles[type]=file; showPreview(type, e.target.result); };
   r.readAsDataURL(file);
@@ -483,8 +464,7 @@ function showPreview(type, src){
   document.getElementById(`${type}-zone`).style.display='none';
 }
 function clearImg(type){
-  imgFiles[type]=null;
-  state[type+'Image']='';
+  imgFiles[type]=null; state[type+'Image']='';
   document.getElementById(`${type}-prev`).style.display='none';
   document.getElementById(`${type}-zone`).style.display='block';
 }
@@ -525,79 +505,69 @@ async function saveToGitHub(){
     // 1. Upload new hero images
     for(let i=0;i<heroFiles.length;i++){
       const f=heroFiles[i];
-      const fname=`hero-${Date.now()}-${i}.jpg`;
-      const url=await githubUploadImage(f.file, fname);
-      state.heroImages.push(url);
-      setProgress(10+i*10);
+      state.heroImages.push(await githubUploadImage(f.file, `hero-${Date.now()}-${i}.jpg`));
+      setProgress(10+i*5);
     }
     heroFiles=[];
 
-    // 2. Upload fabric images
+    // 2. Upload fabric gallery images
     for(let i=0;i<state.fabrics.length;i++){
       const f=state.fabrics[i];
-      if(f._newFile){
-        const fname=`fabric-${Date.now()}-${i}.jpg`;
-        const url=await githubUploadImage(f._newFile, fname);
-        f.image=url; delete f._newFile;
-      }
-      setProgress(30+i*5);
+      if(f._newFabric) { f.image = await githubUploadImage(f._newFabric, `fab-${Date.now()}-${i}.jpg`); delete f._newFabric; }
+      if(f._newCollar) { f.collarImage = await githubUploadImage(f._newCollar, `col-${Date.now()}-${i}.jpg`); delete f._newCollar; }
+      if(f._newDog) { f.dogImage = await githubUploadImage(f._newDog, `dog-${Date.now()}-${i}.jpg`); delete f._newDog; }
+      setProgress(20+i*5);
     }
 
-    // 3. Upload product/story images
-    setProgress(55);
-    for(const type of ['collar','bandana','story']){
-      if(imgFiles[type]){
-        const fname=`${type}-${Date.now()}.jpg`;
-        const url=await githubUploadImage(imgFiles[type], fname);
-        state[type+'Image']=url; imgFiles[type]=null;
-      }
+    // 3. Upload story image
+    if(imgFiles.story){
+      state.storyImage = await githubUploadImage(imgFiles.story, `story-${Date.now()}.jpg`);
+      imgFiles.story = null;
     }
     setProgress(70);
 
-    // 4. Build new CONFIG and patch index.html
-    const week=state.fabrics.find(f=>f.status==='week'||f.isWeek)||state.fabrics[0]||{};
+    // 4. Build new CONFIG
+    const week=state.fabrics.find(f=>f.isWeek)||state.fabrics[0]||{};
+    const globalSold = document.getElementById('global-sold').checked;
+    
     const newConfig = {
       lineUrl: 'https://line.me/R/ti/p/@594ynmkg',
       heroImages: state.heroImages,
       storyImage: state.storyImage,
-      weekFabric: { name: week.name||'', desc: week.desc||'', image: week.image||week.imageUrl||'', soldOut: week.status==='soldout'||week.soldOut },
-      fabrics: state.fabrics.map(f=>({ name:f.name, desc:f.desc||'', image:f.image||f.imageUrl||'', soldOut:f.status==='soldout'||f.soldOut, isWeek:f.status==='week'||f.isWeek })),
-      collar: { image:state.collarImage, desc:document.getElementById('collar-desc').value.trim(), soldOut:document.getElementById('global-sold').checked, hardware:{ gold:document.getElementById('hw-gold').checked, silver:document.getElementById('hw-silver').checked } },
-      bandana: { image:state.bandanaImage, desc:document.getElementById('bandana-desc').value.trim(), soldOut:document.getElementById('global-sold').checked }
+      weekFabric: { name: week.name||'', desc: week.desc||'', image: week.image||'', soldOut: week.soldOut||false },
+      fabrics: state.fabrics.map(f=>({ 
+        name: f.name, desc: f.desc||'', 
+        image: f.image||'', collarImage: f.collarImage||'', dogImage: f.dogImage||'',
+        hardware: f.hardware||'gold', soldOut: f.soldOut, isWeek: f.isWeek 
+      })),
+      collar: { desc: document.getElementById('collar-desc').value.trim(), soldOut: globalSold },
+      bandana: { desc: document.getElementById('bandana-desc').value.trim(), soldOut: globalSold }
     };
 
-    // Get current index.html
     setProgress(80);
     const idxUrl=`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/index.html?ref=${GITHUB_BRANCH}&t=${Date.now()}`;
     const idxRes=await fetch(idxUrl,{headers:{Authorization:`token ${getToken()}`}});
     if(!idxRes.ok) throw new Error('Cannot fetch index.html');
     const idxData=await idxRes.json();
     
-    // ✅ Fix UTF-8 Decoding Issue here before patching
     let html = decodeURIComponent(escape(atob(idxData.content.replace(/\n/g,''))));
-
-    // Replace CONFIG block
     const configStr=JSON.stringify(newConfig,null,2);
     html=html.replace(/const CONFIG = \{[\s\S]*?\};([\s\S]*?<\/script>)/,`const CONFIG = ${configStr};$1`);
 
-    // Push updated index.html
     setProgress(90);
     const pushRes=await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/index.html`,{
       method:'PUT',
       headers:{Authorization:`token ${getToken()}`,'Content-Type':'application/json'},
-      // Encode perfectly back to base64 with UTF-8 support
-      body:JSON.stringify({ message:'Admin update', content:btoa(unescape(encodeURIComponent(html))), sha:idxData.sha, branch:GITHUB_BRANCH })
+      body:JSON.stringify({ message:'Admin update gallery & hardware', content:btoa(unescape(encodeURIComponent(html))), sha:idxData.sha, branch:GITHUB_BRANCH })
     });
     if(!pushRes.ok) throw new Error('Failed to save index.html');
 
     setProgress(100);
     showToast('✓ Published — site updates in ~30 seconds');
-    renderHeroList();
-    renderFabrics();
+    renderHeroList(); renderFabrics();
 
   } catch(e){
-    showToast('Error: '+e.message);
-    console.error(e);
+    showToast('Error: '+e.message); console.error(e);
   }
 
   btn.disabled=false; btn.textContent='Save & publish to site';
@@ -609,26 +579,6 @@ function showToast(msg){
   t.textContent=msg; t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),4000);
 }
-
-document.addEventListener('DOMContentLoaded',()=>{
-  const saved = sessionStorage.getItem('maamee_token');
-  if(saved) document.getElementById('token').placeholder = '(token saved — just enter password)';
-
-  document.querySelectorAll('.upload-zone').forEach(z=>{
-    z.addEventListener('dragover',e=>{e.preventDefault();z.classList.add('drag');});
-    z.addEventListener('dragleave',()=>z.classList.remove('drag'));
-    z.addEventListener('drop',e=>{
-      e.preventDefault();z.classList.remove('drag');
-      const f=e.dataTransfer.files[0];
-      if(!f||!f.type.startsWith('image/')) return;
-      if(z.id==='new-fabric-zone') handleNewFabric(f);
-      else if(z.id==='hero-zone') handleHeroFiles([f]);
-      else if(z.id==='collar-zone') handleImg('collar',f);
-      else if(z.id==='bandana-zone') handleImg('bandana',f);
-      else if(z.id==='story-zone') handleImg('story',f);
-    });
-  });
-});
 </script>
 </body>
 </html>
