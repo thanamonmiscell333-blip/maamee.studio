@@ -124,7 +124,6 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
 </head>
 <body>
 
-<!-- LOGIN -->
 <div id="login">
   <div class="login-box">
     <p class="login-brand">Maa-Mee.studio</p>
@@ -138,7 +137,6 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
   </div>
 </div>
 
-<!-- ADMIN -->
 <div id="admin">
   <nav>
     <div style="display:flex;align-items:center;">
@@ -146,7 +144,7 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
       <span class="nav-tag">Admin</span>
     </div>
     <div class="nav-r">
-      <a class="nav-link" href="https://maameestudio2026.netlify.app" target="_blank">View site</a>
+      <a class="nav-link" href="https://thanamonmiscell333-blip.github.io/maamee.studio/" target="_blank">View site</a>
       <button class="btn-logout" onclick="doLogout()">Sign out</button>
     </div>
   </nav>
@@ -155,7 +153,6 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
     <h1 class="page-title">Weekly update</h1>
     <p class="page-sub">Update fabrics, photos, prices, and availability. Changes save directly to GitHub and appear on the site within 30 seconds.</p>
 
-    <!-- 01 FABRIC LIBRARY -->
     <div class="card">
       <p class="card-title">01 · Fabric library</p>
       <p style="font-size:12px;color:var(--ink-50);font-weight:300;margin-bottom:16px;line-height:1.7;">Add fabric patterns here. Mark one as "This week" — it shows in the hero strip. Others appear as selectable swatches.</p>
@@ -196,7 +193,6 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
       </div>
     </div>
 
-    <!-- 02 HERO PHOTOS -->
     <div class="card">
       <p class="card-title">02 · Hero slideshow photos</p>
       <p style="font-size:12px;color:var(--ink-50);font-weight:300;margin-bottom:16px;line-height:1.7;">Up to 4 photos for the hero slideshow. Portrait photos work best. Max 1MB each.</p>
@@ -208,7 +204,6 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
       </div>
     </div>
 
-    <!-- 03 PRODUCT PHOTOS -->
     <div class="card">
       <p class="card-title">03 · Product photos</p>
       <div class="form-row">
@@ -233,7 +228,6 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
       </div>
     </div>
 
-    <!-- 04 BRAND PHOTO -->
     <div class="card">
       <p class="card-title">04 · Brand story photo</p>
       <label>Story image <small>(right side of about section)</small></label>
@@ -245,7 +239,6 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
       </div>
     </div>
 
-    <!-- 05 PRODUCT DETAILS -->
     <div class="card">
       <p class="card-title">05 · Product details</p>
       <div class="form-row">
@@ -260,7 +253,6 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
       </div>
     </div>
 
-    <!-- 06 AVAILABILITY -->
     <div class="card">
       <p class="card-title">06 · Availability</p>
       <div class="tog-row">
@@ -277,7 +269,6 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
       </div>
     </div>
 
-    <!-- SAVE -->
     <div class="save-area">
       <button class="btn" id="save-btn" onclick="saveToGitHub()">Save & publish to site</button>
       <div class="progress-bar" id="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
@@ -290,7 +281,7 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
 
 <script>
 // ============================================================
-// CONFIG — filled in by Minnie, never share this file publicly
+// CONFIG — never share this file publicly
 // ============================================================
 const ADMIN_PW = 'maameestudio2026';
 const GITHUB_OWNER = 'thanamonmiscell333-blip';
@@ -312,10 +303,9 @@ let state = {
   hardware: { gold: true, silver: true }
 };
 
-// pending new image files to upload
-let pendingUploads = {}; // key: filename, value: {base64, dataUrl}
+let pendingUploads = {}; 
 let newFabricData = { imageFile: null, imageUrl: '' };
-let heroFiles = []; // new hero image files
+let heroFiles = []; 
 
 function doLogin(){
   const pw = document.getElementById('pw').value;
@@ -335,7 +325,6 @@ function doLogout(){
   document.getElementById('login').style.display='flex';
   document.getElementById('pw').value='';
   document.getElementById('token').value='';
-  // keep token in sessionStorage so next login only needs password
 }
 
 async function loadFromGitHub(){
@@ -344,7 +333,10 @@ async function loadFromGitHub(){
     const res = await fetch(url, { headers: { Authorization: `token ${getToken()}` } });
     if(!res.ok) throw new Error('Cannot load index.html');
     const data = await res.json();
-    const content = atob(data.content.replace(/\n/g,''));
+    
+    // ✅ Fix UTF-8 Decoding Issue here
+    const content = decodeURIComponent(escape(atob(data.content.replace(/\n/g,''))));
+    
     // Extract CONFIG block
     const match = content.match(/const CONFIG = (\{[\s\S]*?\});[\s\S]*?<\/script>/);
     if(match){
@@ -386,15 +378,15 @@ function renderFabrics(){
   if(!state.fabrics.length){ el.innerHTML = '<p style="font-size:12px;color:var(--ink-50);">No fabrics yet.</p>'; return; }
   el.innerHTML = state.fabrics.map((f,i) => `
     <div class="fabric-item">
-      <div class="f-thumb">${f.imageUrl ? `<img src="${f.imageUrl}"/>` : '🧵'}</div>
+      <div class="f-thumb">${f.imageUrl||f.image ? `<img src="${f.imageUrl||f.image}"/>` : '🧵'}</div>
       <div>
         <p style="font-size:14px;font-family:\'Cormorant Garamond\',serif;">${f.name}</p>
         <p style="font-size:11px;color:var(--ink-50);margin-top:2px;">${f.desc||''}</p>
-        <span class="f-badge ${f.status}">${f.status==='week'?'This week':f.status==='soldout'?'Sold out':'In stock'}</span>
+        <span class="f-badge ${f.status||(f.isWeek?'week':f.soldOut?'soldout':'stock')}">${(f.status==='week'||f.isWeek)?'This week':(f.status==='soldout'||f.soldOut)?'Sold out':'In stock'}</span>
       </div>
       <div class="f-actions">
-        ${f.status!=='week'?`<button class="btn-sm" onclick="setWeek(${i})">Set as this week</button>`:`<button class="btn-sm active-wk" disabled>This week ✓</button>`}
-        <button class="btn-sm" onclick="toggleSold(${i})">${f.status==='soldout'?'Mark in stock':'Mark sold out'}</button>
+        ${(f.status!=='week' && !f.isWeek)?`<button class="btn-sm" onclick="setWeek(${i})">Set as this week</button>`:`<button class="btn-sm active-wk" disabled>This week ✓</button>`}
+        <button class="btn-sm" onclick="toggleSold(${i})">${(f.status==='soldout'||f.soldOut)?'Mark in stock':'Mark sold out'}</button>
         <button class="btn-sm danger" onclick="removeFabric(${i})">Remove</button>
       </div>
     </div>
@@ -419,8 +411,13 @@ function renderHeroList(){
   el.innerHTML = allItems.join('');
 }
 
-function setWeek(i){ state.fabrics.forEach((f,j)=>{ if(j===i)f.status='week'; else if(f.status==='week')f.status='stock'; }); renderFabrics(); }
-function toggleSold(i){ state.fabrics[i].status = state.fabrics[i].status==='soldout'?'stock':'soldout'; renderFabrics(); }
+function setWeek(i){ state.fabrics.forEach((f,j)=>{ if(j===i){f.status='week'; f.isWeek=true;} else {if(f.status==='week'||f.isWeek){f.status='stock';f.isWeek=false;}} }); renderFabrics(); }
+function toggleSold(i){ 
+  const isSold = state.fabrics[i].status==='soldout' || state.fabrics[i].soldOut;
+  state.fabrics[i].status = isSold ? 'stock' : 'soldout'; 
+  state.fabrics[i].soldOut = !isSold;
+  renderFabrics(); 
+}
 function removeFabric(i){ if(confirm('Remove this fabric?')){ state.fabrics.splice(i,1); renderFabrics(); } }
 function removeHero(i){ state.heroImages.splice(i,1); renderHeroList(); }
 function removeNewHero(i){ heroFiles.splice(i,1); renderHeroList(); }
@@ -449,8 +446,8 @@ function addFabric(){
   const name = document.getElementById('new-name').value.trim();
   if(!name){ showToast('Please enter a pattern name'); return; }
   const status = document.getElementById('new-status').value;
-  if(status==='week') state.fabrics.forEach(f=>{ if(f.status==='week') f.status='stock'; });
-  state.fabrics.push({ name, desc: document.getElementById('new-desc').value.trim(), status, imageUrl: newFabricData.dataUrl||'', _newFile: newFabricData.file||null });
+  if(status==='week') state.fabrics.forEach(f=>{ if(f.status==='week'||f.isWeek){f.status='stock';f.isWeek=false;} });
+  state.fabrics.push({ name, desc: document.getElementById('new-desc').value.trim(), status, isWeek:(status==='week'), soldOut:(status==='soldout'), image: newFabricData.dataUrl||'', _newFile: newFabricData.file||null });
   renderFabrics();
   document.getElementById('new-name').value='';
   document.getElementById('new-desc').value='';
@@ -492,12 +489,9 @@ function clearImg(type){
   document.getElementById(`${type}-zone`).style.display='block';
 }
 
-// ── GITHUB SAVE ──────────────────────────────────────────────
-
 async function githubUploadImage(file, filename){
   const base64 = await fileToBase64(file);
   const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/images/${filename}`;
-  // check if exists (to get sha)
   let sha = '';
   try {
     const check = await fetch(url, { headers:{ Authorization:`token ${getToken()}` } });
@@ -544,7 +538,7 @@ async function saveToGitHub(){
       if(f._newFile){
         const fname=`fabric-${Date.now()}-${i}.jpg`;
         const url=await githubUploadImage(f._newFile, fname);
-        f.imageUrl=url; delete f._newFile;
+        f.image=url; delete f._newFile;
       }
       setProgress(30+i*5);
     }
@@ -561,13 +555,13 @@ async function saveToGitHub(){
     setProgress(70);
 
     // 4. Build new CONFIG and patch index.html
-    const week=state.fabrics.find(f=>f.status==='week')||state.fabrics[0]||{};
+    const week=state.fabrics.find(f=>f.status==='week'||f.isWeek)||state.fabrics[0]||{};
     const newConfig = {
       lineUrl: 'https://line.me/R/ti/p/@594ynmkg',
       heroImages: state.heroImages,
-      storyImage: state.storyImage||state.storyImage,
-      weekFabric: { name: week.name||'', desc: week.desc||'', image: week.imageUrl||'', soldOut: week.status==='soldout' },
-      fabrics: state.fabrics.map(f=>({ name:f.name, desc:f.desc||'', image:f.imageUrl||'', soldOut:f.status==='soldout', isWeek:f.status==='week' })),
+      storyImage: state.storyImage,
+      weekFabric: { name: week.name||'', desc: week.desc||'', image: week.image||week.imageUrl||'', soldOut: week.status==='soldout'||week.soldOut },
+      fabrics: state.fabrics.map(f=>({ name:f.name, desc:f.desc||'', image:f.image||f.imageUrl||'', soldOut:f.status==='soldout'||f.soldOut, isWeek:f.status==='week'||f.isWeek })),
       collar: { image:state.collarImage, desc:document.getElementById('collar-desc').value.trim(), soldOut:document.getElementById('global-sold').checked, hardware:{ gold:document.getElementById('hw-gold').checked, silver:document.getElementById('hw-silver').checked } },
       bandana: { image:state.bandanaImage, desc:document.getElementById('bandana-desc').value.trim(), soldOut:document.getElementById('global-sold').checked }
     };
@@ -578,7 +572,9 @@ async function saveToGitHub(){
     const idxRes=await fetch(idxUrl,{headers:{Authorization:`token ${getToken()}`}});
     if(!idxRes.ok) throw new Error('Cannot fetch index.html');
     const idxData=await idxRes.json();
-    let html=atob(idxData.content.replace(/\n/g,''));
+    
+    // ✅ Fix UTF-8 Decoding Issue here before patching
+    let html = decodeURIComponent(escape(atob(idxData.content.replace(/\n/g,''))));
 
     // Replace CONFIG block
     const configStr=JSON.stringify(newConfig,null,2);
@@ -589,6 +585,7 @@ async function saveToGitHub(){
     const pushRes=await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/index.html`,{
       method:'PUT',
       headers:{Authorization:`token ${getToken()}`,'Content-Type':'application/json'},
+      // Encode perfectly back to base64 with UTF-8 support
       body:JSON.stringify({ message:'Admin update', content:btoa(unescape(encodeURIComponent(html))), sha:idxData.sha, branch:GITHUB_BRANCH })
     });
     if(!pushRes.ok) throw new Error('Failed to save index.html');
@@ -613,9 +610,7 @@ function showToast(msg){
   setTimeout(()=>t.classList.remove('show'),4000);
 }
 
-// Drag & drop
 document.addEventListener('DOMContentLoaded',()=>{
-  // Auto-fill token if already in session
   const saved = sessionStorage.getItem('maamee_token');
   if(saved) document.getElementById('token').placeholder = '(token saved — just enter password)';
 
