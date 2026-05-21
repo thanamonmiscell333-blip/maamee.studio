@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin · Maa-Mee.studio</title>
+<title>Admin Â· Maa-Mee.studio</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -128,7 +128,7 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
 <div id="login">
   <div class="login-box">
     <p class="login-brand">Maa-Mee.studio</p>
-    <p class="login-sub">Admin Panel · Weekly Update</p>
+    <p class="login-sub">Admin Panel Â· Weekly Update</p>
     <label>Password</label>
     <input type="password" id="pw" placeholder="Admin password" onkeydown="if(event.key==='Enter')document.getElementById('token').focus()"/>
     <label>GitHub Token <small style="font-weight:300;color:var(--ink-50);">(paste once, browser remembers)</small></label>
@@ -157,8 +157,8 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
 
     <!-- 01 FABRIC LIBRARY -->
     <div class="card">
-      <p class="card-title">01 · Fabric library</p>
-      <p style="font-size:12px;color:var(--ink-50);font-weight:300;margin-bottom:16px;line-height:1.7;">Add fabric patterns here. Mark one as "This week" — it shows in the hero strip. Others appear as selectable swatches.</p>
+      <p class="card-title">01 Â· Fabric library</p>
+      <p style="font-size:12px;color:var(--ink-50);font-weight:300;margin-bottom:16px;line-height:1.7;">Add fabric patterns here. Mark one as "This week" â it shows in the hero strip. Others appear as selectable swatches.</p>
       <div class="fabric-list" id="fabric-list"></div>
       <button class="btn-add" onclick="toggleAddForm()"><span>+</span> Add new fabric</button>
       <div class="add-form" id="add-form">
@@ -182,12 +182,12 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
         <label>Fabric photo <small>(square works best, max 1MB)</small></label>
         <div class="upload-zone" id="new-fabric-zone">
           <input type="file" accept="image/*" onchange="handleNewFabric(this.files[0])"/>
-          <div class="upload-icon">🧵</div>
+          <div class="upload-icon">ð§µ</div>
           <p class="upload-text"><strong>Choose photo or drag here</strong></p>
         </div>
         <div class="preview" id="new-fabric-prev">
           <img id="new-fabric-img" src="" alt=""/>
-          <button class="preview-rm" onclick="clearNewFabric()">✕</button>
+          <button class="preview-rm" onclick="clearNewFabric()">â</button>
         </div>
         <div style="display:flex;gap:8px;margin-top:4px;">
           <button class="btn" style="flex:1;" onclick="addFabric()">Add to library</button>
@@ -198,35 +198,35 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
 
     <!-- 02 HERO PHOTOS -->
     <div class="card">
-      <p class="card-title">02 · Hero slideshow photos</p>
+      <p class="card-title">02 Â· Hero slideshow photos</p>
       <p style="font-size:12px;color:var(--ink-50);font-weight:300;margin-bottom:16px;line-height:1.7;">Up to 4 photos for the hero slideshow. Portrait photos work best. Max 1MB each.</p>
       <div id="hero-list" style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;"></div>
       <div class="upload-zone" id="hero-zone">
         <input type="file" accept="image/*" multiple onchange="handleHeroFiles(this.files)"/>
-        <div class="upload-icon">🖼</div>
+        <div class="upload-icon">ð¼</div>
         <p class="upload-text"><strong>Add hero photos (up to 4)</strong></p>
       </div>
     </div>
 
     <!-- 03 PRODUCT PHOTOS -->
     <div class="card">
-      <p class="card-title">03 · Product photos</p>
+      <p class="card-title">03 Â· Product photos</p>
       <div class="form-row">
         <div>
           <label>Collar photo <small>(flat lay or lifestyle)</small></label>
-          <div class="preview" id="collar-prev"><img id="collar-prev-img" src="" alt=""/><button class="preview-rm" onclick="clearImg('collar')">✕</button></div>
+          <div class="preview" id="collar-prev"><img id="collar-prev-img" src="" alt=""/><button class="preview-rm" onclick="clearImg('collar')">â</button></div>
           <div class="upload-zone" id="collar-zone">
             <input type="file" accept="image/*" onchange="handleImg('collar',this.files[0])"/>
-            <div class="upload-icon">📷</div>
+            <div class="upload-icon">ð·</div>
             <p class="upload-text"><strong>Choose collar photo</strong></p>
           </div>
         </div>
         <div>
           <label>Bandana photo <small>(flat lay or lifestyle)</small></label>
-          <div class="preview" id="bandana-prev"><img id="bandana-prev-img" src="" alt=""/><button class="preview-rm" onclick="clearImg('bandana')">✕</button></div>
+          <div class="preview" id="bandana-prev"><img id="bandana-prev-img" src="" alt=""/><button class="preview-rm" onclick="clearImg('bandana')">â</button></div>
           <div class="upload-zone" id="bandana-zone">
             <input type="file" accept="image/*" onchange="handleImg('bandana',this.files[0])"/>
-            <div class="upload-icon">📷</div>
+            <div class="upload-icon">ð·</div>
             <p class="upload-text"><strong>Choose bandana photo</strong></p>
           </div>
         </div>
@@ -235,19 +235,19 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
 
     <!-- 04 BRAND PHOTO -->
     <div class="card">
-      <p class="card-title">04 · Brand story photo</p>
+      <p class="card-title">04 Â· Brand story photo</p>
       <label>Story image <small>(right side of about section)</small></label>
-      <div class="preview" id="story-prev"><img id="story-prev-img" src="" alt=""/><button class="preview-rm" onclick="clearImg('story')">✕</button></div>
+      <div class="preview" id="story-prev"><img id="story-prev-img" src="" alt=""/><button class="preview-rm" onclick="clearImg('story')">â</button></div>
       <div class="upload-zone" id="story-zone">
         <input type="file" accept="image/*" onchange="handleImg('story',this.files[0])"/>
-        <div class="upload-icon">📷</div>
+        <div class="upload-icon">ð·</div>
         <p class="upload-text"><strong>Choose brand photo</strong></p>
       </div>
     </div>
 
     <!-- 05 PRODUCT DETAILS -->
     <div class="card">
-      <p class="card-title">05 · Product details</p>
+      <p class="card-title">05 Â· Product details</p>
       <div class="form-row">
         <div>
           <label>Collar description</label>
@@ -262,7 +262,7 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
 
     <!-- 06 AVAILABILITY -->
     <div class="card">
-      <p class="card-title">06 · Availability</p>
+      <p class="card-title">06 Â· Availability</p>
       <div class="tog-row">
         <div class="tog-info"><strong>Mark everything as Sold Out</strong><span>All order buttons change to "Message us on Line"</span></div>
         <label class="tog"><input type="checkbox" id="global-sold"/><span class="tog-sl"></span></label>
@@ -290,7 +290,7 @@ label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
 
 <script>
 // ============================================================
-// CONFIG — filled in by Minnie, never share this file publicly
+// CONFIG â filled in by Minnie, never share this file publicly
 // ============================================================
 const ADMIN_PW = 'maameestudio2026';
 const GITHUB_OWNER = 'thanamonmiscell333-blip';
@@ -307,7 +307,7 @@ let state = {
   heroImages: ['https://raw.githubusercontent.com/thanamonmiscell333-blip/maamee.studio/main/hero-dog.png.png'],
   collarImage: '', bandanaImage: '', storyImage: '',
   collarDesc: 'Adjustable Thai silk collar with gold or silver hardware. Made to order for your dog\'s measurements.',
-  bandanaDesc: 'Pure Thai silk bandana, tied around the neck. No hardware — just the fabric draped on your dog.',
+  bandanaDesc: 'Pure Thai silk bandana, tied around the neck. No hardware â just the fabric draped on your dog.',
   globalSoldOut: false,
   hardware: { gold: true, silver: true }
 };
@@ -363,7 +363,7 @@ async function loadFromGitHub(){
     }
     renderAll();
   } catch(e){
-    showToast('Could not load current config — showing defaults');
+    showToast('Could not load current config â showing defaults');
     renderAll();
   }
 }
@@ -386,14 +386,14 @@ function renderFabrics(){
   if(!state.fabrics.length){ el.innerHTML = '<p style="font-size:12px;color:var(--ink-50);">No fabrics yet.</p>'; return; }
   el.innerHTML = state.fabrics.map((f,i) => `
     <div class="fabric-item">
-      <div class="f-thumb">${f.imageUrl ? `<img src="${f.imageUrl}"/>` : '🧵'}</div>
+      <div class="f-thumb">${f.imageUrl ? `<img src="${f.imageUrl}"/>` : 'ð§µ'}</div>
       <div>
         <p style="font-size:14px;font-family:\'Cormorant Garamond\',serif;">${f.name}</p>
         <p style="font-size:11px;color:var(--ink-50);margin-top:2px;">${f.desc||''}</p>
         <span class="f-badge ${f.status}">${f.status==='week'?'This week':f.status==='soldout'?'Sold out':'In stock'}</span>
       </div>
       <div class="f-actions">
-        ${f.status!=='week'?`<button class="btn-sm" onclick="setWeek(${i})">Set as this week</button>`:`<button class="btn-sm active-wk" disabled>This week ✓</button>`}
+        ${f.status!=='week'?`<button class="btn-sm" onclick="setWeek(${i})">Set as this week</button>`:`<button class="btn-sm active-wk" disabled>This week â</button>`}
         <button class="btn-sm" onclick="toggleSold(${i})">${f.status==='soldout'?'Mark in stock':'Mark sold out'}</button>
         <button class="btn-sm danger" onclick="removeFabric(${i})">Remove</button>
       </div>
@@ -412,7 +412,7 @@ function renderHeroList(){
     </div>`),
     ...heroFiles.map((f,i) => `<div style="display:grid;grid-template-columns:72px 1fr auto;gap:10px;align-items:center;border:0.5px solid var(--sage);padding:8px;">
       <img src="${f.dataUrl}" style="width:72px;height:72px;object-fit:cover;"/>
-      <span style="font-size:12px;color:var(--sage);">New · ${f.name}</span>
+      <span style="font-size:12px;color:var(--sage);">New Â· ${f.name}</span>
       <button class="btn-sm danger" onclick="removeNewHero(${i})">Remove</button>
     </div>`)
   ];
@@ -429,7 +429,7 @@ function toggleAddForm(){ document.getElementById('add-form').classList.toggle('
 
 function handleNewFabric(file){
   if(!file) return;
-  if(file.size > 1.5*1024*1024){ showToast('Photo too large — please use under 1.5MB'); return; }
+  if(file.size > 1.5*1024*1024){ showToast('Photo too large â please use under 1.5MB'); return; }
   const r = new FileReader();
   r.onload = e => {
     newFabricData = { file, dataUrl: e.target.result };
@@ -457,13 +457,13 @@ function addFabric(){
   document.getElementById('new-status').value='stock';
   clearNewFabric();
   document.getElementById('add-form').classList.remove('show');
-  showToast('Fabric added — save to publish');
+  showToast('Fabric added â save to publish');
 }
 
 function handleHeroFiles(files){
   const remaining = 4 - state.heroImages.length - heroFiles.length;
   Array.from(files).slice(0, remaining).forEach(file=>{
-    if(file.size > 1.5*1024*1024){ showToast('Photo too large — max 1.5MB'); return; }
+    if(file.size > 1.5*1024*1024){ showToast('Photo too large â max 1.5MB'); return; }
     const r = new FileReader();
     r.onload = e => { heroFiles.push({ file, name: file.name, dataUrl: e.target.result }); renderHeroList(); };
     r.readAsDataURL(file);
@@ -475,7 +475,7 @@ const imgFiles = { collar: null, bandana: null, story: null };
 
 function handleImg(type, file){
   if(!file) return;
-  if(file.size > 1.5*1024*1024){ showToast('Photo too large — max 1.5MB'); return; }
+  if(file.size > 1.5*1024*1024){ showToast('Photo too large â max 1.5MB'); return; }
   const r = new FileReader();
   r.onload = e => { imgFiles[type]=file; showPreview(type, e.target.result); };
   r.readAsDataURL(file);
@@ -492,7 +492,7 @@ function clearImg(type){
   document.getElementById(`${type}-zone`).style.display='block';
 }
 
-// ── GITHUB SAVE ──────────────────────────────────────────────
+// ââ GITHUB SAVE ââââââââââââââââââââââââââââââââââââââââââââââ
 
 async function githubUploadImage(file, filename){
   const base64 = await fileToBase64(file);
@@ -524,7 +524,7 @@ function setProgress(pct){ document.getElementById('progress-fill').style.width=
 async function saveToGitHub(){
   const btn=document.getElementById('save-btn');
   const bar=document.getElementById('progress-bar');
-  btn.disabled=true; btn.textContent='Saving…';
+  btn.disabled=true; btn.textContent='Savingâ¦';
   bar.style.display='block'; setProgress(5);
 
   try {
@@ -594,7 +594,7 @@ async function saveToGitHub(){
     if(!pushRes.ok) throw new Error('Failed to save index.html');
 
     setProgress(100);
-    showToast('✓ Published — site updates in ~30 seconds');
+    showToast('â Published â site updates in ~30 seconds');
     renderHeroList();
     renderFabrics();
 
@@ -617,7 +617,7 @@ function showToast(msg){
 document.addEventListener('DOMContentLoaded',()=>{
   // Auto-fill token if already in session
   const saved = sessionStorage.getItem('maamee_token');
-  if(saved) document.getElementById('token').placeholder = '(token saved — just enter password)';
+  if(saved) document.getElementById('token').placeholder = '(token saved â just enter password)';
 
   document.querySelectorAll('.upload-zone').forEach(z=>{
     z.addEventListener('dragover',e=>{e.preventDefault();z.classList.add('drag');});
