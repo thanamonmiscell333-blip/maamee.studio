@@ -183,39 +183,37 @@ footer{border-top:0.5px solid var(--ink-20);padding:48px;display:grid;grid-templ
 
 <script>
 const CONFIG = {
-  "lineUrl": "https://line.me/R/ti/p/@594ynmkg",
-  "heroImages": [
-    "https://raw.githubusercontent.com/thanamonmiscell333-blip/maamee.studio/main/hero-dog.png.png",
-    "https://raw.githubusercontent.com/thanamonmiscell333-blip/maamee.studio/main/images/hero-1779375805855-0.jpg?t=1779375810460",
-    "https://raw.githubusercontent.com/thanamonmiscell333-blip/maamee.studio/main/images/hero-1779375810460-1.jpg?t=1779375814286",
-    "https://raw.githubusercontent.com/thanamonmiscell333-blip/maamee.studio/main/images/hero-1779375814286-2.jpg?t=1779375817465"
+  lineUrl: 'https://line.me/R/ti/p/@594ynmkg',
+  heroImages: [
+    'https://raw.githubusercontent.com/thanamonmiscell333-blip/maamee.studio/main/hero-dog.png.png'
   ],
-  "storyImage": "https://raw.githubusercontent.com/thanamonmiscell333-blip/maamee.studio/main/images/story-1779375828511.jpg?t=1779375832311",
-  "weekFabric": {
-    "name": "ผ้าไหมมัดหมี่ ลายดอกแก้ว",
-    "desc": "ผ้าไหมมัดหมี่ ลายดอกแก้ว สี Matcha - Strawberry",
-    "image": "https://raw.githubusercontent.com/thanamonmiscell333-blip/maamee.studio/main/images/fab-1779375817465-0.jpg?t=1779375821654",
-    "soldOut": false
+  storyImage: '',
+  weekFabric: {
+    name: 'Sage Bloom',
+    desc: 'Sage green with mauve floral ikat',
+    image: '',
+    soldOut: false
   },
-  "fabrics": [
-    {
-      "name": "ผ้าไหมมัดหมี่ ลายดอกแก้ว",
-      "desc": "ผ้าไหมมัดหมี่ ลายดอกแก้ว สี Matcha - Strawberry",
-      "image": "https://raw.githubusercontent.com/thanamonmiscell333-blip/maamee.studio/main/images/fab-1779375817465-0.jpg?t=1779375821654",
-      "collarImage": "https://raw.githubusercontent.com/thanamonmiscell333-blip/maamee.studio/main/images/col-1779375821654-0.jpg?t=1779375825014",
-      "dogImage": "https://raw.githubusercontent.com/thanamonmiscell333-blip/maamee.studio/main/images/dog-1779375825014-0.jpg?t=1779375828510",
-      "hardware": "gold",
-      "soldOut": false,
-      "isWeek": false
+  fabrics: [
+    { 
+      name: 'Sage Bloom', 
+      desc: 'Sage green with mauve floral ikat', 
+      image: '', 
+      collarImage: '',
+      bandanaImage: '',
+      dogImage: '',
+      hardware: 'gold',
+      soldOut: false, 
+      isWeek: true 
     }
   ],
-  "collar": {
-    "desc": "Adjustable Thai silk collar. Made to order for your dog's measurements.",
-    "soldOut": false
+  collar: {
+    desc: "Adjustable Thai silk collar. Made to order for your dog's measurements.",
+    soldOut: false
   },
-  "bandana": {
-    "desc": "Pure Thai silk bandana, tied around the neck. No hardware — just the fabric draped on your dog.",
-    "soldOut": false
+  bandana: {
+    desc: "Pure Thai silk bandana, tied around the neck. No hardware — just the fabric draped on your dog.",
+    soldOut: false
   }
 };
 </script>
@@ -526,17 +524,25 @@ function renderSwatches(){
            hwRow.innerHTML = `<div class="hw-display"><span class="hw-dot ${hwColor}"></span> ${hwTitle}</div>`;
         }
 
-        // 4. สร้าง Gallery 3 รูป (ถ้ามีรูป)
+        // 4. สร้าง Gallery
         const mainImg = document.getElementById(`${type}-img`);
         const mainPh = document.getElementById(`${type}-ph`);
         const gallery = document.getElementById(`${type}-gallery`);
         gallery.innerHTML = '';
         
-        const imgList = [
-           { url: f.image, alt: 'Fabric' },
-           { url: f.collarImage, alt: 'Product' },
-           { url: f.dogImage, alt: 'Dog wearing product' }
-        ].filter(img => img.url && img.url.trim() !== '');
+        const imgList = [];
+        // ใส่รูปผ้าเสมอ
+        if(f.image) imgList.push({ url: f.image, alt: 'Fabric' });
+        
+        // ถ้านี่คือหมวดปลอกคอ ให้เอารูปปลอกคอมาใส่ / ถ้าหมวดบันดาน่า ก็เอารูปบันดาน่ามาใส่
+        if(type === 'collar' && f.collarImage) {
+           imgList.push({ url: f.collarImage, alt: 'Collar Product' });
+        } else if(type === 'bandana' && f.bandanaImage) {
+           imgList.push({ url: f.bandanaImage, alt: 'Bandana Product' });
+        }
+        
+        // เอารูปน้องหมาใส่ต่อท้าย
+        if(f.dogImage) imgList.push({ url: f.dogImage, alt: 'Dog wearing product' });
 
         if(imgList.length > 0) {
            mainImg.src = imgList[0].url;
