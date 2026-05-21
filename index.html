@@ -194,17 +194,27 @@ const CONFIG = {
     image: '',
     soldOut: false
   },
-  fabrics: [
+  collarFabrics: [
     { 
       name: 'Sage Bloom', 
       desc: 'Sage green with mauve floral ikat', 
       image: '', 
-      collarImage: '',
-      bandanaImage: '',
+      productImage: '',
       dogImage: '',
       hardware: 'gold',
       soldOut: false, 
       isWeek: true 
+    }
+  ],
+  bandanaFabrics: [
+    { 
+      name: 'Sage Bloom Bandana', 
+      desc: 'Matching bandana in sage green', 
+      image: '', 
+      productImage: '',
+      dogImage: '',
+      soldOut: false, 
+      isWeek: false 
     }
   ],
   collar: {
@@ -277,7 +287,7 @@ const CONFIG = {
       <p class="product-price" id="collar-price">฿990</p>
       <p class="product-desc" id="collar-desc-el"></p>
 
-      <p class="opt-label" style="margin-top:4px;">Fabric</p>
+      <p class="opt-label" style="margin-top:4px;">Collar Fabric</p>
       <div class="fabric-swatches" id="collar-swatches"></div>
       <p class="swatch-name" id="collar-swatch-name"></p>
 
@@ -323,7 +333,7 @@ const CONFIG = {
       <p class="product-price" id="bandana-price">฿790</p>
       <p class="product-desc" id="bandana-desc-el"></p>
 
-      <p class="opt-label" style="margin-top:4px;">Fabric</p>
+      <p class="opt-label" style="margin-top:4px;">Bandana Fabric</p>
       <div class="fabric-swatches" id="bandana-swatches"></div>
       <p class="swatch-name" id="bandana-swatch-name"></p>
 
@@ -494,12 +504,14 @@ function renderSwatches(){
   ['collar','bandana'].forEach(type=>{
     const wrap=document.getElementById(`${type}-swatches`);
     wrap.innerHTML='';
-    if(!CONFIG.fabrics || !CONFIG.fabrics.length){
+    const fabricList = CONFIG[`${type}Fabrics`] || [];
+    
+    if(!fabricList.length){
       wrap.innerHTML='<span style="font-size:12px;color:var(--ink-50);font-style:italic;">No fabrics available yet.</span>';
       return;
     }
     
-    CONFIG.fabrics.forEach((f,i)=>{
+    fabricList.forEach((f,i)=>{
       const btn=document.createElement('button');
       btn.className='f-swatch-btn'+(f.soldOut?' soldout':'')+(i===0?' active':'');
       btn.title=f.name;
@@ -517,11 +529,13 @@ function renderSwatches(){
         document.getElementById(`${type}-swatch-name`).textContent=f.name;
 
         // 3. ฟิกซ์อะไหล่ (เฉพาะ Collar)
-        const hwRow = document.getElementById(`${type}-hw-row`);
-        if(hwRow) {
-           const hwColor = f.hardware || 'gold';
-           const hwTitle = hwColor.charAt(0).toUpperCase() + hwColor.slice(1);
-           hwRow.innerHTML = `<div class="hw-display"><span class="hw-dot ${hwColor}"></span> ${hwTitle}</div>`;
+        if(type === 'collar') {
+          const hwRow = document.getElementById(`collar-hw-row`);
+          if(hwRow) {
+             const hwColor = f.hardware || 'gold';
+             const hwTitle = hwColor.charAt(0).toUpperCase() + hwColor.slice(1);
+             hwRow.innerHTML = `<div class="hw-display"><span class="hw-dot ${hwColor}"></span> ${hwTitle}</div>`;
+          }
         }
 
         // 4. สร้าง Gallery
@@ -531,17 +545,8 @@ function renderSwatches(){
         gallery.innerHTML = '';
         
         const imgList = [];
-        // ใส่รูปผ้าเสมอ
-        if(f.image) imgList.push({ url: f.image, alt: 'Fabric' });
-        
-        // ถ้านี่คือหมวดปลอกคอ ให้เอารูปปลอกคอมาใส่ / ถ้าหมวดบันดาน่า ก็เอารูปบันดาน่ามาใส่
-        if(type === 'collar' && f.collarImage) {
-           imgList.push({ url: f.collarImage, alt: 'Collar Product' });
-        } else if(type === 'bandana' && f.bandanaImage) {
-           imgList.push({ url: f.bandanaImage, alt: 'Bandana Product' });
-        }
-        
-        // เอารูปน้องหมาใส่ต่อท้าย
+        if(f.image) imgList.push({ url: f.image, alt: 'Fabric Pattern' });
+        if(f.productImage) imgList.push({ url: f.productImage, alt: 'Product Photo' });
         if(f.dogImage) imgList.push({ url: f.dogImage, alt: 'Dog wearing product' });
 
         if(imgList.length > 0) {
@@ -571,7 +576,7 @@ function renderSwatches(){
     });
     
     // ตั้งค่าเริ่มต้นของลายผ้าใบแรกสุดที่ไม่ sold out
-    const first=CONFIG.fabrics.find(f=>!f.soldOut);
+    const first=fabricList.find(f=>!f.soldOut);
     if(first) {
       const firstBtn = wrap.querySelector('.f-swatch-btn:not(.soldout)');
       if(firstBtn) firstBtn.click();
