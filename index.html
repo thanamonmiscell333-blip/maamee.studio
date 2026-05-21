@@ -2,638 +2,650 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Â· Maa-Mee.studio</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Maa-Mee.studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --ink:#1A1410;--ink-50:rgba(26,20,16,0.5);--ink-20:rgba(26,20,16,0.2);--ink-08:rgba(26,20,16,0.08);
-  --cream:#FAF7F2;--warm:#F2EBE0;--sage:#6B8C6E;--gold:#C9973A;--mauve:#C4919A;
-  --danger:#C0392B;--danger-pale:#FDE8E6;--success:#27AE60;--success-pale:#E8F5EE;
+  --cream:#FAF7F2;--warm:#F2EBE0;--sage:#6B8C6E;--mauve:#C4919A;--gold:#C9973A;
 }
-body{background:var(--cream);font-family:'Jost',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;}
+html{scroll-behavior:smooth}
+body{background:var(--cream);font-family:'Jost',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 
-/* LOGIN */
-#login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;}
-.login-box{background:white;border:0.5px solid var(--ink-20);padding:48px 40px;width:100%;max-width:380px;}
-.login-brand{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;margin-bottom:4px;}
-.login-sub{font-size:11px;color:var(--ink-50);letter-spacing:0.1em;margin-bottom:32px;}
-input[type=password],input[type=text],input[type=url],textarea,select{
-  width:100%;padding:11px 14px;border:0.5px solid var(--ink-20);
-  font-size:14px;font-family:'Jost',sans-serif;background:white;color:var(--ink);
-  outline:none;transition:border 0.15s;margin-bottom:12px;
-}
-input:focus,textarea:focus,select:focus{border-color:var(--ink);}
-textarea{resize:vertical;}
-.btn{width:100%;background:var(--ink);color:var(--cream);border:none;padding:13px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-family:'Jost',sans-serif;cursor:pointer;transition:opacity 0.15s;}
-.btn:hover{opacity:0.75;}
-.btn:disabled{opacity:0.4;cursor:default;}
-.btn-outline{background:transparent;color:var(--ink);border:0.5px solid var(--ink-20);}
-.btn-outline:hover{border-color:var(--ink);background:var(--ink-08);opacity:1;}
-.err{font-size:12px;color:var(--danger);margin-top:8px;display:none;}
+/* ANNOUNCE */
+.announce{background:var(--ink);color:var(--cream);text-align:center;padding:10px 24px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;font-weight:300;}
 
 /* NAV */
-#admin{display:none;}
-nav{background:white;border-bottom:0.5px solid var(--ink-20);padding:0 40px;height:52px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
-.nav-brand{font-family:'Cormorant Garamond',serif;font-size:18px;}
-.nav-tag{font-size:9px;letter-spacing:0.14em;text-transform:uppercase;background:var(--sage);color:white;padding:3px 8px;margin-left:8px;}
-.nav-r{display:flex;gap:20px;align-items:center;}
-.nav-link{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:0.5px solid var(--ink);padding-bottom:1px;}
-.btn-logout{font-size:11px;color:var(--ink-50);background:none;border:none;cursor:pointer;font-family:'Jost',sans-serif;text-decoration:underline;}
+nav{display:flex;align-items:center;justify-content:space-between;padding:20px 48px;border-bottom:0.5px solid var(--ink-20);background:var(--cream);position:sticky;top:0;z-index:100;}
+.nav-links{display:flex;gap:36px;}
+.nav-links a{font-size:12px;letter-spacing:0.12em;text-transform:uppercase;font-weight:400;color:var(--ink);text-decoration:none;transition:opacity 0.15s;}
+.nav-links a:hover{opacity:0.5;}
+.nav-brand{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;letter-spacing:0.04em;color:var(--ink);text-decoration:none;position:absolute;left:50%;transform:translateX(-50%);}
+.nav-right a{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;font-weight:400;color:var(--ink);text-decoration:none;border-bottom:0.5px solid var(--ink);padding-bottom:1px;transition:opacity 0.15s;}
+.nav-right a:hover{opacity:0.5;}
 
-.wrap{max-width:860px;padding:40px;}
-.page-title{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;margin-bottom:6px;}
-.page-sub{font-size:13px;color:var(--ink-50);font-weight:300;margin-bottom:32px;line-height:1.6;}
+/* HERO SLIDESHOW */
+.hero{position:relative;height:92vh;min-height:600px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--warm);}
+.hero-slides{position:absolute;inset:0;}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;background-size:cover;background-position:center;}
+.hero-slide.active{opacity:1;}
+.hero-slide-overlay{position:absolute;inset:0;background:rgba(26,20,16,0.32);}
+.hero-fallback{position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(107,140,110,0.1) 0,rgba(107,140,110,0.1) 1px,transparent 1px,transparent 28px),repeating-linear-gradient(-45deg,rgba(196,145,154,0.07) 0,rgba(196,145,154,0.07) 1px,transparent 1px,transparent 28px),var(--warm);}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 24px;max-width:760px;animation:fadeUp 1s ease both;}
+.hero-eyebrow{font-size:11px;letter-spacing:0.22em;text-transform:uppercase;font-weight:300;color:rgba(250,247,242,0.8);margin-bottom:28px;display:block;}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,8vw,96px);font-weight:300;line-height:1;margin-bottom:28px;letter-spacing:-0.01em;color:var(--cream);}
+.hero-title em{font-style:italic;color:rgba(229,210,190,0.9);}
+.hero-body{font-size:14px;font-weight:300;color:rgba(250,247,242,0.7);line-height:1.9;max-width:420px;margin:0 auto 36px;}
+.hero-cta{display:inline-block;border:0.5px solid rgba(250,247,242,0.7);padding:14px 40px;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;font-weight:400;color:var(--cream);text-decoration:none;transition:all 0.2s;font-family:'Jost',sans-serif;}
+.hero-cta:hover{background:var(--cream);color:var(--ink);border-color:var(--cream);}
+/* slide dots */
+.hero-dots{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:3;display:flex;gap:10px;}
+.hero-dot{width:6px;height:6px;border-radius:50%;border:0.5px solid rgba(250,247,242,0.6);background:transparent;cursor:pointer;transition:background 0.3s;padding:0;}
+.hero-dot.active{background:rgba(250,247,242,0.85);}
+/* no-image fallback — show original pattern bg with dark text */
+.hero.no-img .hero-eyebrow{color:var(--ink-50);}
+.hero.no-img .hero-title{color:var(--ink);}
+.hero.no-img .hero-title em{color:var(--sage);}
+.hero.no-img .hero-body{color:var(--ink-50);}
+.hero.no-img .hero-cta{border-color:var(--ink);color:var(--ink);}
+.hero.no-img .hero-cta:hover{background:var(--ink);color:var(--cream);}
+.hero.no-img .hero-dot{border-color:var(--ink-20);}
+.hero.no-img .hero-dot.active{background:var(--ink-50);}
 
-.card{background:white;border:0.5px solid var(--ink-20);padding:28px;margin-bottom:16px;}
-.card-title{font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-50);font-weight:500;margin-bottom:20px;}
-label{font-size:12px;font-weight:500;display:block;margin-bottom:6px;}
-label small{font-size:11px;font-weight:300;color:var(--ink-50);margin-left:4px;}
+/* FABRIC STRIP */
+.fabric-strip{border-top:0.5px solid var(--ink-20);border-bottom:0.5px solid var(--ink-20);padding:24px 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;background:var(--cream);}
+.fabric-left{display:flex;align-items:center;gap:16px;}
+.f-swatch{width:52px;height:52px;flex-shrink:0;border:0.5px solid var(--ink-20);overflow:hidden;background:var(--warm);}
+.f-swatch img{width:100%;height:100%;object-fit:cover;}
+.f-label{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-50);margin-bottom:4px;}
+.f-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;}
+.f-desc{font-size:12px;color:var(--ink-50);margin-top:2px;font-weight:300;}
+.sold-tag{font-size:9px;letter-spacing:0.16em;text-transform:uppercase;border:0.5px solid var(--ink);padding:5px 12px;display:none;}
+.sold-tag.show{display:block;}
 
-/* IMAGE UPLOAD */
-.upload-zone{border:1px dashed var(--ink-20);padding:24px;text-align:center;cursor:pointer;transition:all 0.15s;position:relative;margin-bottom:12px;}
-.upload-zone:hover,.upload-zone.drag{border-color:var(--ink);background:var(--ink-08);}
-.upload-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;margin:0;}
-.upload-icon{font-size:22px;margin-bottom:6px;}
-.upload-text{font-size:12px;color:var(--ink-50);font-weight:300;}
-.upload-text strong{color:var(--ink);font-weight:400;}
-.preview{position:relative;margin-bottom:12px;display:none;}
-.preview img{width:100%;max-height:200px;object-fit:cover;display:block;}
-.preview-rm{position:absolute;top:8px;right:8px;background:rgba(26,20,16,0.7);color:white;border:none;font-size:11px;padding:4px 10px;cursor:pointer;font-family:'Jost',sans-serif;}
+/* SECTION HEADER */
+.section-header{padding:80px 48px 48px;display:flex;align-items:flex-end;justify-content:space-between;}
+.section-header h2{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,52px);font-weight:300;line-height:1.1;}
+.section-header h2 em{font-style:italic;color:var(--sage);}
+.section-note{font-size:12px;color:var(--ink-50);font-weight:300;max-width:260px;text-align:right;line-height:1.7;}
 
-/* TOGGLE */
-.tog-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;}
-.tog-info strong{font-size:13px;font-weight:500;display:block;}
-.tog-info span{font-size:12px;color:var(--ink-50);font-weight:300;}
-.tog{position:relative;width:40px;height:22px;flex-shrink:0;}
-.tog input{opacity:0;width:0;height:0;position:absolute;}
-.tog-sl{position:absolute;inset:0;background:var(--ink-20);cursor:pointer;transition:background 0.2s;}
-.tog-sl::before{content:'';position:absolute;width:16px;height:16px;left:3px;top:3px;background:white;transition:transform 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.15);}
-.tog input:checked+.tog-sl{background:var(--danger);}
-.tog input:checked+.tog-sl::before{transform:translateX(18px);}
-.tog.green input:checked+.tog-sl{background:var(--sage);}
+/* PRODUCTS */
+.products{padding:0 48px 80px;display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+.product-card{}
+.product-photo{
+  width:100%;aspect-ratio:4/5;
+  background:var(--warm);
+  overflow:hidden;position:relative;
+  margin-bottom:24px;
+}
+.product-photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease;}
+.product-photo:hover img{transform:scale(1.03);}
+.product-photo .placeholder{
+  width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+  background:repeating-linear-gradient(45deg,rgba(107,140,110,0.12) 0,rgba(107,140,110,0.12) 1px,transparent 1px,transparent 20px),
+  repeating-linear-gradient(-45deg,rgba(196,145,154,0.09) 0,rgba(196,145,154,0.09) 1px,transparent 1px,transparent 20px),var(--warm);
+}
+.placeholder-text{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--ink-50);letter-spacing:0.06em;}
+.sold-overlay{position:absolute;inset:0;background:rgba(26,20,16,0.42);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.2s;pointer-events:none;}
+.sold-overlay.show{opacity:1;}
+.sold-overlay span{background:var(--cream);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;padding:10px 24px;}
 
-/* FABRIC LIST */
-.fabric-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
-.fabric-item{display:grid;grid-template-columns:52px 1fr auto;gap:12px;align-items:center;border:0.5px solid var(--ink-20);padding:10px;}
-.f-thumb{width:52px;height:52px;object-fit:cover;border:0.5px solid var(--ink-20);background:var(--warm);display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:20px;flex-shrink:0;}
-.f-thumb img{width:100%;height:100%;object-fit:cover;}
-.f-badge{display:inline-block;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;padding:2px 7px;margin-top:3px;}
-.f-badge.week{background:var(--ink);color:var(--cream);}
-.f-badge.stock{background:var(--sage);color:white;}
-.f-badge.soldout{background:var(--ink-20);color:var(--ink-50);}
-.f-actions{display:flex;gap:6px;flex-wrap:wrap;}
-.btn-sm{font-size:10px;letter-spacing:0.08em;text-transform:uppercase;padding:5px 10px;border:0.5px solid var(--ink-20);background:transparent;color:var(--ink);cursor:pointer;font-family:'Jost',sans-serif;transition:all 0.15s;white-space:nowrap;}
-.btn-sm:hover{border-color:var(--ink);}
-.btn-sm.active-wk{background:var(--ink);color:var(--cream);border-color:var(--ink);}
-.btn-sm.danger:hover{border-color:var(--danger);color:var(--danger);}
+.product-type{font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-50);margin-bottom:6px;}
+.product-name{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;margin-bottom:4px;}
+.product-line{font-size:13px;color:var(--ink-50);font-style:italic;font-family:'Cormorant Garamond',serif;margin-bottom:24px;line-height:1.5;}
 
-/* FORM ROW */
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.add-form{border:0.5px solid var(--ink-20);padding:20px;background:var(--warm);display:none;margin-bottom:12px;}
-.add-form.show{display:block;}
-.btn-add{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;padding:9px 16px;border:0.5px solid var(--ink-20);background:transparent;color:var(--ink);cursor:pointer;font-family:'Jost',sans-serif;margin-bottom:12px;}
-.btn-add:hover{border-color:var(--ink);}
+/* Options */
+.opt-label{font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-50);margin-bottom:8px;}
+.hw-row{display:flex;gap:8px;margin-bottom:20px;}
+.hw-btn{display:flex;align-items:center;gap:7px;padding:7px 14px;border:0.5px solid var(--ink-20);background:transparent;cursor:pointer;font-size:11px;font-weight:400;color:var(--ink);font-family:'Jost',sans-serif;letter-spacing:0.06em;transition:border-color 0.15s;}
+.hw-btn:hover{border-color:var(--ink);}
+.hw-btn.active{border-color:var(--ink);background:var(--ink-08);}
+.hw-dot{width:10px;height:10px;border-radius:50%;border:0.5px solid var(--ink-20);}
+.hw-dot.gold{background:var(--gold);}
+.hw-dot.silver{background:#9AABB5;}
 
-/* HW */
-.hw-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:0.5px solid var(--ink-08);}
-.hw-row:last-child{border-bottom:none;}
-.hw-dot{width:12px;height:12px;border-radius:50%;margin-right:8px;}
+.sz-row{display:flex;gap:6px;margin-bottom:20px;}
+.sz{width:42px;height:42px;display:flex;align-items:center;justify-content:center;border:0.5px solid var(--ink-20);font-size:11px;font-weight:400;letter-spacing:0.06em;cursor:pointer;background:transparent;font-family:'Jost',sans-serif;color:var(--ink);transition:all 0.15s;}
+.sz:hover{border-color:var(--ink);}
+.sz.active{background:var(--ink);color:var(--cream);border-color:var(--ink);}
 
-/* SAVE */
-.save-area{margin-top:8px;}
-.save-note{font-size:11px;color:var(--ink-50);text-align:center;margin-top:10px;line-height:1.6;font-weight:300;}
+/* FABRIC SELECTOR */
+.fabric-selector-wrap{margin-bottom:24px;}
+.fabric-swatches{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
+.f-swatch-btn{
+  width:40px;height:40px;border:1.5px solid transparent;cursor:pointer;
+  overflow:hidden;position:relative;transition:border-color 0.15s;
+  flex-shrink:0;
+}
+.f-swatch-btn img{width:100%;height:100%;object-fit:cover;}
+.f-swatch-btn .swatch-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:16px;}
+.f-swatch-btn.active{border-color:var(--ink);}
+.f-swatch-btn.sold-f{opacity:0.35;cursor:not-allowed;}
+.f-swatch-btn .sold-x{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--ink-50);background:rgba(250,247,242,0.6);}
+.f-swatch-name{font-size:11px;color:var(--ink-50);margin-top:6px;font-style:italic;min-height:16px;}
 
-/* PROGRESS */
-.progress-bar{width:100%;height:3px;background:var(--ink-08);margin-top:10px;display:none;}
-.progress-fill{height:100%;background:var(--sage);width:0%;transition:width 0.3s;}
+/* CTA */
+.product-cta{width:100%;background:var(--ink);color:var(--cream);border:none;padding:15px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-family:'Jost',sans-serif;font-weight:400;cursor:pointer;transition:opacity 0.15s;display:flex;align-items:center;justify-content:center;gap:10px;}
+.product-cta:hover{opacity:0.75;}
+.product-cta.unavail{background:transparent;color:var(--ink-50);border:0.5px solid var(--ink-20);cursor:default;}
+.product-cta.unavail:hover{opacity:1;}
+.product-price{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;margin-bottom:16px;letter-spacing:0.02em;}
+.product-desc{font-size:13px;color:var(--ink-50);font-weight:300;line-height:1.8;margin-bottom:20px;}
+/* Size guide accordion */
+.size-guide-toggle{display:flex;align-items:center;justify-content:space-between;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-50);cursor:pointer;padding:10px 0;border-top:0.5px solid var(--ink-20);border-bottom:0.5px solid var(--ink-20);margin-bottom:0;background:none;border-left:none;border-right:none;width:100%;font-family:'Jost',sans-serif;font-weight:400;}
+.size-guide-toggle:hover{color:var(--ink);}
+.size-guide-arrow{transition:transform 0.2s;font-size:10px;}
+.size-guide-toggle.open .size-guide-arrow{transform:rotate(180deg);}
+.size-guide-body{display:none;padding:16px 0;border-bottom:0.5px solid var(--ink-20);}
+.size-guide-body.open{display:block;}
+.sg-table{width:100%;border-collapse:collapse;font-size:12px;}
+.sg-table th{text-align:left;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-50);font-weight:400;padding:0 0 8px;border-bottom:0.5px solid var(--ink-20);}
+.sg-table td{padding:8px 0;border-bottom:0.5px solid var(--ink-08);color:var(--ink);font-weight:300;vertical-align:top;}
+.sg-table td:first-child{font-weight:500;width:28px;}
+.sg-table td{padding:7px 6px 7px 0;border-bottom:0.5px solid var(--ink-08);color:var(--ink);font-weight:300;vertical-align:top;font-size:11px;}
+.sg-table th{padding:0 6px 8px 0;}
+.sg-note{font-size:11px;color:var(--ink-50);margin-top:10px;line-height:1.6;font-style:italic;}
 
-/* TOAST */
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--cream);font-size:12px;padding:11px 22px;opacity:0;transition:opacity 0.3s;pointer-events:none;white-space:nowrap;z-index:999;letter-spacing:0.06em;}
-.toast.show{opacity:1;}
+/* STORY */
+.story{padding:100px 48px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;border-top:0.5px solid var(--ink-20);}
+.story h3{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,56px);font-weight:300;line-height:1.15;margin-bottom:24px;}
+.story h3 em{font-style:italic;color:var(--mauve);}
+.story p{font-size:14px;font-weight:300;color:var(--ink-50);line-height:2;margin-bottom:16px;}
+.story-pull{border-left:1.5px solid var(--mauve);padding-left:20px;font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--ink);line-height:1.7;margin-top:28px;}
+.story-img{width:100%;aspect-ratio:3/4;background:var(--warm);overflow:hidden;position:relative;}
+.story-img-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(30deg,rgba(107,140,110,0.15) 0,rgba(107,140,110,0.15) 2px,transparent 2px,transparent 24px),repeating-linear-gradient(-30deg,rgba(196,145,154,0.12) 0,rgba(196,145,154,0.12) 2px,transparent 2px,transparent 24px),#E8DDD0;}
+.story-center{text-align:center;}
+.story-center strong{display:block;font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;margin-bottom:8px;}
+.story-center p{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:rgba(26,20,16,0.4);letter-spacing:0.06em;line-height:1.9;}
 
-@media(max-width:600px){
-  nav{padding:0 20px;}
-  .wrap{padding:24px 20px;}
-  .form-row{grid-template-columns:1fr;}
-  .fabric-item{grid-template-columns:48px 1fr;grid-template-rows:auto auto;}
-  .f-actions{grid-column:1/-1;}
+/* PROCESS */
+.process{padding:80px 48px;border-top:0.5px solid var(--ink-20);background:var(--ink);color:var(--cream);}
+.process h2{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,42px);font-weight:300;margin-bottom:56px;}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;}
+.step-num{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;color:rgba(242,235,224,0.12);line-height:1;margin-bottom:16px;}
+.step-title{font-size:12px;letter-spacing:0.12em;text-transform:uppercase;font-weight:400;margin-bottom:10px;}
+.step-body{font-size:13px;font-weight:300;color:rgba(242,235,224,0.5);line-height:1.8;}
+
+/* FOOTER */
+footer{border-top:0.5px solid var(--ink-20);padding:48px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;background:var(--cream);}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;margin-bottom:8px;}
+.footer-sub{font-size:11px;color:var(--ink-50);font-weight:300;letter-spacing:0.08em;line-height:1.7;}
+.fcol-label{font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-50);margin-bottom:16px;}
+.fcol p{font-size:13px;font-weight:300;color:var(--ink-50);line-height:1.9;}
+.footer-line-btn{display:inline-flex;align-items:center;gap:8px;margin-top:16px;background:var(--ink);color:var(--cream);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;padding:12px 22px;text-decoration:none;font-family:'Jost',sans-serif;transition:opacity 0.15s;}
+.footer-line-btn:hover{opacity:0.7;}
+.footer-line-btn svg{width:14px;height:14px;}
+.footer-bottom{border-top:0.5px solid var(--ink-20);padding:18px 48px;display:flex;justify-content:space-between;background:var(--cream);}
+.footer-bottom p{font-size:11px;color:var(--ink-50);font-weight:300;letter-spacing:0.06em;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:768px){
+  nav{padding:16px 20px;}
+  .nav-brand{font-size:18px;}
+  .nav-links{display:none;}
+  .hero{height:85vh;}
+  .fabric-strip,.section-header{padding-left:20px;padding-right:20px;}
+  .section-header{padding-top:56px;padding-bottom:28px;flex-direction:column;gap:10px;align-items:flex-start;}
+  .section-note{text-align:left;max-width:none;}
+  .products{padding:0 20px 56px;grid-template-columns:1fr;gap:48px;}
+  .story{padding:56px 20px;grid-template-columns:1fr;gap:32px;}
+  .story-img{aspect-ratio:4/3;}
+  .process{padding:56px 20px;}
+  .process-grid{grid-template-columns:1fr 1fr;gap:28px;}
+  footer{padding:40px 20px;grid-template-columns:1fr;gap:28px;}
+  .footer-bottom{padding:16px 20px;flex-direction:column;gap:6px;}
 }
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
-<div id="login">
-  <div class="login-box">
-    <p class="login-brand">Maa-Mee.studio</p>
-    <p class="login-sub">Admin Panel Â· Weekly Update</p>
-    <label>Password</label>
-    <input type="password" id="pw" placeholder="Admin password" onkeydown="if(event.key==='Enter')document.getElementById('token').focus()"/>
-    <label>GitHub Token <small style="font-weight:300;color:var(--ink-50);">(paste once, browser remembers)</small></label>
-    <input type="password" id="token" placeholder="ghp_..." onkeydown="if(event.key==='Enter')doLogin()"/>
-    <button class="btn" onclick="doLogin()">Sign in</button>
-    <p class="err" id="pw-err">Incorrect password or invalid token</p>
+<div class="announce">Made to order · Thai silk · Handcrafted in Bangkok</div>
+
+<nav>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#collection">Collection</a>
+  </div>
+  <a class="nav-brand" href="#">Maa-Mee.studio</a>
+  <div class="nav-right">
+    <a id="nav-line" href="https://line.me/R/ti/p/@594ynmkg" target="_blank">Order via Line</a>
+  </div>
+</nav>
+
+<!-- HERO SLIDESHOW -->
+<div class="hero no-img" id="hero">
+  <div class="hero-fallback" id="hero-fallback"></div>
+  <div class="hero-slides" id="hero-slides"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Elevated Thai-Baan pet accessories</span>
+    <h1 class="hero-title">Silk<br/>for your<br/><em>dog's life.</em></h1>
+    <p class="hero-body">Thai silk collars and bandanas — cut and sewn by Thai artisans in Bangkok, made to order for your dog. We choose each fabric because the pattern is worth wearing.</p>
+    <a href="#collection" class="hero-cta">Fabrics of the week</a>
+  </div>
+  <div class="hero-dots" id="hero-dots"></div>
+</div>
+
+<!-- FABRIC STRIP -->
+<div class="fabric-strip">
+  <div class="fabric-left">
+    <div class="f-swatch" id="strip-swatch">
+      <img id="strip-img" src="" alt="" style="display:none"/>
+    </div>
+    <div>
+      <p class="f-label">Fabric of the week</p>
+      <p class="f-name" id="strip-name">—</p>
+      <p class="f-desc" id="strip-desc"></p>
+    </div>
+  </div>
+  <span class="sold-tag" id="strip-sold">Sold out</span>
+</div>
+
+<!-- COLLECTION -->
+<div id="collection">
+  <div class="section-header reveal">
+    <h2>Fabrics of the week.<br/><em>Try on.</em></h2>
+    <p class="section-note">Select a fabric below, choose your hardware and size — then message us on Line to order. You can also send us a photo of a collar you like to check stock.</p>
+  </div>
+
+  <div class="products">
+
+    <!-- COLLAR -->
+    <div class="product-card reveal">
+      <div class="product-photo" id="collar-photo">
+        <div class="placeholder" id="collar-placeholder">
+          <span class="placeholder-text">Collar photo coming soon</span>
+        </div>
+        <img id="collar-img" src="" alt="Silk Collar" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
+        <div class="sold-overlay" id="collar-sold-overlay"><span>Sold out</span></div>
+      </div>
+
+      <p class="product-name">The Silk Collar</p>
+      <p class="product-price" id="collar-price">฿790 – 990</p>
+      <p class="product-desc" id="collar-desc">Adjustable Thai silk collar with gold or silver hardware. Made to order for your dog's measurements.</p>
+
+      <p class="opt-label">Fabric</p>
+      <div class="fabric-swatches" id="collar-swatches"></div>
+      <p class="f-swatch-name" id="collar-swatch-name"></p>
+
+      <div style="margin-top:16px;">
+        <p class="opt-label">Hardware</p>
+        <div class="hw-row" id="collar-hw-row">
+          <button class="hw-btn active" onclick="setHw('collar','gold',this)"><span class="hw-dot gold"></span> Gold</button>
+          <button class="hw-btn" onclick="setHw('collar','silver',this)"><span class="hw-dot silver"></span> Silver</button>
+        </div>
+      </div>
+
+      <p class="opt-label">Size</p>
+      <div class="sz-row">
+        <button class="sz" onclick="setSz(this);setPrice('collar',this.textContent)">S</button>
+        <button class="sz" onclick="setSz(this);setPrice('collar',this.textContent)">M</button>
+        <button class="sz active" onclick="setSz(this);setPrice('collar',this.textContent)">L</button>
+      </div>
+      <button class="size-guide-toggle" onclick="toggleSizeGuide('collar-guide',this)">
+        Size guide <span class="size-guide-arrow">▾</span>
+      </button>
+      <div class="size-guide-body" id="collar-guide">
+        <table class="sg-table">
+          <thead><tr><th>Size</th><th>Neck</th><th>Length</th><th>Width</th><th>Price</th><th>Breed guide</th></tr></thead>
+          <tbody>
+            <tr><td>S</td><td>25–35 cm</td><td>37 cm</td><td>1.5 cm</td><td>฿790</td><td>Chihuahua, Pomeranian, Toy Poodle</td></tr>
+            <tr><td>M</td><td>35–48 cm</td><td>50 cm</td><td>2.0 cm</td><td>฿890</td><td>Shih Tzu, Corgi, Bangkaew, Beagle</td></tr>
+            <tr><td>L</td><td>48–65 cm</td><td>68 cm</td><td>2.5 cm</td><td>฿990</td><td>Labrador, Golden Retriever, Husky</td></tr>
+          </tbody>
+        </table>
+        <p class="sg-note">Not sure? Message us on Line with your dog's neck measurement — we'll help you find the right size.</p>
+      </div>
+
+      <div style="margin-top:16px;">
+      <button class="product-cta" id="collar-cta" onclick="goLine()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.88 2 10.6c0 3.28 2.12 6.16 5.32 7.8-.22.8-.8 2.92-.92 3.38-.14.54.2.54.42.4.18-.12 2.3-1.56 3.24-2.2.6.08 1.26.12 1.94.12 5.52 0 10-3.88 10-8.6C22 5.88 17.52 2 12 2z"/></svg>
+        Order via Line
+      </button>
+      </div>
+    </div>
+
+    <!-- BANDANA -->
+    <div class="product-card reveal" style="transition-delay:0.12s">
+      <div class="product-photo" id="bandana-photo">
+        <div class="placeholder" id="bandana-placeholder">
+          <span class="placeholder-text">Bandana photo coming soon</span>
+        </div>
+        <img id="bandana-img" src="" alt="Silk Bandana" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
+        <div class="sold-overlay" id="bandana-sold-overlay"><span>Sold out</span></div>
+      </div>
+
+      <p class="product-name">The Silk Bandana</p>
+      <p class="product-price" id="bandana-price">฿590 – 790</p>
+      <p class="product-desc" id="bandana-desc">Pure Thai silk bandana, tied around the neck. No hardware — just the fabric draped on your dog.</p>
+
+      <p class="opt-label">Fabric</p>
+      <div class="fabric-swatches" id="bandana-swatches"></div>
+      <p class="f-swatch-name" id="bandana-swatch-name"></p>
+
+      <div style="margin-top:16px;">
+        <p style="font-size:11px;color:var(--ink-50);font-weight:300;font-style:italic;margin-bottom:16px;line-height:1.7;">No metal hardware — pure silk, tied around the neck.</p>
+      </div>
+
+      <p class="opt-label">Size</p>
+      <div class="sz-row">
+        <button class="sz" onclick="setSz(this);setPrice('bandana',this.textContent)">S</button>
+        <button class="sz" onclick="setSz(this);setPrice('bandana',this.textContent)">M</button>
+        <button class="sz active" onclick="setSz(this);setPrice('bandana',this.textContent)">L</button>
+      </div>
+      <button class="size-guide-toggle" onclick="toggleSizeGuide('bandana-guide',this)">
+        Size guide <span class="size-guide-arrow">▾</span>
+      </button>
+      <div class="size-guide-body" id="bandana-guide">
+        <table class="sg-table">
+          <thead><tr><th>Size</th><th>Length</th><th>Width (collar fit)</th><th>Price</th></tr></thead>
+          <tbody>
+            <tr><td>S</td><td>28 cm</td><td>S collar / neck 25–35 cm</td><td>฿590</td></tr>
+            <tr><td>M</td><td>40 cm</td><td>M collar / neck 35–48 cm</td><td>฿690</td></tr>
+            <tr><td>L</td><td>52 cm</td><td>L collar / neck 48–65 cm</td><td>฿790</td></tr>
+          </tbody>
+        </table>
+        <p class="sg-note">Not sure? Message us on Line — we'll help you choose the right size.</p>
+      </div>
+
+      <div style="margin-top:16px;">
+      <button class="product-cta" id="bandana-cta" onclick="goLine()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.88 2 10.6c0 3.28 2.12 6.16 5.32 7.8-.22.8-.8 2.92-.92 3.38-.14.54.2.54.42.4.18-.12 2.3-1.56 3.24-2.2.6.08 1.26.12 1.94.12 5.52 0 10-3.88 10-8.6C22 5.88 17.52 2 12 2z"/></svg>
+        Order via Line
+      </button>
+      </div>
+    </div>
+
   </div>
 </div>
 
-<!-- ADMIN -->
-<div id="admin">
-  <nav>
-    <div style="display:flex;align-items:center;">
-      <p class="nav-brand">Maa-Mee.studio</p>
-      <span class="nav-tag">Admin</span>
-    </div>
-    <div class="nav-r">
-      <a class="nav-link" href="https://maameestudio2026.netlify.app" target="_blank">View site</a>
-      <button class="btn-logout" onclick="doLogout()">Sign out</button>
-    </div>
-  </nav>
-
-  <div class="wrap">
-    <h1 class="page-title">Weekly update</h1>
-    <p class="page-sub">Update fabrics, photos, prices, and availability. Changes save directly to GitHub and appear on the site within 30 seconds.</p>
-
-    <!-- 01 FABRIC LIBRARY -->
-    <div class="card">
-      <p class="card-title">01 Â· Fabric library</p>
-      <p style="font-size:12px;color:var(--ink-50);font-weight:300;margin-bottom:16px;line-height:1.7;">Add fabric patterns here. Mark one as "This week" â it shows in the hero strip. Others appear as selectable swatches.</p>
-      <div class="fabric-list" id="fabric-list"></div>
-      <button class="btn-add" onclick="toggleAddForm()"><span>+</span> Add new fabric</button>
-      <div class="add-form" id="add-form">
-        <p style="font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-50);margin-bottom:16px;">New fabric</p>
-        <div class="form-row">
-          <div>
-            <label>Pattern name</label>
-            <input type="text" id="new-name" placeholder="e.g. Sage Bloom"/>
-          </div>
-          <div>
-            <label>Status</label>
-            <select id="new-status">
-              <option value="stock">In stock</option>
-              <option value="week">This week (featured)</option>
-              <option value="soldout">Sold out</option>
-            </select>
-          </div>
-        </div>
-        <label>Description <small>(1 line)</small></label>
-        <input type="text" id="new-desc" placeholder="e.g. Sage green with mauve floral ikat"/>
-        <label>Fabric photo <small>(square works best, max 1MB)</small></label>
-        <div class="upload-zone" id="new-fabric-zone">
-          <input type="file" accept="image/*" onchange="handleNewFabric(this.files[0])"/>
-          <div class="upload-icon">ð§µ</div>
-          <p class="upload-text"><strong>Choose photo or drag here</strong></p>
-        </div>
-        <div class="preview" id="new-fabric-prev">
-          <img id="new-fabric-img" src="" alt=""/>
-          <button class="preview-rm" onclick="clearNewFabric()">â</button>
-        </div>
-        <div style="display:flex;gap:8px;margin-top:4px;">
-          <button class="btn" style="flex:1;" onclick="addFabric()">Add to library</button>
-          <button class="btn btn-outline" style="flex:0 0 auto;width:auto;padding:13px 20px;" onclick="toggleAddForm()">Cancel</button>
-        </div>
+<!-- STORY -->
+<div class="story reveal">
+  <div>
+    <h3>Thai silk.<br/>Made for dogs<br/><em>for the first time.</em></h3>
+    <p>We work with Thai silk in all its forms — mudmee ikat, solid weaves, geometric patterns. We choose each fabric because the pattern is beautiful, and because it deserves to be worn.</p>
+    <p>Cut and sewn by Thai artisans in Bangkok. Made when you order it.</p>
+    <div class="story-pull">"No two dogs wear the same pattern. That's not a flaw — that's the point."</div>
+  </div>
+  <div class="story-img">
+    <div class="story-img-inner" id="story-img-inner">
+      <div class="story-center">
+        <strong>Maa-Mee.studio</strong>
+        <p>Handcrafted in Bangkok<br/>Made to order<br/>Thai silk pet accessories</p>
       </div>
     </div>
+    <img id="story-img-real" src="" alt="" style="display:none;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
+  </div>
+</div>
 
-    <!-- 02 HERO PHOTOS -->
-    <div class="card">
-      <p class="card-title">02 Â· Hero slideshow photos</p>
-      <p style="font-size:12px;color:var(--ink-50);font-weight:300;margin-bottom:16px;line-height:1.7;">Up to 4 photos for the hero slideshow. Portrait photos work best. Max 1MB each.</p>
-      <div id="hero-list" style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;"></div>
-      <div class="upload-zone" id="hero-zone">
-        <input type="file" accept="image/*" multiple onchange="handleHeroFiles(this.files)"/>
-        <div class="upload-icon">ð¼</div>
-        <p class="upload-text"><strong>Add hero photos (up to 4)</strong></p>
-      </div>
+<!-- PROCESS -->
+<div class="process reveal">
+  <h2>How it works.</h2>
+  <div class="process-grid">
+    <div>
+      <div class="step-num">01</div>
+      <p class="step-title">Choose</p>
+      <p class="step-body">Browse this week's fabrics. Select a pattern, hardware, and size above.</p>
     </div>
-
-    <!-- 03 PRODUCT PHOTOS -->
-    <div class="card">
-      <p class="card-title">03 Â· Product photos</p>
-      <div class="form-row">
-        <div>
-          <label>Collar photo <small>(flat lay or lifestyle)</small></label>
-          <div class="preview" id="collar-prev"><img id="collar-prev-img" src="" alt=""/><button class="preview-rm" onclick="clearImg('collar')">â</button></div>
-          <div class="upload-zone" id="collar-zone">
-            <input type="file" accept="image/*" onchange="handleImg('collar',this.files[0])"/>
-            <div class="upload-icon">ð·</div>
-            <p class="upload-text"><strong>Choose collar photo</strong></p>
-          </div>
-        </div>
-        <div>
-          <label>Bandana photo <small>(flat lay or lifestyle)</small></label>
-          <div class="preview" id="bandana-prev"><img id="bandana-prev-img" src="" alt=""/><button class="preview-rm" onclick="clearImg('bandana')">â</button></div>
-          <div class="upload-zone" id="bandana-zone">
-            <input type="file" accept="image/*" onchange="handleImg('bandana',this.files[0])"/>
-            <div class="upload-icon">ð·</div>
-            <p class="upload-text"><strong>Choose bandana photo</strong></p>
-          </div>
-        </div>
-      </div>
+    <div>
+      <div class="step-num">02</div>
+      <p class="step-title">Message</p>
+      <p class="step-body">Send us a message on Line OA with your selection and your dog's neck measurement. You can also send a photo of a collar you like.</p>
     </div>
-
-    <!-- 04 BRAND PHOTO -->
-    <div class="card">
-      <p class="card-title">04 Â· Brand story photo</p>
-      <label>Story image <small>(right side of about section)</small></label>
-      <div class="preview" id="story-prev"><img id="story-prev-img" src="" alt=""/><button class="preview-rm" onclick="clearImg('story')">â</button></div>
-      <div class="upload-zone" id="story-zone">
-        <input type="file" accept="image/*" onchange="handleImg('story',this.files[0])"/>
-        <div class="upload-icon">ð·</div>
-        <p class="upload-text"><strong>Choose brand photo</strong></p>
-      </div>
+    <div>
+      <div class="step-num">03</div>
+      <p class="step-title">Made for your dog</p>
+      <p class="step-body">Your piece is cut and sewn when you order it. We don't hold stock.</p>
     </div>
-
-    <!-- 05 PRODUCT DETAILS -->
-    <div class="card">
-      <p class="card-title">05 Â· Product details</p>
-      <div class="form-row">
-        <div>
-          <label>Collar description</label>
-          <textarea id="collar-desc" rows="3" placeholder="Adjustable Thai silk collar..."></textarea>
-        </div>
-        <div>
-          <label>Bandana description</label>
-          <textarea id="bandana-desc" rows="3" placeholder="Pure Thai silk bandana..."></textarea>
-        </div>
-      </div>
-    </div>
-
-    <!-- 06 AVAILABILITY -->
-    <div class="card">
-      <p class="card-title">06 Â· Availability</p>
-      <div class="tog-row">
-        <div class="tog-info"><strong>Mark everything as Sold Out</strong><span>All order buttons change to "Message us on Line"</span></div>
-        <label class="tog"><input type="checkbox" id="global-sold"/><span class="tog-sl"></span></label>
-      </div>
-      <div class="tog-row" style="border-top:0.5px solid var(--ink-08);margin-top:8px;padding-top:16px;">
-        <div class="tog-info"><strong>Gold hardware</strong><span>Available for collar</span></div>
-        <label class="tog green"><input type="checkbox" id="hw-gold" checked/><span class="tog-sl"></span></label>
-      </div>
-      <div class="tog-row">
-        <div class="tog-info"><strong>Silver hardware</strong><span>Available for collar</span></div>
-        <label class="tog green"><input type="checkbox" id="hw-silver" checked/><span class="tog-sl"></span></label>
-      </div>
-    </div>
-
-    <!-- SAVE -->
-    <div class="save-area">
-      <button class="btn" id="save-btn" onclick="saveToGitHub()">Save & publish to site</button>
-      <div class="progress-bar" id="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
-      <p class="save-note">Changes go live on the site within 30 seconds after saving.</p>
+    <div>
+      <div class="step-num">04</div>
+      <p class="step-title">Yours alone</p>
+      <p class="step-body">Each fabric is chosen for its pattern. Your dog's piece is cut from that roll — and no two cuts are exactly the same.</p>
     </div>
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<!-- FOOTER -->
+<footer>
+  <div>
+    <p class="footer-brand">Maa-Mee.studio</p>
+    <p class="footer-sub">Elevated Thai-Baan pet accessories<br/>Made in Bangkok · 2026</p>
+  </div>
+  <div class="fcol">
+    <p class="fcol-label">Order</p>
+    <p>No forms. No account. Choose your fabric, then message us on Line to order.</p>
+    <a class="footer-line-btn" id="footer-line" href="https://line.me/R/ti/p/@594ynmkg" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.88 2 10.6c0 3.28 2.12 6.16 5.32 7.8-.22.8-.8 2.92-.92 3.38-.14.54.2.54.42.4.18-.12 2.3-1.56 3.24-2.2.6.08 1.26.12 1.94.12 5.52 0 10-3.88 10-8.6C22 5.88 17.52 2 12 2z"/></svg>
+      Open Line OA
+    </a>
+  </div>
+  <div class="fcol">
+    <p class="fcol-label">About</p>
+    <p>Thai silk bandanas and collars — handcrafted by Thai artisans. We choose each fabric because the pattern is worth wearing. Made to order, every piece.</p>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <p>© 2026 Maa-Mee.studio</p>
+  <p>Handcrafted in Bangkok, Thailand</p>
+</div>
 
 <script>
-// ============================================================
-// CONFIG â filled in by Minnie, never share this file publicly
-// ============================================================
-const ADMIN_PW = 'maameestudio2026';
-const GITHUB_OWNER = 'thanamonmiscell333-blip';
-const GITHUB_REPO = 'maamee.studio';
-const GITHUB_BRANCH = 'main';
-let GITHUB_TOKEN = '';
+let _lineUrl='https://line.me/R/ti/p/@594ynmkg';
+let _fabrics=[];
+let _selectedFabric={collar:null,bandana:null};
+let _slideTimer=null;
 
-function getToken(){ return GITHUB_TOKEN || sessionStorage.getItem('maamee_token') || ''; }
-function setToken(t){ GITHUB_TOKEN=t; sessionStorage.setItem('maamee_token',t); }
-// ============================================================
-
-let state = {
-  fabrics: [{ name:'Sage Bloom', desc:'Sage green with mauve floral ikat', status:'week', imageUrl:'' }],
-  heroImages: ['https://raw.githubusercontent.com/thanamonmiscell333-blip/maamee.studio/main/hero-dog.png.png'],
-  collarImage: '', bandanaImage: '', storyImage: '',
-  collarDesc: 'Adjustable Thai silk collar with gold or silver hardware. Made to order for your dog\'s measurements.',
-  bandanaDesc: 'Pure Thai silk bandana, tied around the neck. No hardware â just the fabric draped on your dog.',
-  globalSoldOut: false,
-  hardware: { gold: true, silver: true }
-};
-
-// pending new image files to upload
-let pendingUploads = {}; // key: filename, value: {base64, dataUrl}
-let newFabricData = { imageFile: null, imageUrl: '' };
-let heroFiles = []; // new hero image files
-
-function doLogin(){
-  const pw = document.getElementById('pw').value;
-  const tok = document.getElementById('token').value.trim() || sessionStorage.getItem('maamee_token') || '';
-  if(pw === ADMIN_PW && tok){
-    setToken(tok);
-    document.getElementById('login').style.display='none';
-    document.getElementById('admin').style.display='block';
-    loadFromGitHub();
-  } else {
-    document.getElementById('pw-err').style.display='block';
-    setTimeout(()=>document.getElementById('pw-err').style.display='none',2500);
-  }
-}
-function doLogout(){
-  document.getElementById('admin').style.display='none';
-  document.getElementById('login').style.display='flex';
-  document.getElementById('pw').value='';
-  document.getElementById('token').value='';
-  // keep token in sessionStorage so next login only needs password
-}
-
-async function loadFromGitHub(){
-  try {
-    const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/index.html?ref=${GITHUB_BRANCH}&t=${Date.now()}`;
-    const res = await fetch(url, { headers: { Authorization: `token ${getToken()}` } });
-    if(!res.ok) throw new Error('Cannot load index.html');
-    const data = await res.json();
-    const content = atob(data.content.replace(/\n/g,''));
-    // Extract CONFIG block
-    const match = content.match(/const CONFIG = (\{[\s\S]*?\});[\s\S]*?<\/script>/);
-    if(match){
-      try {
-        const cfg = eval('('+match[1]+')');
-        state.fabrics = cfg.fabrics || state.fabrics;
-        state.heroImages = cfg.heroImages || state.heroImages;
-        state.collarImage = cfg.collar?.image || '';
-        state.bandanaImage = cfg.bandana?.image || '';
-        state.storyImage = cfg.storyImage || '';
-        state.collarDesc = cfg.collar?.desc || state.collarDesc;
-        state.bandanaDesc = cfg.bandana?.desc || state.bandanaDesc;
-        state.globalSoldOut = cfg.collar?.soldOut || false;
-        state.hardware = cfg.collar?.hardware || state.hardware;
-      } catch(e){}
-    }
-    renderAll();
-  } catch(e){
-    showToast('Could not load current config â showing defaults');
-    renderAll();
-  }
-}
-
-function renderAll(){
-  renderFabrics();
-  renderHeroList();
-  document.getElementById('collar-desc').value = state.collarDesc;
-  document.getElementById('bandana-desc').value = state.bandanaDesc;
-  document.getElementById('global-sold').checked = state.globalSoldOut;
-  document.getElementById('hw-gold').checked = state.hardware.gold;
-  document.getElementById('hw-silver').checked = state.hardware.silver;
-  if(state.collarImage) showPreview('collar', state.collarImage);
-  if(state.bandanaImage) showPreview('bandana', state.bandanaImage);
-  if(state.storyImage) showPreview('story', state.storyImage);
-}
-
-function renderFabrics(){
-  const el = document.getElementById('fabric-list');
-  if(!state.fabrics.length){ el.innerHTML = '<p style="font-size:12px;color:var(--ink-50);">No fabrics yet.</p>'; return; }
-  el.innerHTML = state.fabrics.map((f,i) => `
-    <div class="fabric-item">
-      <div class="f-thumb">${f.imageUrl ? `<img src="${f.imageUrl}"/>` : 'ð§µ'}</div>
-      <div>
-        <p style="font-size:14px;font-family:\'Cormorant Garamond\',serif;">${f.name}</p>
-        <p style="font-size:11px;color:var(--ink-50);margin-top:2px;">${f.desc||''}</p>
-        <span class="f-badge ${f.status}">${f.status==='week'?'This week':f.status==='soldout'?'Sold out':'In stock'}</span>
-      </div>
-      <div class="f-actions">
-        ${f.status!=='week'?`<button class="btn-sm" onclick="setWeek(${i})">Set as this week</button>`:`<button class="btn-sm active-wk" disabled>This week â</button>`}
-        <button class="btn-sm" onclick="toggleSold(${i})">${f.status==='soldout'?'Mark in stock':'Mark sold out'}</button>
-        <button class="btn-sm danger" onclick="removeFabric(${i})">Remove</button>
-      </div>
-    </div>
-  `).join('');
-}
-
-function renderHeroList(){
-  const el = document.getElementById('hero-list');
-  if(!state.heroImages.length && !heroFiles.length){ el.innerHTML=''; return; }
-  const allItems = [
-    ...state.heroImages.map((url,i) => `<div style="display:grid;grid-template-columns:72px 1fr auto;gap:10px;align-items:center;border:0.5px solid var(--ink-20);padding:8px;">
-      <img src="${url}" style="width:72px;height:72px;object-fit:cover;"/>
-      <span style="font-size:12px;color:var(--ink-50);">Slide ${i+1}</span>
-      <button class="btn-sm danger" onclick="removeHero(${i})">Remove</button>
-    </div>`),
-    ...heroFiles.map((f,i) => `<div style="display:grid;grid-template-columns:72px 1fr auto;gap:10px;align-items:center;border:0.5px solid var(--sage);padding:8px;">
-      <img src="${f.dataUrl}" style="width:72px;height:72px;object-fit:cover;"/>
-      <span style="font-size:12px;color:var(--sage);">New Â· ${f.name}</span>
-      <button class="btn-sm danger" onclick="removeNewHero(${i})">Remove</button>
-    </div>`)
-  ];
-  el.innerHTML = allItems.join('');
-}
-
-function setWeek(i){ state.fabrics.forEach((f,j)=>{ if(j===i)f.status='week'; else if(f.status==='week')f.status='stock'; }); renderFabrics(); }
-function toggleSold(i){ state.fabrics[i].status = state.fabrics[i].status==='soldout'?'stock':'soldout'; renderFabrics(); }
-function removeFabric(i){ if(confirm('Remove this fabric?')){ state.fabrics.splice(i,1); renderFabrics(); } }
-function removeHero(i){ state.heroImages.splice(i,1); renderHeroList(); }
-function removeNewHero(i){ heroFiles.splice(i,1); renderHeroList(); }
-
-function toggleAddForm(){ document.getElementById('add-form').classList.toggle('show'); }
-
-function handleNewFabric(file){
-  if(!file) return;
-  if(file.size > 1.5*1024*1024){ showToast('Photo too large â please use under 1.5MB'); return; }
-  const r = new FileReader();
-  r.onload = e => {
-    newFabricData = { file, dataUrl: e.target.result };
-    document.getElementById('new-fabric-img').src = e.target.result;
-    document.getElementById('new-fabric-prev').style.display='block';
-    document.getElementById('new-fabric-zone').style.display='none';
-  };
-  r.readAsDataURL(file);
-}
-function clearNewFabric(){
-  newFabricData = {};
-  document.getElementById('new-fabric-prev').style.display='none';
-  document.getElementById('new-fabric-zone').style.display='block';
-}
-
-function addFabric(){
-  const name = document.getElementById('new-name').value.trim();
-  if(!name){ showToast('Please enter a pattern name'); return; }
-  const status = document.getElementById('new-status').value;
-  if(status==='week') state.fabrics.forEach(f=>{ if(f.status==='week') f.status='stock'; });
-  state.fabrics.push({ name, desc: document.getElementById('new-desc').value.trim(), status, imageUrl: newFabricData.dataUrl||'', _newFile: newFabricData.file||null });
-  renderFabrics();
-  document.getElementById('new-name').value='';
-  document.getElementById('new-desc').value='';
-  document.getElementById('new-status').value='stock';
-  clearNewFabric();
-  document.getElementById('add-form').classList.remove('show');
-  showToast('Fabric added â save to publish');
-}
-
-function handleHeroFiles(files){
-  const remaining = 4 - state.heroImages.length - heroFiles.length;
-  Array.from(files).slice(0, remaining).forEach(file=>{
-    if(file.size > 1.5*1024*1024){ showToast('Photo too large â max 1.5MB'); return; }
-    const r = new FileReader();
-    r.onload = e => { heroFiles.push({ file, name: file.name, dataUrl: e.target.result }); renderHeroList(); };
-    r.readAsDataURL(file);
+function initHeroSlides(slides){
+  const hero=document.getElementById('hero');
+  const wrap=document.getElementById('hero-slides');
+  const dots=document.getElementById('hero-dots');
+  const fallback=document.getElementById('hero-fallback');
+  wrap.innerHTML='';dots.innerHTML='';
+  if(!slides||!slides.length){hero.classList.add('no-img');fallback.style.display='block';return;}
+  hero.classList.remove('no-img');fallback.style.display='none';
+  slides.forEach((src,i)=>{
+    const div=document.createElement('div');
+    div.className='hero-slide'+(i===0?' active':'');
+    div.style.backgroundImage=`url(${src})`;
+    div.innerHTML='<div class="hero-slide-overlay"></div>';
+    wrap.appendChild(div);
+    const dot=document.createElement('button');
+    dot.className='hero-dot'+(i===0?' active':'');
+    dot.onclick=()=>goSlide(i);
+    dots.appendChild(dot);
   });
+  if(slides.length>1){
+    if(_slideTimer)clearInterval(_slideTimer);
+    _slideTimer=setInterval(()=>{
+      const all=wrap.querySelectorAll('.hero-slide');
+      const cur=wrap.querySelector('.hero-slide.active');
+      let idx=Array.from(all).indexOf(cur);
+      goSlide((idx+1)%all.length);
+    },5000);
+  }
 }
 
-const imgState = { collar: '', bandana: '', story: '' };
-const imgFiles = { collar: null, bandana: null, story: null };
-
-function handleImg(type, file){
-  if(!file) return;
-  if(file.size > 1.5*1024*1024){ showToast('Photo too large â max 1.5MB'); return; }
-  const r = new FileReader();
-  r.onload = e => { imgFiles[type]=file; showPreview(type, e.target.result); };
-  r.readAsDataURL(file);
-}
-function showPreview(type, src){
-  document.getElementById(`${type}-prev-img`).src = src;
-  document.getElementById(`${type}-prev`).style.display='block';
-  document.getElementById(`${type}-zone`).style.display='none';
-}
-function clearImg(type){
-  imgFiles[type]=null;
-  state[type+'Image']='';
-  document.getElementById(`${type}-prev`).style.display='none';
-  document.getElementById(`${type}-zone`).style.display='block';
+function goSlide(idx){
+  const wrap=document.getElementById('hero-slides');
+  const dots=document.getElementById('hero-dots');
+  wrap.querySelectorAll('.hero-slide').forEach((s,i)=>s.classList.toggle('active',i===idx));
+  dots.querySelectorAll('.hero-dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
 }
 
-// ââ GITHUB SAVE ââââââââââââââââââââââââââââââââââââââââââââââ
-
-async function githubUploadImage(file, filename){
-  const base64 = await fileToBase64(file);
-  const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/images/${filename}`;
-  // check if exists (to get sha)
-  let sha = '';
-  try {
-    const check = await fetch(url, { headers:{ Authorization:`token ${getToken()}` } });
-    if(check.ok){ const d=await check.json(); sha=d.sha; }
-  } catch(e){}
-  const body = { message:`Upload ${filename}`, content: base64, branch: GITHUB_BRANCH };
-  if(sha) body.sha = sha;
-  const res = await fetch(url, { method:'PUT', headers:{ Authorization:`token ${getToken()}`, 'Content-Type':'application/json' }, body: JSON.stringify(body) });
-  if(!res.ok) throw new Error(`Upload failed: ${filename}`);
-  return `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/images/${filename}?t=${Date.now()}`;
+function getData(){
+  try{const d=localStorage.getItem('maameeCatalog');return d?JSON.parse(d):null;}catch(e){return null;}
 }
 
-async function fileToBase64(file){
-  return new Promise((res,rej)=>{
-    const r=new FileReader();
-    r.onload=e=>res(e.target.result.split(',')[1]);
-    r.onerror=rej;
-    r.readAsDataURL(file);
-  });
-}
+function init(){
+  const d=getData();
+  if(!d){
+    initHeroSlides([]);renderSwatches([]);
+    document.getElementById('collar-price').textContent='฿990';
+    document.getElementById('bandana-price').textContent='฿790';
+    return;
+  }
+  _lineUrl=d.lineUrl||'https://line.me/R/ti/p/@594ynmkg';
+  document.getElementById('nav-line').href=_lineUrl;
+  document.getElementById('footer-line').href=_lineUrl;
+  const githubBase='https://raw.githubusercontent.com/thanamonmiscell333-blip/maamee.studio/main/images/';
+  const savedSlides=d.heroSlides||[];
+  initHeroSlides(savedSlides.length?savedSlides:[githubBase+'hero-dog.png']);
 
-function setProgress(pct){ document.getElementById('progress-fill').style.width=pct+'%'; }
+  _fabrics=d.fabrics||[];
+  const week=_fabrics.find(f=>f.status==='week');
 
-async function saveToGitHub(){
-  const btn=document.getElementById('save-btn');
-  const bar=document.getElementById('progress-bar');
-  btn.disabled=true; btn.textContent='Savingâ¦';
-  bar.style.display='block'; setProgress(5);
-
-  try {
-    // 1. Upload new hero images
-    for(let i=0;i<heroFiles.length;i++){
-      const f=heroFiles[i];
-      const fname=`hero-${Date.now()}-${i}.jpg`;
-      const url=await githubUploadImage(f.file, fname);
-      state.heroImages.push(url);
-      setProgress(10+i*10);
+  // Strip
+  if(week){
+    document.getElementById('strip-name').textContent=week.name;
+    document.getElementById('strip-desc').textContent=week.desc||'';
+    if(week.img){
+      const si=document.getElementById('strip-img');
+      si.src=week.img;si.style.display='block';
     }
-    heroFiles=[];
-
-    // 2. Upload fabric images
-    for(let i=0;i<state.fabrics.length;i++){
-      const f=state.fabrics[i];
-      if(f._newFile){
-        const fname=`fabric-${Date.now()}-${i}.jpg`;
-        const url=await githubUploadImage(f._newFile, fname);
-        f.imageUrl=url; delete f._newFile;
-      }
-      setProgress(30+i*5);
-    }
-
-    // 3. Upload product/story images
-    setProgress(55);
-    for(const type of ['collar','bandana','story']){
-      if(imgFiles[type]){
-        const fname=`${type}-${Date.now()}.jpg`;
-        const url=await githubUploadImage(imgFiles[type], fname);
-        state[type+'Image']=url; imgFiles[type]=null;
-      }
-    }
-    setProgress(70);
-
-    // 4. Build new CONFIG and patch index.html
-    const week=state.fabrics.find(f=>f.status==='week')||state.fabrics[0]||{};
-    const newConfig = {
-      lineUrl: 'https://line.me/R/ti/p/@594ynmkg',
-      heroImages: state.heroImages,
-      storyImage: state.storyImage||state.storyImage,
-      weekFabric: { name: week.name||'', desc: week.desc||'', image: week.imageUrl||'', soldOut: week.status==='soldout' },
-      fabrics: state.fabrics.map(f=>({ name:f.name, desc:f.desc||'', image:f.imageUrl||'', soldOut:f.status==='soldout', isWeek:f.status==='week' })),
-      collar: { image:state.collarImage, desc:document.getElementById('collar-desc').value.trim(), soldOut:document.getElementById('global-sold').checked, hardware:{ gold:document.getElementById('hw-gold').checked, silver:document.getElementById('hw-silver').checked } },
-      bandana: { image:state.bandanaImage, desc:document.getElementById('bandana-desc').value.trim(), soldOut:document.getElementById('global-sold').checked }
-    };
-
-    // Get current index.html
-    setProgress(80);
-    const idxUrl=`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/index.html?ref=${GITHUB_BRANCH}&t=${Date.now()}`;
-    const idxRes=await fetch(idxUrl,{headers:{Authorization:`token ${getToken()}`}});
-    if(!idxRes.ok) throw new Error('Cannot fetch index.html');
-    const idxData=await idxRes.json();
-    let html=atob(idxData.content.replace(/\n/g,''));
-
-    // Replace CONFIG block
-    const configStr=JSON.stringify(newConfig,null,2);
-    html=html.replace(/const CONFIG = \{[\s\S]*?\};([\s\S]*?<\/script>)/,`const CONFIG = ${configStr};$1`);
-
-    // Push updated index.html
-    setProgress(90);
-    const pushRes=await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/index.html`,{
-      method:'PUT',
-      headers:{Authorization:`token ${getToken()}`,'Content-Type':'application/json'},
-      body:JSON.stringify({ message:'Admin update', content:btoa(unescape(encodeURIComponent(html))), sha:idxData.sha, branch:GITHUB_BRANCH })
-    });
-    if(!pushRes.ok) throw new Error('Failed to save index.html');
-
-    setProgress(100);
-    showToast('â Published â site updates in ~30 seconds');
-    renderHeroList();
-    renderFabrics();
-
-  } catch(e){
-    showToast('Error: '+e.message);
-    console.error(e);
+    document.getElementById('strip-sold').classList.toggle('show',week.status==='soldout');
   }
 
-  btn.disabled=false; btn.textContent='Save & publish to site';
-  setTimeout(()=>{ bar.style.display='none'; setProgress(0); },2000);
+  // Price & description - default to L
+  document.getElementById('collar-price').textContent = d.collarPrice ? '฿'+d.collarPrice : '฿990';
+  document.getElementById('bandana-price').textContent = d.bandanaPrice ? '฿'+d.bandanaPrice : '฿790';
+  if(d.collarDesc) document.getElementById('collar-desc').textContent=d.collarDesc;
+  if(d.bandanaDesc) document.getElementById('bandana-desc').textContent=d.bandanaDesc;
+
+  // Story image
+  if(d.storyImg){
+    const si=document.getElementById('story-img-real');
+    si.src=d.storyImg;si.style.display='block';
+    document.getElementById('story-img-inner').style.display='none';
+  }
+
+  // Product photos
+  if(d.collarImg){
+    document.getElementById('collar-img').src=d.collarImg;
+    document.getElementById('collar-img').style.display='block';
+    document.getElementById('collar-placeholder').style.display='none';
+  }
+  if(d.bandanaImg){
+    document.getElementById('bandana-img').src=d.bandanaImg;
+    document.getElementById('bandana-img').style.display='block';
+    document.getElementById('bandana-placeholder').style.display='none';
+  }
+
+  // Global sold out
+  const so=d.isSoldOut;
+  document.getElementById('collar-sold-overlay').classList.toggle('show',so);
+  document.getElementById('bandana-sold-overlay').classList.toggle('show',so);
+  setCta('collar-cta',so);
+  setCta('bandana-cta',so);
+
+  // Hardware availability
+  const hw=d.collarHardware||{gold:true,silver:true};
+  const hwRow=document.getElementById('collar-hw-row');
+  hwRow.innerHTML='';
+  if(hw.gold){const b=document.createElement('button');b.className='hw-btn active';b.innerHTML='<span class="hw-dot gold"></span> Gold';b.onclick=function(){setHw('collar','gold',this);};hwRow.appendChild(b);}
+  if(hw.silver){const b=document.createElement('button');b.className='hw-btn'+(hw.gold?'':' active');b.innerHTML='<span class="hw-dot silver"></span> Silver';b.onclick=function(){setHw('collar','silver',this);};hwRow.appendChild(b);}
+
+  renderSwatches(_fabrics);
 }
 
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),4000);
-}
-
-// Drag & drop
-document.addEventListener('DOMContentLoaded',()=>{
-  // Auto-fill token if already in session
-  const saved = sessionStorage.getItem('maamee_token');
-  if(saved) document.getElementById('token').placeholder = '(token saved â just enter password)';
-
-  document.querySelectorAll('.upload-zone').forEach(z=>{
-    z.addEventListener('dragover',e=>{e.preventDefault();z.classList.add('drag');});
-    z.addEventListener('dragleave',()=>z.classList.remove('drag'));
-    z.addEventListener('drop',e=>{
-      e.preventDefault();z.classList.remove('drag');
-      const f=e.dataTransfer.files[0];
-      if(!f||!f.type.startsWith('image/')) return;
-      if(z.id==='new-fabric-zone') handleNewFabric(f);
-      else if(z.id==='hero-zone') handleHeroFiles([f]);
-      else if(z.id==='collar-zone') handleImg('collar',f);
-      else if(z.id==='bandana-zone') handleImg('bandana',f);
-      else if(z.id==='story-zone') handleImg('story',f);
+function renderSwatches(fabrics){
+  ['collar','bandana'].forEach(type=>{
+    const wrap=document.getElementById(`${type}-swatches`);
+    wrap.innerHTML='';
+    if(!fabrics.length){wrap.innerHTML='<span style="font-size:12px;color:var(--ink-50);font-weight:300;font-style:italic;">No fabrics available yet.</span>';return;}
+    fabrics.forEach(f=>{
+      const btn=document.createElement('button');
+      const isSold=f.status==='soldout';
+      btn.className='f-swatch-btn'+(isSold?' sold-f':'');
+      btn.title=f.name+(isSold?' (sold out)':'');
+      btn.disabled=isSold;
+      if(f.img){
+        btn.innerHTML=`<img src="${f.img}" alt="${f.name}"/>`;
+      }else{
+        btn.innerHTML=`<span class="swatch-placeholder">🧵</span>`;
+        btn.style.background='var(--warm)';btn.style.border='0.5px solid var(--ink-20)';
+      }
+      if(isSold)btn.innerHTML+=`<span class="sold-x">✕</span>`;
+      if(!isSold){
+        btn.onclick=()=>selectFabric(type,f,btn);
+      }
+      // Auto-select week fabric
+      if(f.status==='week'&&!_selectedFabric[type]){
+        setTimeout(()=>{if(!isSold)selectFabric(type,f,btn);},50);
+      }
+      wrap.appendChild(btn);
     });
   });
-});
+}
+
+function selectFabric(type,fabric,btn){
+  _selectedFabric[type]=fabric;
+  // Update swatch active state
+  document.querySelectorAll(`#${type}-swatches .f-swatch-btn`).forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(`${type}-swatch-name`).textContent=fabric.name;
+
+  // Update product photo if fabric has its own photo
+  // (fabric-specific photo = fabric.img used as product photo overlay)
+  if(fabric.img){
+    const imgEl=document.getElementById(`${type}-img`);
+    // Only swap if no real product photo set, otherwise just indicate selection
+    if(imgEl.style.display==='none'){
+      // No product photo — show fabric as background
+      document.getElementById(`${type}-placeholder`).style.background=`url(${fabric.img}) center/cover`;
+    }
+  }
+}
+
+function setCta(id,soldOut){
+  const el=document.getElementById(id);
+  if(soldOut){
+    el.className='product-cta unavail';
+    el.textContent='Sold out — message us on Line';
+    el.onclick=()=>window.open(_lineUrl,'_blank');
+  }else{
+    el.className='product-cta';
+    el.innerHTML=`<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.88 2 10.6c0 3.28 2.12 6.16 5.32 7.8-.22.8-.8 2.92-.92 3.38-.14.54.2.54.42.4.18-.12 2.3-1.56 3.24-2.2.6.08 1.26.12 1.94.12 5.52 0 10-3.88 10-8.6C22 5.88 17.52 2 12 2z"/></svg> Order via Line`;
+    el.onclick=goLine;
+  }
+}
+
+function setHw(product,type,btn){
+  btn.closest('.hw-row').querySelectorAll('.hw-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function setSz(btn){
+  btn.closest('.sz-row').querySelectorAll('.sz').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+const COLLAR_PRICES={S:'฿790',M:'฿890',L:'฿990'};
+const BANDANA_PRICES={S:'฿590',M:'฿690',L:'฿790'};
+
+function setPrice(product,size){
+  const prices=product==='collar'?COLLAR_PRICES:BANDANA_PRICES;
+  const el=document.getElementById(product+'-price');
+  if(el&&prices[size.trim()])el.textContent=prices[size.trim()];
+}
+
+function toggleSizeGuide(id,btn){
+  const body=document.getElementById(id);
+  body.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+
+function goLine(){window.open(_lineUrl,'_blank');}
+
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+window.addEventListener('storage',init);
+init();
 </script>
 </body>
 </html>
