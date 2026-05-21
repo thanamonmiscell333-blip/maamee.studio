@@ -1,809 +1,761 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Maa-mee.studio · หมา-มี</title>
+<title>Maa-mee.studio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --cream:#F2EBE0;
+  --ink:#1A1410;
+  --ink-50:rgba(26,20,16,0.5);
+  --ink-20:rgba(26,20,16,0.2);
+  --ink-08:rgba(26,20,16,0.08);
+  --cream:#FAF7F2;
+  --warm:#F2EBE0;
   --sage:#6B8C6E;
-  --sage-pale:#E4EDE5;
   --mauve:#C4919A;
-  --mauve-pale:#F5E8EA;
   --gold:#C9973A;
-  --gold-pale:#FAF0DC;
-  --silver:#9AABB5;
-  --silver-pale:#EDF2F4;
-  --espresso:#2C1F14;
-  --espresso-60:rgba(44,31,20,0.6);
-  --espresso-15:rgba(44,31,20,0.15);
-  --espresso-08:rgba(44,31,20,0.08);
-  --white:#FFFDF9;
 }
 html{scroll-behavior:smooth}
 body{
   background:var(--cream);
-  font-family:'DM Sans',sans-serif;
-  color:var(--espresso);
-  min-height:100vh;
+  font-family:'Jost',sans-serif;
+  color:var(--ink);
   -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* ── ANNOUNCEMENT BAR ── */
+.announce{
+  background:var(--ink);
+  color:var(--cream);
+  text-align:center;
+  padding:10px 24px;
+  font-size:11px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  font-weight:300;
 }
 
 /* ── NAV ── */
 nav{
-  position:sticky;top:0;z-index:100;
-  background:var(--white);
-  border-bottom:0.5px solid var(--espresso-15);
-  padding:0 24px;
-  height:56px;
   display:flex;align-items:center;justify-content:space-between;
+  padding:20px 48px;
+  border-bottom:0.5px solid var(--ink-20);
+  background:var(--cream);
+  position:sticky;top:0;z-index:100;
 }
-.nav-brand{
-  font-family:'Cormorant Garamond',serif;
-  font-size:22px;font-weight:600;
-  letter-spacing:0.02em;
-  color:var(--espresso);
-  text-decoration:none;
-}
-.nav-brand span{color:var(--sage);}
-.nav-thai{
-  font-size:11px;letter-spacing:0.12em;
-  color:var(--espresso-60);
-  text-transform:uppercase;
-}
-.nav-line-btn{
-  display:flex;align-items:center;gap:6px;
-  background:var(--sage);
-  color:white;
-  font-size:12px;font-weight:500;
-  border:none;border-radius:24px;
-  padding:8px 16px;
-  cursor:pointer;
-  text-decoration:none;
+.nav-links{display:flex;gap:36px;}
+.nav-links a{
+  font-size:12px;letter-spacing:0.12em;
+  text-transform:uppercase;font-weight:400;
+  color:var(--ink);text-decoration:none;
   transition:opacity 0.15s;
 }
-.nav-line-btn:hover{opacity:0.85;}
-.nav-line-btn svg{width:16px;height:16px;}
+.nav-links a:hover{opacity:0.5;}
+.nav-brand{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:400;
+  letter-spacing:0.04em;
+  color:var(--ink);
+  text-decoration:none;
+  position:absolute;left:50%;transform:translateX(-50%);
+}
+.nav-right{display:flex;align-items:center;gap:20px;}
+.nav-line{
+  font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+  font-weight:400;color:var(--ink);text-decoration:none;
+  border-bottom:0.5px solid var(--ink);
+  padding-bottom:1px;
+  transition:opacity 0.15s;
+}
+.nav-line:hover{opacity:0.5;}
 
 /* ── HERO ── */
 .hero{
-  padding:48px 24px 32px;
+  position:relative;
+  height:92vh;
+  min-height:600px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+  background:var(--warm);
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    repeating-linear-gradient(45deg,rgba(107,140,110,0.12) 0,rgba(107,140,110,0.12) 1px,transparent 1px,transparent 28px),
+    repeating-linear-gradient(-45deg,rgba(196,145,154,0.08) 0,rgba(196,145,154,0.08) 1px,transparent 1px,transparent 28px),
+    var(--warm);
+  background-size:56px 56px,56px 56px,auto;
+}
+.hero-content{
+  position:relative;z-index:2;
   text-align:center;
+  padding:0 24px;
+  max-width:760px;
+  animation:fadeUp 1s ease both;
 }
 .hero-eyebrow{
-  font-size:10px;letter-spacing:0.2em;
-  text-transform:uppercase;
-  color:var(--mauve);
-  margin-bottom:12px;
-  display:block;
+  font-size:11px;letter-spacing:0.22em;
+  text-transform:uppercase;font-weight:300;
+  color:var(--ink-50);
+  margin-bottom:28px;display:block;
 }
 .hero-title{
   font-family:'Cormorant Garamond',serif;
-  font-size:42px;font-weight:600;
-  line-height:1.1;
-  margin-bottom:10px;
+  font-size:clamp(52px,8vw,96px);
+  font-weight:300;line-height:1;
+  margin-bottom:24px;
+  letter-spacing:-0.01em;
 }
-.hero-title em{color:var(--sage);font-style:italic;}
-.hero-sub{
-  font-size:13px;
-  color:var(--espresso-60);
-  line-height:1.7;
-  max-width:320px;
-  margin:0 auto;
-}
-
-/* ── WEEK BADGE ── */
-.week-strip{
-  margin:0 24px 32px;
-  background:var(--white);
-  border:0.5px solid var(--espresso-15);
-  border-radius:16px;
-  padding:20px;
-  display:flex;align-items:center;gap:16px;
-}
-.week-fabric-thumb{
-  width:64px;height:64px;border-radius:10px;
-  object-fit:cover;
-  border:0.5px solid var(--espresso-15);
-  flex-shrink:0;
-  background:var(--sage-pale);
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden;
-}
-.week-fabric-thumb img{width:100%;height:100%;object-fit:cover;}
-.week-info{flex:1;}
-.week-label{
-  font-size:9px;letter-spacing:0.18em;
-  text-transform:uppercase;
-  color:var(--mauve);
-  margin-bottom:4px;
-}
-.week-name{
+.hero-title em{font-style:italic;color:var(--sage);}
+.hero-def{
   font-family:'Cormorant Garamond',serif;
-  font-size:20px;font-weight:600;
+  font-size:15px;font-style:italic;
+  color:var(--ink-50);
+  line-height:1.8;
+  margin-bottom:20px;
 }
-.week-desc{
-  font-size:11px;color:var(--espresso-60);
-  line-height:1.5;margin-top:3px;
+.hero-body{
+  font-size:14px;font-weight:300;
+  color:var(--ink-50);line-height:1.9;
+  max-width:480px;margin:0 auto 36px;
 }
-.sold-out-badge{
-  background:var(--espresso);
-  color:var(--cream);
-  font-size:9px;letter-spacing:0.14em;
-  text-transform:uppercase;
-  padding:4px 10px;border-radius:20px;
-  flex-shrink:0;
+.hero-cta{
+  display:inline-block;
+  border:0.5px solid var(--ink);
+  padding:14px 40px;
+  font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+  font-weight:400;color:var(--ink);text-decoration:none;
+  transition:all 0.2s;
+  font-family:'Jost',sans-serif;
+}
+.hero-cta:hover{background:var(--ink);color:var(--cream);}
+
+/* ── FABRIC STRIP ── */
+.fabric-strip{
+  border-top:0.5px solid var(--ink-20);
+  border-bottom:0.5px solid var(--ink-20);
+  padding:28px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:24px;
+  background:var(--cream);
+}
+.fabric-left{display:flex;align-items:center;gap:20px;}
+.fabric-swatch{
+  width:56px;height:56px;border-radius:4px;
+  background:
+    repeating-linear-gradient(45deg,rgba(107,140,110,0.4) 0,rgba(107,140,110,0.4) 2px,transparent 2px,transparent 14px),
+    repeating-linear-gradient(-45deg,rgba(196,145,154,0.3) 0,rgba(196,145,154,0.3) 2px,transparent 2px,transparent 14px),
+    var(--warm);
+  border:0.5px solid var(--ink-20);
+  flex-shrink:0;overflow:hidden;
+}
+.fabric-swatch img{width:100%;height:100%;object-fit:cover;}
+.fabric-meta{}
+.fabric-label{
+  font-size:9px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--ink-50);margin-bottom:4px;font-weight:400;
+}
+.fabric-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:400;
+}
+.fabric-desc{font-size:12px;color:var(--ink-50);margin-top:2px;font-weight:300;}
+.fabric-right{display:flex;align-items:center;gap:16px;}
+.sold-out-tag{
+  font-size:9px;letter-spacing:0.16em;text-transform:uppercase;
+  border:0.5px solid var(--ink);
+  padding:5px 12px;color:var(--ink);
   display:none;
 }
-.sold-out-badge.visible{display:block;}
+.sold-out-tag.show{display:block;}
 
-/* ── SECTION LABEL ── */
-.section-label{
-  padding:0 24px;
-  margin-bottom:16px;
+/* ── SECTION HEADER ── */
+.section-header{
+  padding:80px 48px 48px;
+  display:flex;align-items:flex-end;justify-content:space-between;
 }
-.section-label h2{
-  font-size:10px;letter-spacing:0.18em;
-  text-transform:uppercase;
-  color:var(--espresso-60);
-  font-weight:500;
+.section-header h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(32px,4vw,52px);
+  font-weight:300;line-height:1.1;
+}
+.section-header h2 em{font-style:italic;color:var(--sage);}
+.section-note{
+  font-size:12px;color:var(--ink-50);
+  font-weight:300;max-width:240px;
+  text-align:right;line-height:1.7;
 }
 
-/* ── PRODUCT CARDS ── */
+/* ── PRODUCT GRID ── */
 .products{
-  padding:0 24px;
-  display:flex;flex-direction:column;gap:16px;
-  margin-bottom:40px;
+  padding:0 48px 80px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2px;
 }
 .product-card{
-  background:var(--white);
-  border:0.5px solid var(--espresso-15);
-  border-radius:20px;
+  position:relative;
+  background:var(--warm);
   overflow:hidden;
+  cursor:pointer;
 }
 .product-mockup{
   width:100%;
-  aspect-ratio:4/3;
-  background:var(--sage-pale);
+  aspect-ratio:3/4;
   display:flex;align-items:center;justify-content:center;
-  position:relative;
-  overflow:hidden;
+  position:relative;overflow:hidden;
+  transition:transform 0.5s ease;
 }
-.product-mockup.collar-mock{background:var(--mauve-pale);}
-.product-mockup.bandana-mock{background:var(--gold-pale);}
-
-/* Collar illustration */
-.collar-svg-wrap{
-  width:220px;height:160px;
-  position:relative;
+.product-card:hover .product-mockup{transform:scale(1.02);}
+.mockup-bg-collar{
+  background:
+    repeating-linear-gradient(45deg,rgba(196,145,154,0.2) 0,rgba(196,145,154,0.2) 1.5px,transparent 1.5px,transparent 20px),
+    repeating-linear-gradient(-45deg,rgba(107,140,110,0.15) 0,rgba(107,140,110,0.15) 1.5px,transparent 1.5px,transparent 20px),
+    #EEE5D8;
 }
-/* Bandana illustration */
-.bandana-svg-wrap{
-  width:200px;height:160px;
-  position:relative;
+.mockup-bg-bandana{
+  background:
+    repeating-linear-gradient(0deg,rgba(201,151,58,0.2) 0,rgba(201,151,58,0.2) 1.5px,transparent 1.5px,transparent 18px),
+    repeating-linear-gradient(90deg,rgba(107,140,110,0.15) 0,rgba(107,140,110,0.15) 1.5px,transparent 1.5px,transparent 18px),
+    #E8DFD0;
 }
-
-.fabric-overlay{
+.sold-overlay{
   position:absolute;inset:0;
-  opacity:0.35;
-  background-size:cover;
-  background-position:center;
-  mix-blend-mode:multiply;
-  border-radius:inherit;
+  background:rgba(26,20,16,0.45);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity 0.2s;
+  pointer-events:none;
 }
-
-.product-body{padding:20px 20px 20px;}
+.sold-overlay.show{opacity:1;}
+.sold-overlay span{
+  background:var(--cream);
+  font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+  padding:10px 24px;color:var(--ink);font-weight:400;
+}
+.product-info{
+  padding:20px 4px 32px;
+  background:var(--cream);
+}
 .product-type{
-  font-size:9px;letter-spacing:0.18em;
-  text-transform:uppercase;
-  color:var(--espresso-60);
-  margin-bottom:6px;
+  font-size:9px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--ink-50);font-weight:400;margin-bottom:6px;
 }
 .product-name{
   font-family:'Cormorant Garamond',serif;
-  font-size:24px;font-weight:600;
-  margin-bottom:4px;
-  line-height:1.2;
+  font-size:24px;font-weight:400;margin-bottom:4px;
 }
-.product-name-th{
-  font-size:12px;color:var(--espresso-60);
-  font-style:italic;margin-bottom:14px;
+.product-tagline{
+  font-size:12px;color:var(--ink-50);
+  font-style:italic;font-family:'Cormorant Garamond',serif;
+  margin-bottom:20px;line-height:1.5;
 }
 
-/* Hardware selector */
-.hw-label{
-  font-size:11px;
-  color:var(--espresso-60);
-  margin-bottom:8px;
+/* Hardware */
+.option-label{
+  font-size:9px;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--ink-50);margin-bottom:8px;font-weight:400;
 }
-.hw-options{display:flex;gap:8px;margin-bottom:16px;}
+.hw-row{display:flex;gap:8px;margin-bottom:16px;}
 .hw-btn{
-  display:flex;align-items:center;gap:6px;
-  padding:8px 14px;
-  border-radius:24px;
-  border:0.5px solid var(--espresso-15);
-  background:transparent;
-  font-size:12px;font-weight:500;
-  color:var(--espresso);
-  cursor:pointer;
-  transition:all 0.15s;
-  font-family:'DM Sans',sans-serif;
+  display:flex;align-items:center;gap:7px;
+  padding:7px 14px;
+  border:0.5px solid var(--ink-20);
+  background:transparent;cursor:pointer;
+  font-size:11px;font-weight:400;color:var(--ink);
+  font-family:'Jost',sans-serif;letter-spacing:0.06em;
+  transition:border-color 0.15s;
 }
-.hw-btn .hw-dot{
-  width:12px;height:12px;border-radius:50%;
-  border:0.5px solid var(--espresso-15);
-}
-.hw-btn.gold-btn .hw-dot{background:var(--gold);}
-.hw-btn.silver-btn .hw-dot{background:var(--silver);}
-.hw-btn.active{
-  border-color:var(--espresso);
-  background:var(--espresso-08);
-}
+.hw-btn:hover{border-color:var(--ink);}
+.hw-btn.active{border-color:var(--ink);background:var(--ink-08);}
+.hw-dot{width:10px;height:10px;border-radius:50%;border:0.5px solid var(--ink-20);}
+.hw-dot.gold{background:var(--gold);}
+.hw-dot.silver{background:#9AABB5;}
 
 /* Sizes */
-.size-label{font-size:11px;color:var(--espresso-60);margin-bottom:8px;}
-.sizes{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
-.size-pill{
-  padding:6px 14px;
-  border-radius:20px;
-  border:0.5px solid var(--espresso-15);
-  font-size:12px;
-  background:transparent;
-  color:var(--espresso);
-  cursor:pointer;
-  font-family:'DM Sans',sans-serif;
+.size-row{display:flex;gap:6px;margin-bottom:24px;}
+.sz{
+  width:40px;height:40px;
+  display:flex;align-items:center;justify-content:center;
+  border:0.5px solid var(--ink-20);
+  font-size:11px;font-weight:400;letter-spacing:0.06em;
+  cursor:pointer;background:transparent;
+  font-family:'Jost',sans-serif;color:var(--ink);
   transition:all 0.15s;
 }
-.size-pill.active{
-  border-color:var(--sage);
-  background:var(--sage-pale);
-  color:var(--sage);
-}
+.sz:hover{border-color:var(--ink);}
+.sz.active{background:var(--ink);color:var(--cream);border-color:var(--ink);}
 
 /* CTA */
-.cta-row{display:flex;gap:10px;align-items:center;}
-.cta-line{
-  flex:1;
-  background:var(--espresso);
-  color:var(--cream);
-  border:none;border-radius:12px;
-  padding:14px;
-  font-size:13px;font-weight:500;
-  font-family:'DM Sans',sans-serif;
-  cursor:pointer;
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  transition:opacity 0.15s;
+.product-cta{
+  width:100%;
+  background:var(--ink);color:var(--cream);
+  border:none;padding:14px;
+  font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+  font-family:'Jost',sans-serif;font-weight:400;
+  cursor:pointer;transition:opacity 0.15s;
+  display:flex;align-items:center;justify-content:center;gap:10px;
 }
-.cta-line:hover{opacity:0.85;}
-.cta-line.sold-out{
-  background:var(--espresso-15);
-  color:var(--espresso-60);
-  cursor:default;
+.product-cta:hover{opacity:0.75;}
+.product-cta.unavailable{
+  background:transparent;color:var(--ink-50);
+  border:0.5px solid var(--ink-20);cursor:default;
 }
-.cta-line.sold-out:hover{opacity:1;}
-.cta-line svg{width:16px;height:16px;}
-.cta-save{
-  width:44px;height:44px;
-  border:0.5px solid var(--espresso-15);
-  border-radius:10px;
-  background:transparent;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;
-  transition:background 0.15s;
-  flex-shrink:0;
-}
-.cta-save:hover{background:var(--espresso-08);}
-.cta-save svg{width:18px;height:18px;stroke:var(--espresso);}
+.product-cta.unavailable:hover{opacity:1;}
 
-/* Bandana — no hardware section */
-.bandana-note{
-  font-size:11px;color:var(--espresso-60);
-  font-style:italic;margin-bottom:20px;
-  line-height:1.5;
+/* ── BRAND STORY ── */
+.story{
+  padding:100px 48px;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;
+  align-items:center;
+  border-top:0.5px solid var(--ink-20);
+}
+.story-left h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,4vw,56px);
+  font-weight:300;line-height:1.15;
+  margin-bottom:24px;
+}
+.story-left h3 em{font-style:italic;color:var(--mauve);}
+.story-left p{
+  font-size:14px;font-weight:300;
+  color:var(--ink-50);line-height:2;
+  margin-bottom:16px;
+}
+.story-pull{
+  border-left:1.5px solid var(--mauve);
+  padding-left:20px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-style:italic;
+  color:var(--ink);line-height:1.7;
+  margin-top:28px;
+}
+.story-right{
+  background:var(--warm);
+  aspect-ratio:3/4;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.story-fabric-bg{
+  position:absolute;inset:0;
+  background:
+    repeating-linear-gradient(30deg,rgba(107,140,110,0.2) 0,rgba(107,140,110,0.2) 2px,transparent 2px,transparent 24px),
+    repeating-linear-gradient(-30deg,rgba(196,145,154,0.15) 0,rgba(196,145,154,0.15) 2px,transparent 2px,transparent 24px),
+    #E8DDD0;
+}
+.story-center-text{
+  position:relative;z-index:2;text-align:center;
+}
+.story-center-text p{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14px;font-style:italic;color:rgba(26,20,16,0.45);
+  letter-spacing:0.06em;line-height:1.8;
+}
+.story-center-text strong{
+  display:block;font-family:'Cormorant Garamond',serif;
+  font-size:32px;font-weight:400;color:var(--ink);
+  font-style:normal;margin-bottom:8px;
 }
 
 /* ── HOW IT WORKS ── */
-.hiw{
-  background:var(--white);
-  margin:0 24px 40px;
-  border-radius:16px;
-  border:0.5px solid var(--espresso-15);
-  padding:24px 20px;
-}
-.hiw-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:20px;font-weight:600;
-  margin-bottom:20px;
-}
-.hiw-steps{display:flex;flex-direction:column;gap:16px;}
-.hiw-step{display:flex;gap:14px;align-items:flex-start;}
-.step-num{
-  width:28px;height:28px;border-radius:50%;
-  background:var(--sage-pale);
-  color:var(--sage);
-  font-size:12px;font-weight:500;
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
-  margin-top:1px;
-}
-.step-text strong{font-size:13px;font-weight:500;display:block;margin-bottom:2px;}
-.step-text span{font-size:12px;color:var(--espresso-60);line-height:1.5;}
-
-/* ── ABOUT FABRIC ── */
-.fabric-story{
-  padding:0 24px 48px;
-}
-.fabric-story-inner{
-  background:var(--espresso);
-  border-radius:20px;
-  padding:28px 24px;
+.process{
+  padding:80px 48px;
+  border-top:0.5px solid var(--ink-20);
+  background:var(--ink);
   color:var(--cream);
 }
-.fabric-story h3{
+.process h2{
   font-family:'Cormorant Garamond',serif;
-  font-size:24px;font-weight:600;
-  margin-bottom:12px;
-  line-height:1.2;
+  font-size:clamp(28px,3vw,42px);
+  font-weight:300;margin-bottom:56px;
+  letter-spacing:0.01em;
 }
-.fabric-story h3 em{color:var(--mauve);font-style:italic;}
-.fabric-story p{
-  font-size:13px;
-  color:rgba(242,235,224,0.7);
-  line-height:1.8;
-  margin-bottom:16px;
+.process-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:40px;
 }
-.fabric-unique{
-  background:rgba(255,255,255,0.07);
-  border-radius:10px;
-  padding:14px;
-  font-size:12px;
-  color:rgba(242,235,224,0.85);
-  line-height:1.6;
-  border-left:2px solid var(--mauve);
+.process-step{}
+.step-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:48px;font-weight:300;
+  color:rgba(242,235,224,0.15);
+  line-height:1;margin-bottom:16px;
+}
+.step-title{
+  font-size:12px;letter-spacing:0.12em;text-transform:uppercase;
+  font-weight:400;margin-bottom:10px;color:var(--cream);
+}
+.step-body{
+  font-size:13px;font-weight:300;
+  color:rgba(242,235,224,0.55);line-height:1.8;
 }
 
 /* ── FOOTER ── */
 footer{
-  background:var(--espresso);
-  padding:32px 24px;
-  text-align:center;
+  border-top:0.5px solid var(--ink-20);
+  padding:48px;
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;
+  align-items:start;
+  background:var(--cream);
 }
 .footer-brand{
   font-family:'Cormorant Garamond',serif;
-  font-size:28px;font-weight:600;
-  color:var(--cream);
-  margin-bottom:4px;
+  font-size:24px;font-weight:400;margin-bottom:8px;
 }
-.footer-sub{
-  font-size:11px;
-  color:rgba(242,235,224,0.5);
-  letter-spacing:0.1em;
-  margin-bottom:24px;
+.footer-tagline{
+  font-size:11px;color:var(--ink-50);font-weight:300;
+  letter-spacing:0.08em;line-height:1.7;
 }
-.footer-line-cta{
+.footer-col-label{
+  font-size:9px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--ink-50);font-weight:400;margin-bottom:16px;
+}
+.footer-col p{
+  font-size:13px;font-weight:300;color:var(--ink-50);
+  line-height:1.9;
+}
+.footer-line-btn{
   display:inline-flex;align-items:center;gap:8px;
-  background:var(--sage);
-  color:white;
-  font-size:13px;font-weight:500;
-  border-radius:12px;
-  padding:12px 24px;
-  text-decoration:none;
-  transition:opacity 0.15s;
-  margin-bottom:24px;
+  margin-top:16px;
+  background:var(--ink);color:var(--cream);
+  font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+  padding:12px 24px;text-decoration:none;font-family:'Jost',sans-serif;
+  font-weight:400;transition:opacity 0.15s;
 }
-.footer-line-cta:hover{opacity:0.85;}
-.footer-note{
-  font-size:11px;
-  color:rgba(242,235,224,0.35);
-  line-height:1.6;
+.footer-line-btn:hover{opacity:0.7;}
+.footer-line-btn svg{width:14px;height:14px;}
+.footer-bottom{
+  border-top:0.5px solid var(--ink-20);
+  padding:20px 48px;
+  display:flex;justify-content:space-between;align-items:center;
+  background:var(--cream);
 }
+.footer-bottom p{font-size:11px;color:var(--ink-50);font-weight:300;letter-spacing:0.06em;}
 
-/* ── SOLD OUT OVERLAY ── */
-.sold-out-overlay{
-  position:absolute;inset:0;
-  background:rgba(44,31,20,0.55);
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;
-  transition:opacity 0.2s;
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px);}
+  to{opacity:1;transform:translateY(0);}
 }
-.sold-out-overlay.show{opacity:1;}
-.sold-overlay-text{
-  background:var(--espresso);
-  color:var(--cream);
-  font-size:12px;letter-spacing:0.2em;
-  text-transform:uppercase;
-  padding:8px 20px;border-radius:24px;
+.reveal{
+  opacity:0;transform:translateY(20px);
+  transition:opacity 0.7s ease,transform 0.7s ease;
 }
+.reveal.visible{opacity:1;transform:translateY(0);}
 
-/* ── PATTERN TEXTURE using CSS (placeholder) ── */
-.pattern-collar{
-  background:
-    repeating-linear-gradient(
-      45deg,
-      rgba(107,140,110,0.4) 0px,
-      rgba(107,140,110,0.4) 3px,
-      transparent 3px,
-      transparent 12px
-    ),
-    repeating-linear-gradient(
-      -45deg,
-      rgba(196,145,154,0.3) 0px,
-      rgba(196,145,154,0.3) 3px,
-      transparent 3px,
-      transparent 12px
-    ),
-    var(--cream);
-}
-.pattern-bandana{
-  background:
-    repeating-linear-gradient(
-      0deg,
-      rgba(201,151,58,0.35) 0px,
-      rgba(201,151,58,0.35) 2px,
-      transparent 2px,
-      transparent 10px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(107,140,110,0.25) 0px,
-      rgba(107,140,110,0.25) 2px,
-      transparent 2px,
-      transparent 10px
-    ),
-    var(--cream);
-}
-
-@media(min-width:600px){
-  .hero{padding:64px 40px 40px;}
-  .hero-title{font-size:52px;}
-  .week-strip{margin:0 40px 40px;}
-  .section-label{padding:0 40px;}
-  .products{padding:0 40px;}
-  .hiw{margin:0 40px 48px;}
-  .fabric-story{padding:0 40px 56px;}
-  footer{padding:48px 40px;}
-  .nav-brand{font-size:24px;}
+/* ── MOBILE ── */
+@media(max-width:768px){
+  nav{padding:16px 20px;}
+  .nav-brand{font-size:18px;}
+  .nav-links{display:none;}
+  .hero{height:85vh;}
+  .fabric-strip{padding:20px;flex-direction:column;align-items:flex-start;gap:14px;}
+  .section-header{padding:56px 20px 32px;flex-direction:column;gap:12px;align-items:flex-start;}
+  .section-note{text-align:left;max-width:none;}
+  .products{padding:0 20px 56px;grid-template-columns:1fr;gap:48px;}
+  .story{padding:56px 20px;grid-template-columns:1fr;gap:40px;}
+  .story-right{aspect-ratio:4/3;}
+  .process{padding:56px 20px;}
+  .process-grid{grid-template-columns:1fr 1fr;gap:32px;}
+  footer{padding:40px 20px;grid-template-columns:1fr;gap:32px;}
+  .footer-bottom{padding:16px 20px;flex-direction:column;gap:8px;}
 }
 </style>
 </head>
 <body>
 
+<!-- ANNOUNCE -->
+<div class="announce">Made to order · Thai mudmee ikat · Handcrafted in Bangkok</div>
+
 <!-- NAV -->
 <nav>
-  <div>
-    <a class="nav-brand" href="#">Maa-mee<span>.studio</span></a>
-    <p class="nav-thai">หมา-มี</p>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#collection">Collection</a>
   </div>
-  <a class="nav-line-btn" id="nav-line-btn" href="#" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.88 2 10.6c0 3.28 2.12 6.16 5.32 7.8-.22.8-.8 2.92-.92 3.38-.14.54.2.54.42.4.18-.12 2.3-1.56 3.24-2.2.6.08 1.26.12 1.94.12 5.52 0 10-3.88 10-8.6C22 5.88 17.52 2 12 2z"/></svg>
-    แชทผ่าน Line
-  </a>
+  <a class="nav-brand" href="#">Maa-mee.studio</a>
+  <div class="nav-right">
+    <a class="nav-line" id="nav-line" href="#" target="_blank">Order via Line</a>
+  </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <span class="hero-eyebrow">Thai silk · Made to order · Bangkok</span>
-  <h1 class="hero-title">Silk that fits<br/>your <em>dog's soul.</em></h1>
-  <p class="hero-sub">ผ้าไหมมัดหมี่ไทย ทำมือในกรุงเทพฯ<br/>ทุกชิ้นแตกต่างกัน — เพราะผ้าไหมทำงานแบบนั้น</p>
+  <div class="hero-bg" id="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Thai silk · Dog accessories · Bangkok</span>
+    <h1 class="hero-title">Silk<br/>for your<br/><em>dog's life.</em></h1>
+    <p class="hero-def">Maa-mee (หมา-มี) — <em>noun.</em> The dog has it all.</p>
+    <p class="hero-body">Traditional Thai mudmee ikat silk — cut and sewn by Thai artisans in Bangkok, made to order for your dog. No two pieces are exactly the same. That's the point.</p>
+    <a href="#collection" class="hero-cta">See this week's fabric</a>
+  </div>
 </div>
 
-<!-- THIS WEEK STRIP -->
-<div class="week-strip" id="week-strip">
-  <div class="week-fabric-thumb" id="week-thumb">
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#6B8C6E" stroke-width="1.5"><path d="M3 6l9-3 9 3v12l-9 3-9-3V6z"/><path d="M12 3v18M3 6l9 3 9-3"/></svg>
+<!-- FABRIC STRIP -->
+<div class="fabric-strip">
+  <div class="fabric-left">
+    <div class="fabric-swatch" id="week-swatch">
+      <img id="week-img" src="" alt="" style="display:none"/>
+    </div>
+    <div class="fabric-meta">
+      <p class="fabric-label">Fabric of the week</p>
+      <p class="fabric-name" id="week-name">Sage Bloom</p>
+      <p class="fabric-desc" id="week-desc">Sage green with mauve floral ikat</p>
+    </div>
   </div>
-  <div class="week-info">
-    <p class="week-label">Fabric of the week</p>
-    <p class="week-name" id="week-name">Loading…</p>
-    <p class="week-desc" id="week-desc"></p>
+  <div class="fabric-right">
+    <span class="sold-out-tag" id="week-sold">Sold out</span>
   </div>
-  <div class="sold-out-badge" id="week-sold-badge">Sold out</div>
 </div>
 
-<!-- PRODUCTS -->
-<div class="section-label"><h2>Try on — Customize your own</h2></div>
-<div class="products">
-
-  <!-- COLLAR CARD -->
-  <div class="product-card" id="collar-card">
-    <div class="product-mockup collar-mock" id="collar-mockup">
-      <!-- Collar SVG illustration -->
-      <svg width="220" height="160" viewBox="0 0 220 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Collar body -->
-        <rect x="20" y="58" width="180" height="44" rx="22" fill="none"/>
-        <!-- Collar band with fabric pattern overlay -->
-        <rect x="20" y="62" width="180" height="36" rx="18" fill="#C4919A" opacity="0.35" id="collar-color-rect"/>
-        <rect x="20" y="62" width="180" height="36" rx="18" fill="url(#collarPattern)" opacity="0.6"/>
-        <!-- Collar outline -->
-        <rect x="20" y="62" width="180" height="36" rx="18" stroke="#2C1F14" stroke-width="1.2" stroke-opacity="0.4" fill="none"/>
-        <!-- Stitching line -->
-        <path d="M38 72 L182 72" stroke="white" stroke-width="0.8" stroke-dasharray="4 3" stroke-opacity="0.5"/>
-        <path d="M38 88 L182 88" stroke="white" stroke-width="0.8" stroke-dasharray="4 3" stroke-opacity="0.5"/>
-        <!-- Buckle group (gold default) -->
-        <g id="collar-hardware">
-          <!-- Buckle base -->
-          <rect x="96" y="72" width="28" height="16" rx="3" fill="#C9973A" opacity="0.9"/>
-          <rect x="96" y="72" width="28" height="16" rx="3" stroke="#2C1F14" stroke-width="0.8" stroke-opacity="0.3" fill="none"/>
-          <!-- Buckle bar -->
-          <line x1="110" y1="72" x2="110" y2="88" stroke="#2C1F14" stroke-width="1.5" stroke-opacity="0.4"/>
-          <!-- Buckle pin -->
-          <circle cx="110" cy="80" r="2.5" fill="#FAF0DC" stroke="#C9973A" stroke-width="0.5"/>
-        </g>
-        <!-- D-ring -->
-        <ellipse cx="72" cy="80" rx="6" ry="9" stroke="#C9973A" id="collar-dring" stroke-width="2" fill="none"/>
-        <!-- Adjustment holes -->
-        <circle cx="150" cy="80" r="2" fill="white" fill-opacity="0.6"/>
-        <circle cx="162" cy="80" r="2" fill="white" fill-opacity="0.6"/>
-        <circle cx="174" cy="80" r="2" fill="white" fill-opacity="0.6"/>
-        <defs>
-          <pattern id="collarPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-            <line x1="0" y1="0" x2="20" y2="20" stroke="#6B8C6E" stroke-width="1.5" opacity="0.5"/>
-            <line x1="20" y1="0" x2="0" y2="20" stroke="#C4919A" stroke-width="1" opacity="0.35"/>
-          </pattern>
-        </defs>
-      </svg>
-      <div class="sold-out-overlay" id="collar-sold-overlay">
-        <span class="sold-overlay-text">Sold out</span>
-      </div>
-    </div>
-
-    <div class="product-body">
-      <p class="product-type">Thai Mudmee Silk</p>
-      <p class="product-name">Silk Collar</p>
-      <p class="product-name-th">ปลอกคอผ้าไหมมัดหมี่</p>
-
-      <!-- Hardware -->
-      <p class="hw-label">Hardware · อะไหล่</p>
-      <div class="hw-options">
-        <button class="hw-btn gold-btn active" onclick="setHardware('collar','gold',this)">
-          <span class="hw-dot"></span> Gold · ทอง
-        </button>
-        <button class="hw-btn silver-btn" onclick="setHardware('collar','silver',this)">
-          <span class="hw-dot"></span> Silver · เงิน
-        </button>
-      </div>
-
-      <!-- Sizes -->
-      <p class="size-label">Size · ขนาด</p>
-      <div class="sizes">
-        <button class="size-pill" onclick="setSize(this,'XS')">XS</button>
-        <button class="size-pill active" onclick="setSize(this,'S')">S</button>
-        <button class="size-pill" onclick="setSize(this,'M')">M</button>
-      </div>
-
-      <div class="cta-row">
-        <button class="cta-line" id="collar-cta" onclick="openLine()">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.88 2 10.6c0 3.28 2.12 6.16 5.32 7.8-.22.8-.8 2.92-.92 3.38-.14.54.2.54.42.4.18-.12 2.3-1.56 3.24-2.2.6.08 1.26.12 1.94.12 5.52 0 10-3.88 10-8.6C22 5.88 17.52 2 12 2z"/></svg>
-          สั่งผ่าน Line OA
-        </button>
-      </div>
-    </div>
+<!-- COLLECTION -->
+<div id="collection">
+  <div class="section-header reveal">
+    <h2>Try on.<br/><em>Make it yours.</em></h2>
+    <p class="section-note">Choose your hardware, your size — then send us a message on Line to order.</p>
   </div>
 
-  <!-- BANDANA CARD -->
-  <div class="product-card" id="bandana-card">
-    <div class="product-mockup bandana-mock" id="bandana-mockup">
-      <!-- Bandana SVG illustration -->
-      <svg width="220" height="160" viewBox="0 0 220 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Bandana triangle -->
-        <polygon points="110,38 185,115 35,115" fill="#C4919A" opacity="0.3"/>
-        <polygon points="110,38 185,115 35,115" fill="url(#bandanaPattern)" opacity="0.65"/>
-        <polygon points="110,38 185,115 35,115" stroke="#2C1F14" stroke-width="1.2" stroke-opacity="0.35" fill="none"/>
-        <!-- Neck band (top fold) -->
-        <path d="M72 58 Q110 48 148 58" stroke="#2C1F14" stroke-width="1" stroke-opacity="0.25" fill="none"/>
-        <!-- Stitching on edges -->
-        <polygon points="110,44 180,112 40,112" stroke="white" stroke-width="0.8" stroke-dasharray="5 4" stroke-opacity="0.45" fill="none"/>
-        <!-- Tie tails left -->
-        <path d="M35 115 Q18 108 22 96 Q26 84 38 90" fill="#C4919A" opacity="0.4" stroke="#2C1F14" stroke-width="0.8" stroke-opacity="0.3"/>
-        <path d="M35 115 Q18 108 22 96 Q26 84 38 90" fill="url(#bandanaPattern)" opacity="0.5"/>
-        <!-- Tie tails right -->
-        <path d="M185 115 Q202 108 198 96 Q194 84 182 90" fill="#C4919A" opacity="0.4" stroke="#2C1F14" stroke-width="0.8" stroke-opacity="0.3"/>
-        <path d="M185 115 Q202 108 198 96 Q194 84 182 90" fill="url(#bandanaPattern)" opacity="0.5"/>
-        <!-- Center dot / label -->
-        <circle cx="110" cy="90" r="16" fill="white" fill-opacity="0.2" stroke="white" stroke-width="0.6" stroke-opacity="0.4"/>
-        <text x="110" y="94" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="8" fill="white" fill-opacity="0.6" letter-spacing="1">หมา-มี</text>
-        <defs>
-          <pattern id="bandanaPattern" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
-            <line x1="0" y1="8" x2="16" y2="8" stroke="#C9973A" stroke-width="1.5" opacity="0.55"/>
-            <line x1="8" y1="0" x2="8" y2="16" stroke="#6B8C6E" stroke-width="1.5" opacity="0.4"/>
-          </pattern>
-        </defs>
-      </svg>
-      <div class="sold-out-overlay" id="bandana-sold-overlay">
-        <span class="sold-overlay-text">Sold out</span>
-      </div>
-    </div>
+  <div class="products">
 
-    <div class="product-body">
-      <p class="product-type">Thai Mudmee Silk</p>
-      <p class="product-name">Silk Bandana</p>
-      <p class="product-name-th">ผ้าพันคอผ้าไหมมัดหมี่</p>
-
-      <p class="bandana-note">ไม่มีอะไหล่โลหะ — ผ้าไหมล้วน ผูกรอบคอด้วยการมัดผ้า<br/>No metal hardware — pure silk, tied around the neck.</p>
-
-      <!-- Sizes -->
-      <p class="size-label">Size · ขนาด</p>
-      <div class="sizes">
-        <button class="size-pill" onclick="setSize(this,'XS')">XS</button>
-        <button class="size-pill active" onclick="setSize(this,'S')">S</button>
-        <button class="size-pill" onclick="setSize(this,'M')">M</button>
+    <!-- COLLAR -->
+    <div class="product-card reveal">
+      <div class="product-mockup mockup-bg-collar" id="collar-mock">
+        <svg width="260" height="180" viewBox="0 0 260 180" fill="none">
+          <rect x="20" y="72" width="220" height="38" rx="19" fill="#C4919A" opacity="0.25" id="collar-fill"/>
+          <rect x="20" y="72" width="220" height="38" rx="19" fill="url(#cp)" opacity="0.55"/>
+          <rect x="20" y="72" width="220" height="38" rx="19" stroke="#1A1410" stroke-width="0.8" stroke-opacity="0.3" fill="none"/>
+          <path d="M44 82 L216 82" stroke="white" stroke-width="0.7" stroke-dasharray="5 4" stroke-opacity="0.4"/>
+          <path d="M44 100 L216 100" stroke="white" stroke-width="0.7" stroke-dasharray="5 4" stroke-opacity="0.4"/>
+          <g id="hw-g">
+            <rect x="112" y="80" width="36" height="22" rx="2" fill="#C9973A" opacity="0.95" id="hw-rect"/>
+            <rect x="112" y="80" width="36" height="22" rx="2" stroke="#1A1410" stroke-width="0.6" stroke-opacity="0.25" fill="none"/>
+            <line x1="130" y1="80" x2="130" y2="102" stroke="#1A1410" stroke-width="1.2" stroke-opacity="0.3"/>
+            <circle cx="130" cy="91" r="3" fill="rgba(255,255,255,0.7)" stroke="#C9973A" stroke-width="0.5" id="hw-pin"/>
+          </g>
+          <ellipse cx="82" cy="91" rx="7" ry="10" stroke="#C9973A" id="hw-ring" stroke-width="2.2" fill="none"/>
+          <circle cx="178" cy="91" r="2.5" fill="white" fill-opacity="0.5"/>
+          <circle cx="192" cy="91" r="2.5" fill="white" fill-opacity="0.5"/>
+          <circle cx="206" cy="91" r="2.5" fill="white" fill-opacity="0.5"/>
+          <defs>
+            <pattern id="cp" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="24" y2="24" stroke="#6B8C6E" stroke-width="1.5" opacity="0.45"/>
+              <line x1="24" y1="0" x2="0" y2="24" stroke="#C4919A" stroke-width="1" opacity="0.3"/>
+            </pattern>
+          </defs>
+        </svg>
+        <div class="sold-overlay" id="collar-sold"><span>Sold out</span></div>
       </div>
 
-      <div class="cta-row">
-        <button class="cta-line" id="bandana-cta" onclick="openLine()">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.88 2 10.6c0 3.28 2.12 6.16 5.32 7.8-.22.8-.8 2.92-.92 3.38-.14.54.2.54.42.4.18-.12 2.3-1.56 3.24-2.2.6.08 1.26.12 1.94.12 5.52 0 10-3.88 10-8.6C22 5.88 17.52 2 12 2z"/></svg>
-          สั่งผ่าน Line OA
+      <div class="product-info">
+        <p class="product-type">Thai Mudmee Ikat Silk</p>
+        <p class="product-name">The Silk Collar</p>
+        <p class="product-tagline">"Worn by a dog who has taste."</p>
+
+        <p class="option-label">Hardware</p>
+        <div class="hw-row">
+          <button class="hw-btn active" onclick="setHw('gold',this)"><span class="hw-dot gold"></span> Gold</button>
+          <button class="hw-btn" onclick="setHw('silver',this)"><span class="hw-dot silver"></span> Silver</button>
+        </div>
+
+        <p class="option-label">Size</p>
+        <div class="size-row">
+          <button class="sz" onclick="setSz(this)">XS</button>
+          <button class="sz active" onclick="setSz(this)">S</button>
+          <button class="sz" onclick="setSz(this)">M</button>
+        </div>
+
+        <button class="product-cta" id="collar-cta" onclick="goLine()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.88 2 10.6c0 3.28 2.12 6.16 5.32 7.8-.22.8-.8 2.92-.92 3.38-.14.54.2.54.42.4.18-.12 2.3-1.56 3.24-2.2.6.08 1.26.12 1.94.12 5.52 0 10-3.88 10-8.6C22 5.88 17.52 2 12 2z"/></svg>
+          Order via Line
         </button>
       </div>
     </div>
-  </div>
 
+    <!-- BANDANA -->
+    <div class="product-card reveal" style="transition-delay:0.15s">
+      <div class="product-mockup mockup-bg-bandana" id="bandana-mock">
+        <svg width="260" height="180" viewBox="0 0 260 180" fill="none">
+          <polygon points="130,32 220,130 40,130" fill="#C4919A" opacity="0.22"/>
+          <polygon points="130,32 220,130 40,130" fill="url(#bp)" opacity="0.6"/>
+          <polygon points="130,32 220,130 40,130" stroke="#1A1410" stroke-width="0.8" stroke-opacity="0.3" fill="none"/>
+          <polygon points="130,40 212,126 48,126" stroke="white" stroke-width="0.7" stroke-dasharray="6 5" stroke-opacity="0.35" fill="none"/>
+          <path d="M40 130 Q22 122 26 108 Q30 94 44 102" fill="#C4919A" opacity="0.3" stroke="#1A1410" stroke-width="0.6" stroke-opacity="0.25"/>
+          <path d="M40 130 Q22 122 26 108 Q30 94 44 102" fill="url(#bp)" opacity="0.45"/>
+          <path d="M220 130 Q238 122 234 108 Q230 94 216 102" fill="#C4919A" opacity="0.3" stroke="#1A1410" stroke-width="0.6" stroke-opacity="0.25"/>
+          <path d="M220 130 Q238 122 234 108 Q230 94 216 102" fill="url(#bp)" opacity="0.45"/>
+          <circle cx="130" cy="100" r="22" fill="white" fill-opacity="0.12" stroke="white" stroke-width="0.5" stroke-opacity="0.3"/>
+          <text x="130" y="104" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="10" fill="white" fill-opacity="0.5" letter-spacing="2" font-style="italic">หมา-มี</text>
+          <defs>
+            <pattern id="bp" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="9" x2="18" y2="9" stroke="#C9973A" stroke-width="1.5" opacity="0.5"/>
+              <line x1="9" y1="0" x2="9" y2="18" stroke="#6B8C6E" stroke-width="1.5" opacity="0.35"/>
+            </pattern>
+          </defs>
+        </svg>
+        <div class="sold-overlay" id="bandana-sold"><span>Sold out</span></div>
+      </div>
+
+      <div class="product-info">
+        <p class="product-type">Thai Mudmee Ikat Silk</p>
+        <p class="product-name">The Silk Bandana</p>
+        <p class="product-tagline">"Pure silk. No hardware. Just the fabric."</p>
+
+        <p class="option-label">Size</p>
+        <div class="size-row">
+          <button class="sz" onclick="setSz(this)">XS</button>
+          <button class="sz active" onclick="setSz(this)">S</button>
+          <button class="sz" onclick="setSz(this)">M</button>
+        </div>
+
+        <p style="font-size:12px;color:var(--ink-50);font-weight:300;font-style:italic;margin-bottom:20px;line-height:1.7;">No metal hardware — pure silk, tied around the neck.</p>
+
+        <button class="product-cta" id="bandana-cta" onclick="goLine()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.88 2 10.6c0 3.28 2.12 6.16 5.32 7.8-.22.8-.8 2.92-.92 3.38-.14.54.2.54.42.4.18-.12 2.3-1.56 3.24-2.2.6.08 1.26.12 1.94.12 5.52 0 10-3.88 10-8.6C22 5.88 17.52 2 12 2z"/></svg>
+          Order via Line
+        </button>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<!-- HOW IT WORKS -->
-<div class="hiw">
-  <h2 class="hiw-title">วิธีสั่งซื้อ · How to order</h2>
-  <div class="hiw-steps">
-    <div class="hiw-step">
-      <div class="step-num">1</div>
-      <div class="step-text">
-        <strong>เลือกลาย + อะไหล่ + ขนาด</strong>
-        <span>Choose your fabric pattern, hardware color, and size above</span>
-      </div>
-    </div>
-    <div class="hiw-step">
-      <div class="step-num">2</div>
-      <div class="step-text">
-        <strong>ทักหาเราใน Line OA</strong>
-        <span>Send us a message on Line — tell us your selection and your dog's neck size</span>
-      </div>
-    </div>
-    <div class="hiw-step">
-      <div class="step-num">3</div>
-      <div class="step-text">
-        <strong>Made just for your dog</strong>
-        <span>ตัดเย็บตามออเดอร์ ไม่สต็อกสินค้า — your piece is made when you order it</span>
-      </div>
-    </div>
-    <div class="hiw-step">
-      <div class="step-num">4</div>
-      <div class="step-text">
-        <strong>Yours — and only yours</strong>
-        <span>ลายผ้าของหมาคุณเป็นของหมาคุณคนเดียว No two pieces are exactly the same</span>
-      </div>
+<!-- STORY -->
+<div class="story reveal">
+  <div class="story-left">
+    <h3>Mudmee ikat.<br/>Made for dogs<br/><em>for the first time.</em></h3>
+    <p>Mudmee ikat has been woven the same way for hundreds of years — by hand, in Thailand, using a resist-dyeing technique passed down through generations. It has been worn to ceremonies, to weddings, to temples.</p>
+    <p>It has never been made for dogs. Until now.</p>
+    <div class="story-pull">"No two dogs wear the same pattern. That's not a flaw — that's the point."</div>
+  </div>
+  <div class="story-right">
+    <div class="story-fabric-bg"></div>
+    <div class="story-center-text">
+      <strong>Maa-mee.studio</strong>
+      <p>Handcrafted in Bangkok<br/>Made to order<br/>Thai mudmee ikat silk</p>
     </div>
   </div>
 </div>
 
-<!-- FABRIC STORY -->
-<div class="fabric-story">
-  <div class="fabric-story-inner">
-    <h3>Mudmee ikat —<br/><em>made for dogs</em><br/>for the first time.</h3>
-    <p>ผ้ามัดหมี่ถูกทอมาหลายร้อยปี แต่ไม่เคยถูกเอามาทำเป็นปลอกคอสุนัขมาก่อน Mudmee ikat has been woven the same way for hundreds of years — just never for dogs.</p>
-    <div class="fabric-unique">ทุกชิ้นที่ตัดจากผ้าม้วนเดียวกันมีลายที่แตกต่างกัน เพราะผ้ามัดหมี่มีทั้งส่วนที่เป็นลายและส่วนที่เป็นสีพื้น — นี่คือเรื่องราวของผ้า ไม่ใช่ข้อด้อย<br/><br/>"No two dogs wear the same pattern. That's not a flaw — that's the point."</div>
+<!-- PROCESS -->
+<div class="process reveal">
+  <h2>How it works.</h2>
+  <div class="process-grid">
+    <div class="process-step">
+      <div class="step-num">01</div>
+      <p class="step-title">Choose</p>
+      <p class="step-body">Browse this week's fabric. Select your product, hardware color, and size above.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02</div>
+      <p class="step-title">Message</p>
+      <p class="step-body">Send us a message on Line OA. Tell us your selection and your dog's neck measurement.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03</div>
+      <p class="step-title">Made for your dog</p>
+      <p class="step-body">Your piece is cut and sewn when you order it. We don't hold stock. Each piece is made once.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">04</div>
+      <p class="step-title">Yours alone</p>
+      <p class="step-body">Because mudmee silk alternates solid and patterned sections, your dog's piece is the only one like it.</p>
+    </div>
   </div>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <p class="footer-brand">Maa-mee.studio</p>
-  <p class="footer-sub">หมา-มี · Made in Bangkok</p>
-  <a class="footer-line-cta" id="footer-line-btn" href="#" target="_blank" rel="noopener">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.88 2 10.6c0 3.28 2.12 6.16 5.32 7.8-.22.8-.8 2.92-.92 3.38-.14.54.2.54.42.4.18-.12 2.3-1.56 3.24-2.2.6.08 1.26.12 1.94.12 5.52 0 10-3.88 10-8.6C22 5.88 17.52 2 12 2z"/></svg>
-    สั่งซื้อผ่าน Line OA
-  </a>
-  <p class="footer-note">ไม่ต้องลงทะเบียน · ไม่เก็บข้อมูลส่วนตัว<br/>ทักหาเราเพื่อสอบถามและสั่งซื้อ</p>
+  <div>
+    <p class="footer-brand">Maa-mee.studio</p>
+    <p class="footer-tagline">หมา-มี · Thai silk pet accessories<br/>Made in Bangkok · 2026</p>
+  </div>
+  <div class="footer-col">
+    <p class="footer-col-label">Order</p>
+    <p>No forms. No account. Browse the catalog, choose what you want, and send us a message on Line to order.</p>
+    <a class="footer-line-btn" id="footer-line" href="#" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.88 2 10.6c0 3.28 2.12 6.16 5.32 7.8-.22.8-.8 2.92-.92 3.38-.14.54.2.54.42.4.18-.12 2.3-1.56 3.24-2.2.6.08 1.26.12 1.94.12 5.52 0 10-3.88 10-8.6C22 5.88 17.52 2 12 2z"/></svg>
+      Open Line OA
+    </a>
+  </div>
+  <div class="footer-col">
+    <p class="footer-col-label">About</p>
+    <p>Thai mudmee ikat silk bandanas and collars, handcrafted by Thai artisans. Made to order. New fabric every week.</p>
+  </div>
 </footer>
+<div class="footer-bottom">
+  <p>© 2026 Maa-mee.studio</p>
+  <p>Handcrafted in Bangkok, Thailand</p>
+</div>
 
 <script>
-const DEFAULT_DATA = {
-  patternName: "Sage Bloom · สีเขียวดอกไม้",
-  patternDesc: "Sage green with mauve floral ikat · ผ้ามัดหมี่สีเขียวบรีดลาย",
-  patternImage: "",
-  isSoldOut: false,
-  collarHardware: { gold: true, silver: true },
-  lineUrl: "https://lin.ee/YOUR_LINE_OA_ID"
+const DEFAULT={
+  patternName:'Sage Bloom',
+  patternDesc:'Sage green with mauve floral ikat',
+  patternImage:'',
+  isSoldOut:false,
+  lineUrl:'https://lin.ee/YOUR_LINE_OA_ID'
 };
 
 function getData(){
-  try{
-    const d = localStorage.getItem('maameeCatalog');
-    return d ? {...DEFAULT_DATA,...JSON.parse(d)} : DEFAULT_DATA;
-  }catch(e){return DEFAULT_DATA;}
+  try{const d=localStorage.getItem('maameeCatalog');return d?{...DEFAULT,...JSON.parse(d)}:DEFAULT;}
+  catch(e){return DEFAULT;}
 }
 
-function applyData(){
-  const d = getData();
-  document.getElementById('week-name').textContent = d.patternName;
-  document.getElementById('week-desc').textContent = d.patternDesc;
-
-  const thumb = document.getElementById('week-thumb');
+function init(){
+  const d=getData();
+  document.getElementById('week-name').textContent=d.patternName;
+  document.getElementById('week-desc').textContent=d.patternDesc;
+  const lineUrl=d.lineUrl||DEFAULT.lineUrl;
+  ['nav-line','footer-line'].forEach(id=>{const el=document.getElementById(id);if(el)el.href=lineUrl;});
+  window._lineUrl=lineUrl;
   if(d.patternImage){
-    thumb.innerHTML = `<img src="${d.patternImage}" alt="fabric pattern"/>`;
+    const img=document.getElementById('week-img');
+    img.src=d.patternImage;img.style.display='block';
   }
-
-  const lineUrl = d.lineUrl || DEFAULT_DATA.lineUrl;
-  document.getElementById('nav-line-btn').href = lineUrl;
-  document.getElementById('footer-line-btn').href = lineUrl;
-
-  const so = d.isSoldOut;
-  document.getElementById('week-sold-badge').classList.toggle('visible', so);
-  document.getElementById('collar-sold-overlay').classList.toggle('show', so);
-  document.getElementById('bandana-sold-overlay').classList.toggle('show', so);
-
-  const collarCta = document.getElementById('collar-cta');
-  const bandanaCta = document.getElementById('bandana-cta');
-  if(so){
-    collarCta.className = 'cta-line sold-out';
-    collarCta.innerHTML = 'Sold out — ทักหาเราเพื่อสอบถาม';
-    collarCta.onclick = () => window.open(lineUrl,'_blank');
-    bandanaCta.className = 'cta-line sold-out';
-    bandanaCta.innerHTML = 'Sold out — ทักหาเราเพื่อสอบถาม';
-    bandanaCta.onclick = () => window.open(lineUrl,'_blank');
-  } else {
-    collarCta.className = 'cta-line';
-    collarCta.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2C6.48 2 2 5.88 2 10.6c0 3.28 2.12 6.16 5.32 7.8-.22.8-.8 2.92-.92 3.38-.14.54.2.54.42.4.18-.12 2.3-1.56 3.24-2.2.6.08 1.26.12 1.94.12 5.52 0 10-3.88 10-8.6C22 5.88 17.52 2 12 2z"/></svg>สั่งผ่าน Line OA`;
-    collarCta.onclick = openLine;
-    bandanaCta.className = 'cta-line';
-    bandanaCta.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2C6.48 2 2 5.88 2 10.6c0 3.28 2.12 6.16 5.32 7.8-.22.8-.8 2.92-.92 3.38-.14.54.2.54.42.4.18-.12 2.3-1.56 3.24-2.2.6.08 1.26.12 1.94.12 5.52 0 10-3.88 10-8.6C22 5.88 17.52 2 12 2z"/></svg>สั่งผ่าน Line OA`;
-    bandanaCta.onclick = openLine;
-  }
-
-  if(d.patternImage){
-    updateMockupFabric(d.patternImage);
-  }
+  const so=d.isSoldOut;
+  document.getElementById('week-sold').classList.toggle('show',so);
+  document.getElementById('collar-sold').classList.toggle('show',so);
+  document.getElementById('bandana-sold').classList.toggle('show',so);
+  const ctaText=so?'Sold out — message us on Line':'<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.88 2 10.6c0 3.28 2.12 6.16 5.32 7.8-.22.8-.8 2.92-.92 3.38-.14.54.2.54.42.4.18-.12 2.3-1.56 3.24-2.2.6.08 1.26.12 1.94.12 5.52 0 10-3.88 10-8.6C22 5.88 17.52 2 12 2z"/></svg> Order via Line';
+  const ctaClass=so?'product-cta unavailable':'product-cta';
+  ['collar-cta','bandana-cta'].forEach(id=>{
+    const el=document.getElementById(id);
+    el.className=ctaClass;
+    el.innerHTML=ctaText;
+    el.onclick=()=>window.open(lineUrl,'_blank');
+  });
 }
 
-function updateMockupFabric(imgSrc){
-  const collarEl = document.getElementById('collar-mockup');
-  const bandanaEl = document.getElementById('bandana-mockup');
-  let existing = collarEl.querySelector('.fabric-img-overlay');
-  if(!existing){
-    const div = document.createElement('div');
-    div.className = 'fabric-img-overlay';
-    div.style.cssText = `position:absolute;inset:0;background-image:url(${imgSrc});background-size:cover;opacity:0.25;mix-blend-mode:multiply;pointer-events:none;`;
-    collarEl.insertBefore(div, collarEl.firstChild);
-  } else { existing.style.backgroundImage = `url(${imgSrc})`; }
+function goLine(){window.open(window._lineUrl||DEFAULT.lineUrl,'_blank');}
 
-  let existingB = bandanaEl.querySelector('.fabric-img-overlay');
-  if(!existingB){
-    const div2 = document.createElement('div');
-    div2.className = 'fabric-img-overlay';
-    div2.style.cssText = `position:absolute;inset:0;background-image:url(${imgSrc});background-size:cover;opacity:0.25;mix-blend-mode:multiply;pointer-events:none;`;
-    bandanaEl.insertBefore(div2, bandanaEl.firstChild);
-  } else { existingB.style.backgroundImage = `url(${imgSrc})`; }
-}
-
-function setHardware(product, type, btn){
-  btn.closest('.hw-options').querySelectorAll('.hw-btn').forEach(b=>b.classList.remove('active'));
+function setHw(type,btn){
+  btn.closest('.hw-row').querySelectorAll('.hw-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  const collarHw = document.getElementById('collar-hardware');
-  const dring = document.getElementById('collar-dring');
-  const hwColor = type === 'gold' ? '#C9973A' : '#9AABB5';
-  if(collarHw){
-    collarHw.querySelector('rect').setAttribute('fill', hwColor);
-    dring.setAttribute('stroke', hwColor);
-    const pin = collarHw.querySelector('circle');
-    if(pin) pin.setAttribute('stroke', hwColor);
-  }
+  const c=type==='gold'?'#C9973A':'#9AABB5';
+  const r=document.getElementById('hw-rect');
+  const ring=document.getElementById('hw-ring');
+  if(r)r.setAttribute('fill',c);
+  if(ring)ring.setAttribute('stroke',c);
+  const pin=document.getElementById('hw-pin');
+  if(pin)pin.setAttribute('stroke',c);
 }
 
-function setSize(btn, size){
-  btn.closest('.sizes').querySelectorAll('.size-pill').forEach(b=>b.classList.remove('active'));
+function setSz(btn){
+  btn.closest('.size-row').querySelectorAll('.sz').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
 }
 
-function openLine(){
-  const d = getData();
-  window.open(d.lineUrl || DEFAULT_DATA.lineUrl, '_blank');
-}
+// Scroll reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-window.addEventListener('storage', applyData);
-applyData();
+window.addEventListener('storage',init);
+init();
 </script>
 </body>
 </html>
